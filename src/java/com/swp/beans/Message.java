@@ -41,6 +41,12 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Message.findByTime", query = "SELECT m FROM Message m WHERE m.time = :time")})
 public class Message implements Serializable {
 
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 255)
+    @Column(name = "objet")
+    private String objet;
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -172,6 +178,14 @@ public class Message implements Serializable {
     @Override
     public String toString() {
         return "com.swp.beans.Message[ idMsg=" + idMsg + " ]";
+    }
+
+    public String getObjet() {
+        return objet;
+    }
+
+    public void setObjet(String objet) {
+        this.objet = objet;
     }
     
 }

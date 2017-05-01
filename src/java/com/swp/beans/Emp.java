@@ -25,7 +25,6 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -40,7 +39,8 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Emp.findByJour", query = "SELECT e FROM Emp e WHERE e.jour = :jour")
     , @NamedQuery(name = "Emp.findByHeure", query = "SELECT e FROM Emp e WHERE e.heure = :heure")
     , @NamedQuery(name = "Emp.findByDateD", query = "SELECT e FROM Emp e WHERE e.dateD = :dateD")
-    , @NamedQuery(name = "Emp.findByDateF", query = "SELECT e FROM Emp e WHERE e.dateF = :dateF")})
+    , @NamedQuery(name = "Emp.findByDateF", query = "SELECT e FROM Emp e WHERE e.dateF = :dateF")
+    , @NamedQuery(name = "Emp.findByIdsemestre", query = "SELECT e FROM Emp e WHERE e.idsemestre = :idsemestre")})
 public class Emp implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -68,6 +68,10 @@ public class Emp implements Serializable {
     @Column(name = "DateF")
     @Temporal(TemporalType.DATE)
     private Date dateF;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "Id_semestre")
+    private int idsemestre;
     @JoinColumn(name = "NumE", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Enseignant numE;
@@ -77,8 +81,16 @@ public class Emp implements Serializable {
     @JoinColumn(name = "NumM", referencedColumnName = "CodeM")
     @ManyToOne(optional = false)
     private Matiere numM;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "numEmp")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "NumEmp")
     private List<Seance> seanceList;
+
+    public List<Seance> getSeanceList() {
+        return seanceList;
+    }
+
+    public void setSeanceList(List<Seance> seanceList) {
+        this.seanceList = seanceList;
+    }
 
     public Emp() {
     }
@@ -87,12 +99,13 @@ public class Emp implements Serializable {
         this.numEmp = numEmp;
     }
 
-    public Emp(Integer numEmp, int jour, Date heure, Date dateD, Date dateF) {
+    public Emp(Integer numEmp, int jour, Date heure, Date dateD, Date dateF, int idsemestre) {
         this.numEmp = numEmp;
         this.jour = jour;
         this.heure = heure;
         this.dateD = dateD;
         this.dateF = dateF;
+        this.idsemestre = idsemestre;
     }
 
     public Integer getNumEmp() {
@@ -135,6 +148,14 @@ public class Emp implements Serializable {
         this.dateF = dateF;
     }
 
+    public int getIdsemestre() {
+        return idsemestre;
+    }
+
+    public void setIdsemestre(int idsemestre) {
+        this.idsemestre = idsemestre;
+    }
+
     public Enseignant getNumE() {
         return numE;
     }
@@ -157,15 +178,6 @@ public class Emp implements Serializable {
 
     public void setNumM(Matiere numM) {
         this.numM = numM;
-    }
-
-    @XmlTransient
-    public List<Seance> getSeanceList() {
-        return seanceList;
-    }
-
-    public void setSeanceList(List<Seance> seanceList) {
-        this.seanceList = seanceList;
     }
 
     @Override

@@ -10,7 +10,7 @@ import javax.persistence.metamodel.ListAttribute;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
-@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2017-04-21T07:51:45")
+@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2017-04-30T12:53:11")
 @StaticMetamodel(Emp.class)
 public class Emp_ { 
 
@@ -18,6 +18,7 @@ public class Emp_ {
     public static volatile SingularAttribute<Emp, Groupe> numG;
     public static volatile SingularAttribute<Emp, Integer> jour;
     public static volatile SingularAttribute<Emp, Matiere> numM;
+    public static volatile SingularAttribute<Emp, Integer> idsemestre;
     public static volatile SingularAttribute<Emp, Date> dateF;
     public static volatile SingularAttribute<Emp, Date> dateD;
     public static volatile SingularAttribute<Emp, Integer> numEmp;

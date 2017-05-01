@@ -42,6 +42,12 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Enseignant.findByR\u00f4le", query = "SELECT e FROM Enseignant e WHERE e.r\u00f4le = :r\u00f4le")})
 public class Enseignant implements Serializable {
 
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 255)
+    @Column(name = "Tel")
+    private String tel;
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -66,10 +72,6 @@ public class Enseignant implements Serializable {
     private String email;
     @Basic(optional = false)
     @NotNull
-    @Column(name = "Tel")
-    private long tel;
-    @Basic(optional = false)
-    @NotNull
     @Size(min = 1, max = 45)
     @Column(name = "R\u00f4le")
     private String rôle;
@@ -92,7 +94,7 @@ public class Enseignant implements Serializable {
         this.id = id;
     }
 
-    public Enseignant(Integer id, String nom, String prenom, String email, long tel, String rôle) {
+    public Enseignant(Integer id, String nom, String prenom, String email, String tel, String rôle) {
         this.id = id;
         this.nom = nom;
         this.prenom = prenom;
@@ -133,13 +135,6 @@ public class Enseignant implements Serializable {
         this.email = email;
     }
 
-    public long getTel() {
-        return tel;
-    }
-
-    public void setTel(long tel) {
-        this.tel = tel;
-    }
 
     public String getRôle() {
         return rôle;
@@ -216,6 +211,14 @@ public class Enseignant implements Serializable {
     @Override
     public String toString() {
         return "com.swp.beans.Enseignant[ id=" + id + " ]";
+    }
+
+    public String getTel() {
+        return tel;
+    }
+
+    public void setTel(String tel) {
+        this.tel = tel;
     }
     
 }

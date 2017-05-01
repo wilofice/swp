@@ -38,6 +38,13 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Groupe.findByNomFiliere", query = "SELECT g FROM Groupe g WHERE g.nomFiliere = :nomFiliere")})
 public class Groupe implements Serializable {
 
+    // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 255)
+    @Column(name = "Email")
+    private String email;
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -139,6 +146,14 @@ public class Groupe implements Serializable {
     @Override
     public String toString() {
         return "com.swp.beans.Groupe[ numG=" + numG + " ]";
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
     
 }

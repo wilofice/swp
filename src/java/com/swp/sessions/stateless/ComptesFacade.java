@@ -14,7 +14,7 @@ import javax.persistence.PersistenceContext;
  *
  * @author genereux
  */
-@Stateless
+@Stateless (mappedName = "ComptesFacade")
 public class ComptesFacade extends AbstractFacade<Comptes> {
 
     @PersistenceContext(unitName = "swpPU")
@@ -22,6 +22,7 @@ public class ComptesFacade extends AbstractFacade<Comptes> {
 
     @Override
     protected EntityManager getEntityManager() {
+        
         return em;
     }
 

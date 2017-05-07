@@ -28,10 +28,10 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author genereux
+ * @author Pro
  */
 @Entity
-@Table(name = "Semaine")
+@Table(name = "semaine")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Semaine.findAll", query = "SELECT s FROM Semaine s")
@@ -51,11 +51,11 @@ public class Semaine implements Serializable {
     @Column(name = "Date_debut")
     @Temporal(TemporalType.DATE)
     private Date datedebut;
-    @JoinColumn(name = "Id_semestre", referencedColumnName = "Id_semestre")
-    @ManyToOne(optional = false)
-    private Semestre idsemestre;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idSemaine")
     private List<Creneau> creneauList;
+    @JoinColumn(name = "id_semestre", referencedColumnName = "Id_semestre")
+    @ManyToOne(optional = false)
+    private Semestre idSemestre;
 
     public Semaine() {
     }
@@ -85,14 +85,6 @@ public class Semaine implements Serializable {
         this.datedebut = datedebut;
     }
 
-    public Semestre getIdsemestre() {
-        return idsemestre;
-    }
-
-    public void setIdsemestre(Semestre idsemestre) {
-        this.idsemestre = idsemestre;
-    }
-
     @XmlTransient
     public List<Creneau> getCreneauList() {
         return creneauList;
@@ -100,6 +92,14 @@ public class Semaine implements Serializable {
 
     public void setCreneauList(List<Creneau> creneauList) {
         this.creneauList = creneauList;
+    }
+
+    public Semestre getIdSemestre() {
+        return idSemestre;
+    }
+
+    public void setIdSemestre(Semestre idSemestre) {
+        this.idSemestre = idSemestre;
     }
 
     @Override

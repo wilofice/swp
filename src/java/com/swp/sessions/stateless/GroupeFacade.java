@@ -33,7 +33,7 @@ public class GroupeFacade extends AbstractFacade<Groupe> {
 
     public List<Groupe> findByNiveau(int niveau) {
         TypedQuery<Groupe> query =
-        em.createNamedQuery("Country.findByNiveau", Groupe.class);
+        em.createNamedQuery("Groupe.findByNiveau", Groupe.class);
         query.setParameter("niveau", niveau);
         List<Groupe> results = query.getResultList();
         return results;

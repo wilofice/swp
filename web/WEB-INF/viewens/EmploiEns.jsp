@@ -125,13 +125,11 @@
                             <div class="row">    
                                
                                  <!-- /.liste Semestre -->
-                                 <div class="col-lg-2">
-                                <label>Semaine</label>
-                                <!--<select class="form-control" id="semaineselect" onfocus="this.size=5;" onblur="this.size=1;" onchange="this.size=1;this.blur();">-->
-                                <select class="form-control" id="semaineselect">
-                                    
-                                 </select>
-                                 </div>
+                                <div class="col-lg-2">
+                                    <label>Semaine</label>
+                                    <!--<select class="form-control" id="semaineselect" onfocus="this.size=5;" onblur="this.size=1;" onchange="this.size=1;this.blur();">-->
+                                    <select class="form-control" id="semaineselect" ></select>
+                                </div>
                                 <div class="col-lg-5">
                                 </div>
                             </div>
@@ -750,8 +748,8 @@
                                                     </div>
                                                     <div class="col-lg-8">
                                                         <textarea id="message" class="form-control" rows="5" cols="200" style="text-align: left" name="message">
-                                                          
                                                         </textarea>
+                                                        <textarea id="messageD" name="messageD" style="display: none;"></textarea>
                                                         </div>
                                                     </div>
                                                 </div> 

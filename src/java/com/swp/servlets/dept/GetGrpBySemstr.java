@@ -69,7 +69,7 @@ public class GetGrpBySemstr extends HttpServlet {
             sb.append("<semaine>");
             sb.append("<id_semaine>").append(s.getIdsemaine()).append("</id_semaine>");
             sb.append("<date_debut>").append(s.getDatedebut()).append("</date_debut>");
-            sb.append("<id_semestre>").append(s.getIdsemestre()).append("</id_semestre>");
+            sb.append("<id_semestre>").append(s.getIdSemestre()).append("</id_semestre>");
             sb.append("</semaine>");
         }
         

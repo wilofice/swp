@@ -6,9 +6,13 @@
 package com.swp.sessions.stateless;
 
 import com.swp.beans.Filiere;
+import com.swp.beans.Groupe;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
 /**
  *
@@ -27,6 +31,14 @@ public class FiliereFacade extends AbstractFacade<Filiere> {
 
     public FiliereFacade() {
         super(Filiere.class);
+    }
+    
+    public Filiere findByNomF(String nomF) {
+        TypedQuery<Filiere> query =
+        em.createNamedQuery("Filiere.findByNomF", Filiere.class);
+        query.setParameter("nomF", nomF);
+        Filiere results = query.getSingleResult();
+        return results;
     }
     
 }

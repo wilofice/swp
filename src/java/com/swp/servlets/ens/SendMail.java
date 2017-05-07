@@ -22,9 +22,9 @@ public class SendMail {
         String to = towhom;
 
       // Sender's email ID needs to be mentioned
-      String from = "wilofice@gmail.com";
-      final String username = "wilofice@gmail.com";//change accordingly
-      final String password = "15-A-7CB";//change accordingly
+      String from = "swapmylecture";
+      final String username = "swapmylecture@gmail.com";//change accordingly
+      final String password = "swapmylecture2017";//change accordingly
 
       // Assuming you are sending email through relay.jangosmtp.net
       String host = "smtp.gmail.com";

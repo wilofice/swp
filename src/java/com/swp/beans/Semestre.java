@@ -23,10 +23,10 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author genereux
+ * @author Pro
  */
 @Entity
-@Table(name = "Semestre")
+@Table(name = "semestre")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Semestre.findAll", query = "SELECT s FROM Semestre s")
@@ -45,7 +45,7 @@ public class Semestre implements Serializable {
     @Size(min = 1, max = 20)
     @Column(name = "Semaine_debut")
     private String semainedebut;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idsemestre")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idSemestre")
     private List<Semaine> semaineList;
 
     public Semestre() {

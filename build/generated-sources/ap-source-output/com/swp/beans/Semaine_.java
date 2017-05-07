@@ -8,13 +8,13 @@ import javax.persistence.metamodel.ListAttribute;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
-@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2017-04-30T12:53:11")
+@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2017-05-07T23:42:43")
 @StaticMetamodel(Semaine.class)
 public class Semaine_ { 
 
     public static volatile SingularAttribute<Semaine, String> idsemaine;
-    public static volatile SingularAttribute<Semaine, Semestre> idsemestre;
     public static volatile SingularAttribute<Semaine, Date> datedebut;
     public static volatile ListAttribute<Semaine, Creneau> creneauList;
+    public static volatile SingularAttribute<Semaine, Semestre> idSemestre;
 
 }

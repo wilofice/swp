@@ -25,25 +25,19 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author genereux
+ * @author Pro
  */
 @Entity
-@Table(name = "Groupe")
+@Table(name = "groupe")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Groupe.findAll", query = "SELECT g FROM Groupe g")
     , @NamedQuery(name = "Groupe.findByNumG", query = "SELECT g FROM Groupe g WHERE g.numG = :numG")
     , @NamedQuery(name = "Groupe.findByNomG", query = "SELECT g FROM Groupe g WHERE g.nomG = :nomG")
     , @NamedQuery(name = "Groupe.findByNiveau", query = "SELECT g FROM Groupe g WHERE g.niveau = :niveau")
-    , @NamedQuery(name = "Groupe.findByNomFiliere", query = "SELECT g FROM Groupe g WHERE g.nomFiliere = :nomFiliere")})
+    , @NamedQuery(name = "Groupe.findByNomFiliere", query = "SELECT g FROM Groupe g WHERE g.nomFiliere = :nomFiliere")
+    , @NamedQuery(name = "Groupe.findByEmail", query = "SELECT g FROM Groupe g WHERE g.email = :email")})
 public class Groupe implements Serializable {
-
-    // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 255)
-    @Column(name = "Email")
-    private String email;
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -65,6 +59,12 @@ public class Groupe implements Serializable {
     @Size(min = 1, max = 255)
     @Column(name = "NomFiliere")
     private String nomFiliere;
+    // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 255)
+    @Column(name = "Email")
+    private String email;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "numG")
     private List<Emp> empList;
 
@@ -75,11 +75,12 @@ public class Groupe implements Serializable {
         this.numG = numG;
     }
 
-    public Groupe(Integer numG, String nomG, int niveau, String nomFiliere) {
+    public Groupe(Integer numG, String nomG, int niveau, String nomFiliere, String email) {
         this.numG = numG;
         this.nomG = nomG;
         this.niveau = niveau;
         this.nomFiliere = nomFiliere;
+        this.email = email;
     }
 
     public Integer getNumG() {
@@ -114,6 +115,14 @@ public class Groupe implements Serializable {
         this.nomFiliere = nomFiliere;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     @XmlTransient
     public List<Emp> getEmpList() {
         return empList;
@@ -146,14 +155,6 @@ public class Groupe implements Serializable {
     @Override
     public String toString() {
         return "com.swp.beans.Groupe[ numG=" + numG + " ]";
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
     
 }

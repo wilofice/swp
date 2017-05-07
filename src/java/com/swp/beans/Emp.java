@@ -25,13 +25,14 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author genereux
+ * @author Pro
  */
 @Entity
-@Table(name = "Emp")
+@Table(name = "emp")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Emp.findAll", query = "SELECT e FROM Emp e")
@@ -81,16 +82,8 @@ public class Emp implements Serializable {
     @JoinColumn(name = "NumM", referencedColumnName = "CodeM")
     @ManyToOne(optional = false)
     private Matiere numM;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "NumEmp")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "numEmp")
     private List<Seance> seanceList;
-
-    public List<Seance> getSeanceList() {
-        return seanceList;
-    }
-
-    public void setSeanceList(List<Seance> seanceList) {
-        this.seanceList = seanceList;
-    }
 
     public Emp() {
     }
@@ -178,6 +171,15 @@ public class Emp implements Serializable {
 
     public void setNumM(Matiere numM) {
         this.numM = numM;
+    }
+
+    @XmlTransient
+    public List<Seance> getSeanceList() {
+        return seanceList;
+    }
+
+    public void setSeanceList(List<Seance> seanceList) {
+        this.seanceList = seanceList;
     }
 
     @Override

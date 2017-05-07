@@ -5,10 +5,12 @@
  */
 package com.swp.sessions.stateless;
 
+import com.swp.beans.Filiere;
 import com.swp.beans.Seance;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 /**
  *
@@ -29,4 +31,11 @@ public class SeanceFacade extends AbstractFacade<Seance> {
         super(Seance.class);
     }
     
+    public Seance findByNumS(String numS) {
+        TypedQuery<Seance> query =
+        em.createNamedQuery("Seance.findByNumS", Seance.class);
+        query.setParameter("numS", numS);
+        Seance results = query.getSingleResult();
+        return results;
+    }
 }

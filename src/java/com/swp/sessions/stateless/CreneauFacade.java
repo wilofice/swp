@@ -34,7 +34,7 @@ public class CreneauFacade extends AbstractFacade<Creneau> {
     
     public Creneau findByDateAndHeure(Date dateC){
         TypedQuery<Creneau> query =
-        em.createNamedQuery("SELECT c FROM Creneau c WHERE c.date = :date AND c.heure = :heure", Creneau.class);
+        em.createQuery("SELECT c FROM Creneau c WHERE c.date = :date AND c.heure = :heure", Creneau.class);
         query.setParameter("date", dateC);
         query.setParameter("heure", dateC);
         Creneau results = query.getSingleResult();

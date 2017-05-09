@@ -1,7 +1,6 @@
 package com.swp.servlets.dept;
 
 import com.swp.beans.Creneau;
-import static com.swp.beans.Creneau_.numC;
 import com.swp.beans.Emp;
 import com.swp.beans.Enseignant;
 import com.swp.beans.Groupe;
@@ -88,7 +87,7 @@ public class AddEmp extends HttpServlet {
             int x = jour - 2;
             
 //            Calendar calv = Calendar.getInstance();
-//            calv.setTime(sff.getDatedebut());
+//            calv.setTime(sff.getDatedebut());0
 //            calv.add(Calendar.DAY_OF_WEEK, 5);
 //            Date dernierVend = calv.getTime();
             
@@ -97,21 +96,31 @@ public class AddEmp extends HttpServlet {
             Calendar calsd = Calendar.getInstance();
             calsd.setTime(sdd.getDatedebut());
             calsd.add(Calendar.DAY_OF_WEEK, x);
+            calsd.set(Calendar.HOUR_OF_DAY, cal.get(Calendar.HOUR_OF_DAY));
+            calsd.set(Calendar.MINUTE, cal.get(Calendar.MINUTE));
+            calsd.set(Calendar.SECOND, cal.get(Calendar.SECOND));
             Calendar calsf = Calendar.getInstance();
             calsf.setTime(sff.getDatedebut());
             calsf.add(Calendar.DAY_OF_WEEK, x);
+            calsf.set(Calendar.HOUR_OF_DAY, cal.get(Calendar.HOUR_OF_DAY));
+            calsf.set(Calendar.MINUTE, cal.get(Calendar.MINUTE));
+            calsf.set(Calendar.SECOND, cal.get(Calendar.SECOND));
             Date dateSeanceDebut = calsd.getTime();
             Date dateSenaceFin = calsf.getTime();
+          
+            
+            System.out.println("dd = " + dateSeanceDebut + " df = " + dateSenaceFin);
                     
-            for(Date date = dateSeanceDebut; !date.equals(dateSenaceFin); calsd.add(Calendar.DAY_OF_WEEK, 7)){
+            for(Date date = dateSeanceDebut; !date.after(dateSenaceFin); date = calsd.getTime()){
                 Seance seanceEmp = new Seance();
+                System.out.println("date for = " + date);
                 Creneau creneauEmp = creneauFacade.findByDateAndHeure(date);
-                
+                seanceEmp.setNumS(1);
                 seanceEmp.setType("seance");
                 seanceEmp.setEtatS(1);
                 seanceEmp.setNumC(creneauEmp);
                 seanceEmp.setNumEmp(emp);
-                
+                calsd.add(Calendar.DAY_OF_WEEK, 7);
                 listSeance.add(seanceEmp);
             }
             

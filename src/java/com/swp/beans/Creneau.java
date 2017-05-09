@@ -75,6 +75,13 @@ public class Creneau implements Serializable {
         this.date = date;
         this.heure = heure;
     }
+    
+    public Creneau(Integer numc ,Date date, Date heure , Semaine s){
+        this.numC = numc;
+        this.date = date;
+        this.heure = heure;
+        this.idSemaine= s;
+    }
 
     public Integer getNumC() {
         return numC;

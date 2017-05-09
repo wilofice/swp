@@ -57,6 +57,7 @@ public class GetGrpBySemstr extends HttpServlet {
                 groupeadded = true;
                 
         }
+        
         sb.append("</groupes>");
         
         Semestre semestre = semestreFacade.find(semstrid);

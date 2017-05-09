@@ -39,16 +39,6 @@ import javax.servlet.http.HttpSession;
 @WebServlet(name = "GestionEmploi", urlPatterns = {"/gestionemploi"})
 public class GestionEmploi extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    
     @EJB
     SemaineFacade semaineFacade;
     @EJB
@@ -74,16 +64,17 @@ public class GestionEmploi extends HttpServlet {
         List<Matiere> listeMatiere = matiereFacade.findAll();
         List<Enseignant> listeenseignant = enseignantFacade.findAll();
         Iterator<Groupe> groupIterator = listegroupe.iterator();
-		while (groupIterator.hasNext()) {
-			Groupe g = groupIterator.next();
-                        if(g.getNomFiliere().equals("informatique")){
-                            listeGroupeTemp.add(g);
-                        }
-		}
+        while (groupIterator.hasNext()) {
+                Groupe g = groupIterator.next();
+                if(g.getNomFiliere().equals("Informatique")){
+                    System.out.println("groupe finded");
+                    listeGroupeTemp.add(g);
+                }
+        }
         
         request.setAttribute("listesemestre",listesemestre);
         request.setAttribute("listesemaine",listesemaine);
-        request.setAttribute("listeGroupeTemp",listeGroupeTemp);
+        request.setAttribute("listegroupe",listeGroupeTemp);
         request.setAttribute("listeMatiere",listeMatiere);
         request.setAttribute("listeenseignant",listeenseignant);
         

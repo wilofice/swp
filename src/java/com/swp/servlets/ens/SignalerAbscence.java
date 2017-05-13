@@ -5,11 +5,13 @@
  */
 package com.swp.servlets.ens;
 
+import com.swp.beans.Creneau;
 import com.swp.beans.Enseignant;
 import com.swp.beans.Filiere;
 import com.swp.beans.Message;
 import com.swp.beans.Seance;
 import com.swp.beans.SeanceHashMap;
+import com.swp.sessions.stateless.AbscenceFacade;
 import com.swp.sessions.stateless.EnseignantFacade;
 import com.swp.sessions.stateless.FiliereFacade;
 import com.swp.sessions.stateless.MessageFacade;
@@ -17,6 +19,7 @@ import com.swp.sessions.stateless.SeanceFacade;
 import java.io.IOException;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -38,7 +41,10 @@ public class SignalerAbscence extends HttpServlet {
     MessageFacade messageFacade;
     @EJB
     FiliereFacade filiereFacade;
-        
+    @EJB
+    AbscenceFacade abscenceFacade;
+    
+    
     protected void processRequestGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
@@ -48,6 +54,33 @@ public class SignalerAbscence extends HttpServlet {
             throws ServletException, IOException {
         
         String seanceid = request.getParameter("seancetoabsentid");
+        
+        Seance sa = seanceFacade.find(Integer.parseInt(seanceid));
+        
+        Absenter absenter = new Absenter(sa, seanceFacade, abscenceFacade);
+        
+        absenter.init();
+        List<Creneau> listc = absenter.getVideGrpAndEns();
+        
+        Iterator<Creneau> cIt = listc.iterator();
+        System.out.println("List des creneaux trouvés");
+        
+        while(cIt.hasNext()) {
+            Creneau c = cIt.next();
+            System.out.println("creneau num " + c.getNumC() + " date = " + c.getDate() + " heure " + c.getHeure());
+        }
+        
+        String idEns = getEnseignantInfoCookies(request, "idens");
+        Integer ensid = Integer.parseInt(idEns);
+        Enseignant ens = enseignantFacade.find(ensid);
+        String semaineid = request.getParameter("currentsemaineid");
+        System.out.println("currentsemaineid " + semaineid);
+        List<Seance> listSeance = SeanceHashMap.getSeanceEnsBySemaine(ens, semaineid);
+        HashMap<String, HashMap<String, Seance>> seanceHashMap = SeanceHashMap.getHashMap(listSeance);
+        request.setAttribute("seanceHashMap", seanceHashMap);
+        this.getServletContext().getRequestDispatcher("/WEB-INF/viewens/EmploiEns.jsp").forward(request, response);
+        
+        
         System.out.println(seanceid);
         Seance s = seanceFacade.find(Integer.parseInt(seanceid));
         String nomF = s.getNumEmp().getNumG().getNomFiliere();
@@ -67,9 +100,7 @@ public class SignalerAbscence extends HttpServlet {
         String objetmessage = request.getParameter("objetmessage");
         //System.out.println("taille du objetmessage " + objetmessage.length());
         
-        String idEns = getEnseignantInfoCookies(request, "idens");
-        Integer ensid = Integer.parseInt(idEns);
-        Enseignant ens = enseignantFacade.find(ensid);
+        
         //System.out.println("ensnom  " + ens.getPrenom());
         String nomEns = getEnseignantInfoCookies(request, "nomens");
         String prenomEns = getEnseignantInfoCookies(request, "prenomens");
@@ -131,12 +162,7 @@ public class SignalerAbscence extends HttpServlet {
         System.out.println("before creating");
         messageFacade.create(msgCoord);
         
-        String semaineid = request.getParameter("currentsemaineid");
-        System.out.println("currentsemaineid " + semaineid);
-        List<Seance> listSeance = SeanceHashMap.getSeanceEnsBySemaine(ens, semaineid);
-        HashMap<String, HashMap<String, Seance>> seanceHashMap = SeanceHashMap.getHashMap(listSeance);
-        request.setAttribute("seanceHashMap", seanceHashMap);
-        this.getServletContext().getRequestDispatcher("/WEB-INF/viewens/EmploiEns.jsp").forward(request, response);
+        
     }
 
 

@@ -5,10 +5,13 @@
  */
 package com.swp.sessions.stateless;
 
+import com.swp.beans.Creneau;
 import com.swp.beans.Semaine;
+import java.util.Date;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 /**
  *

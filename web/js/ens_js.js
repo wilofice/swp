@@ -11,12 +11,13 @@ var currentDate  = new Date(),
 
 document.getElementById("datedujour").innerHTML = currentDay + '/' + currentMonth + '/' +  currentDate.getFullYear();
 
-for(var i = 1; i <= 28; i++) {
+for(var i = 15; i <= 28; i++) {
     option = document.createElement("option");
     option.innerHTML = i;
     $('#semaineselect').append(option);
 }
 $("#semaineselect").prop("selectedIndex", -1);
+
 $('.myradio-group .seance').click(function(){
 
     $(this).parent().parent().find('.seance').removeClass('selected');
@@ -35,6 +36,7 @@ $('.myradio-group .seance').click(function(){
     var filierenom = $('#filierenom' + id).text();
     var matierenom = $('#matierenom' + id).text();
     var realdate = $('#realdate' + id).text();
+    
     $('#seancetoabsentid').attr("value", numS);
     option = document.createElement("option");
     option.setAttribute("value", groupemail);

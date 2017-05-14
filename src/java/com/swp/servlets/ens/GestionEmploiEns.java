@@ -1,16 +1,14 @@
 package com.swp.servlets.ens;
 
-import com.swp.beans.Creneau;
-import com.swp.beans.Emp;
 import com.swp.beans.Enseignant;
 import com.swp.beans.Seance;
 import com.swp.beans.SeanceHashMap;
 import com.swp.sessions.stateless.EnseignantFacade;
 import com.swp.sessions.stateless.SemaineFacade;
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -30,6 +28,10 @@ public class GestionEmploiEns extends HttpServlet {
     SemaineFacade semaineFacade;
     protected void processRequestGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+        Calendar cal = Calendar.getInstance();
+        Date date = cal.getTime();
+        
         
       
         this.getServletContext().getRequestDispatcher("/WEB-INF/viewens/EmploiEns.jsp").forward(request, response);

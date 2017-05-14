@@ -1,7 +1,6 @@
 package com.swp.servlets.dept;
 
 import com.swp.beans.Creneau;
-import static com.swp.beans.Creneau_.numC;
 import com.swp.beans.Emp;
 import com.swp.beans.Enseignant;
 import com.swp.beans.Groupe;

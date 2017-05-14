@@ -40,4 +40,13 @@ public class CreneauFacade extends AbstractFacade<Creneau> {
         Creneau results = query.getSingleResult();
         return results;
     }
+    
+    public Creneau findByDateAndHeure(Date exactdate,Date d){
+        TypedQuery<Creneau> query =
+        em.createQuery("SELECT e FROM Creneau e WHERE e.date = :exactdate AND e.heure = :d", Creneau.class);
+        query.setParameter("exactdate", exactdate);
+        query.setParameter("d", d);
+        Creneau result = query.getSingleResult();
+        return result;
+    } 
 }

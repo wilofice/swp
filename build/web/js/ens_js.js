@@ -17,6 +17,50 @@ for(var i = 1; i <= 28; i++) {
     $('#semaineselect').append(option);
 }
 $("#semaineselect").prop("selectedIndex", -1);
+
+$('.myradio-group .seance').dblclick(function(){ 
+    $(this).parent().parent().find('.seance').removeClass('selected');
+    $(this).addClass('selected');
+    console.log("double clicked");
+    console.log("abccenceclasse   " + $('.abscenceclass').attr("id") + $(this).attr("id"));
+    
+    var idselected = $(this).attr("id"); 
+    var id = $('.abscenceclass').attr("id");
+    var numS = $('#idseance' + id).text();
+    
+    var jour = $('#jour' + id).text();
+    var heure = $('#heure' + id).text();
+    var groupenom = $('#groupenom' + id).text();
+    var groupemail = $('#groupemail' + id).text();
+    var filierenom = $('#filierenom' + id).text();
+    var matierenom = $('#matierenom' + id).text();
+    var realdate = $('#realdate' + id).text();
+    
+    var jourSelected = $('#jour' + idselected).text();
+    var heureSelected = $('#heure' + idselected).text();
+    console.log("Hello jour et heure " + $('#jour' + idselected).text() + $('#heure' + idselected).text());
+    
+    $('#seancereportid').attr("value", idselected);
+    $('#seanceAbsenceid').attr("value", numS);
+    $('#currentsemainereportid').attr("value", "25");
+    option = document.createElement("option");
+    option.setAttribute("value", groupemail);
+    
+    option.innerHTML = groupemail;
+    emailgroupeselect = document.getElementById("emailgroupeReport");
+    emailgroupeselect.appendChild(option);
+    var messageReport = "Bonjour chers élèves, La séance annulée de " + matierenom + " du " + jour + " de " + heure + " Sera programmée pour "+ jourSelected +" de "+heureSelected;
+    $('#messageReport').text(messageReport);
+    
+    var objetmessageReport = "séance de Rattrapage de " + matierenom + " le " + jourSelected + " de " + heureSelected;
+    $('#objetmessageReport').attr("value", objetmessageReport);  
+    
+    $('#SeanceRatt').modal("show");
+    
+    
+});
+
+
 $('.myradio-group .seance').click(function(){
 
     $(this).parent().parent().find('.seance').removeClass('selected');

@@ -5,12 +5,14 @@
  */
 package com.swp.beans;
 
+import com.swp.sessions.stateless.SeanceFacade;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import javax.annotation.PostConstruct;
 
 /**
  *
@@ -18,23 +20,34 @@ import java.util.List;
  */
 public class SeanceHashMap {
     
-    public static List<Seance> getSeanceEnsBySemaine(Enseignant ens, String semaineid) {
-        List<Emp> listemp = ens.getEmpList();
+    SeanceFacade seanceFacade;
+
+    public SeanceHashMap(SeanceFacade seanceFacade) {
+        this.seanceFacade = seanceFacade;
+    }
+    
+    @PostConstruct
+    public void init() {}
+    
+    public  List<Seance> getSeanceEnsBySemaine(List<Emp> listemp, String semaineid) {
+        //List<Emp> listemp = ens.getEmpList();
         Iterator<Emp> empIterator = listemp.iterator();
-        Emp emp;
-        List<Seance> listseanceByemp;
+        
+        
         List<Seance> results = null;
-        Seance s;
-        Creneau creneau;
+        
+        
         while(empIterator.hasNext()) {
-            emp = empIterator.next();
-            listseanceByemp = emp.getSeanceList();
+            Emp emp = empIterator.next();
+            List<Seance> listseanceByemp = seanceFacade.findByEmp(emp);
+            System.out.println("taille = " + listseanceByemp.size());
             Iterator<Seance> seanceIterator = listseanceByemp.iterator();
             while(seanceIterator.hasNext()) {
-                s = seanceIterator.next();
-                System.out.println("seance groupe "  + s.getNumEmp().getNumG().getNomG());
-                creneau = s.getNumC();
+                Seance s = seanceIterator.next();
+                System.out.println("before test "  + s.getNumEmp().getNumG().getNomG());
+                Creneau creneau = s.getNumC();
                 if(creneau.getIdSemaine().getIdsemaine().equals(semaineid)) {
+                    System.out.println("seance find " + s.getNumS() + " " + s.getNumC().getDate() + " " + s.getNumEmp().getHeure());
                     if(results == null) results = new ArrayList<>();
                     results.add(s);
                 }
@@ -45,20 +58,25 @@ public class SeanceHashMap {
         return results;
     }
     
-    public static HashMap<String, HashMap<String, Seance>> getHashMap(List<Seance> listseance) {
+    public HashMap<String, HashMap<String, Seance>> getHashMap(List<Seance> listseance) {
         HashMap<String, Seance> lundi = new HashMap<>();
         HashMap<String, Seance> mardi = new HashMap<>();
         HashMap<String, Seance> mercredi = new HashMap<>();
         HashMap<String, Seance> jeudi = new HashMap<>();
         HashMap<String, Seance> vendredi = new HashMap<>();
+        if(listseance == null) {
+            System.out.println("list seance reçu est nulle");
+            return null;
+        }
+        System.out.println("in seance get hash map");
         Iterator<Seance> seanceIterator = listseance.iterator();
-        Seance seance;
+        
         Date heure;
         Calendar cal = Calendar.getInstance();
         int hour;
-        
+        System.out.println("list seance lenght = " + listseance.size());
         while(seanceIterator.hasNext()) {
-            seance = seanceIterator.next();
+            Seance seance = seanceIterator.next();
             heure = seance.getNumEmp().getHeure();
             cal.setTime(heure);
             hour = cal.get(Calendar.HOUR_OF_DAY);

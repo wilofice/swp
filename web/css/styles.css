@@ -65,7 +65,7 @@ html, body {
 	z-index: 2;
 }
 
-.login input[type=text]{
+.login input[type=email]{
 	width: 250px;
 	height: 30px;
 	background: transparent;
@@ -116,7 +116,7 @@ html, body {
 	opacity: 0.6;
 }
 
-.login input[type=text]:focus{
+.login input[type=email]:focus{
 	outline: none;
 	border: 1px solid rgba(255,255,255,0.9);
 }
@@ -153,3 +153,4 @@ html, body {
 .souvenir {
     color: #00CC00;
 }
+

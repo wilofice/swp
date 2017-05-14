@@ -27,10 +27,10 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author genereux
+ * @author Pro
  */
 @Entity
-@Table(name = "Enseignant")
+@Table(name = "enseignant")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Enseignant.findAll", query = "SELECT e FROM Enseignant e")
@@ -66,24 +66,25 @@ public class Enseignant implements Serializable {
     private String email;
     @Basic(optional = false)
     @NotNull
+    @Size(min = 1, max = 255)
     @Column(name = "Tel")
-    private long tel;
+    private String tel;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 45)
     @Column(name = "R\u00f4le")
     private String rôle;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "sender")
-    private List<Message> messageList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "chef")
+    private List<Filiere> filiereList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "coordinateur")
+    private List<Filiere> filiereList1;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "numE")
     private List<Emp> empList;
     @JoinColumn(name = "IdUser", referencedColumnName = "IdUser")
     @ManyToOne(optional = false)
     private Comptes idUser;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "chef")
-    private List<Filiere> filiereList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "coordinateur")
-    private List<Filiere> filiereList1;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "sender")
+    private List<Message> messageList;
 
     public Enseignant() {
     }
@@ -92,7 +93,7 @@ public class Enseignant implements Serializable {
         this.id = id;
     }
 
-    public Enseignant(Integer id, String nom, String prenom, String email, long tel, String rôle) {
+    public Enseignant(Integer id, String nom, String prenom, String email, String tel, String rôle) {
         this.id = id;
         this.nom = nom;
         this.prenom = prenom;
@@ -133,11 +134,11 @@ public class Enseignant implements Serializable {
         this.email = email;
     }
 
-    public long getTel() {
+    public String getTel() {
         return tel;
     }
 
-    public void setTel(long tel) {
+    public void setTel(String tel) {
         this.tel = tel;
     }
 
@@ -150,12 +151,21 @@ public class Enseignant implements Serializable {
     }
 
     @XmlTransient
-    public List<Message> getMessageList() {
-        return messageList;
+    public List<Filiere> getFiliereList() {
+        return filiereList;
     }
 
-    public void setMessageList(List<Message> messageList) {
-        this.messageList = messageList;
+    public void setFiliereList(List<Filiere> filiereList) {
+        this.filiereList = filiereList;
+    }
+
+    @XmlTransient
+    public List<Filiere> getFiliereList1() {
+        return filiereList1;
+    }
+
+    public void setFiliereList1(List<Filiere> filiereList1) {
+        this.filiereList1 = filiereList1;
     }
 
     @XmlTransient
@@ -176,21 +186,12 @@ public class Enseignant implements Serializable {
     }
 
     @XmlTransient
-    public List<Filiere> getFiliereList() {
-        return filiereList;
+    public List<Message> getMessageList() {
+        return messageList;
     }
 
-    public void setFiliereList(List<Filiere> filiereList) {
-        this.filiereList = filiereList;
-    }
-
-    @XmlTransient
-    public List<Filiere> getFiliereList1() {
-        return filiereList1;
-    }
-
-    public void setFiliereList1(List<Filiere> filiereList1) {
-        this.filiereList1 = filiereList1;
+    public void setMessageList(List<Message> messageList) {
+        this.messageList = messageList;
     }
 
     @Override

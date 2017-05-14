@@ -9,6 +9,7 @@ import com.swp.beans.Semaine;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 /**
  *
@@ -29,4 +30,11 @@ public class SemaineFacade extends AbstractFacade<Semaine> {
         super(Semaine.class);
     }
     
+    
+     public Semaine getSemaineById(String id){
+        TypedQuery<Semaine> query = em.createNamedQuery( "Semaine.findByIdsemaine", Semaine.class);
+        query.setParameter("idsemaine", id);
+        Semaine sem = query.getSingleResult();
+        return sem;
+    }
 }

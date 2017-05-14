@@ -6,15 +6,18 @@
 package com.swp.servlets.login;
 
 import com.swp.beans.Comptes;
+import com.swp.beans.Enseignant;
 import com.swp.sessions.stateless.ComptesFacade;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 @WebServlet(name = "Login", urlPatterns = {"/login"})
 public class Login extends HttpServlet {
@@ -46,7 +49,18 @@ public class Login extends HttpServlet {
             }
             
             else {
-                this.getServletContext().getRequestDispatcher("/WEB-INF/viewlogin/home.jsp").forward(request, response);
+                Enseignant ens = compte.getEnseignantList().get(0);
+                Cookie cookieid = new Cookie("idens", ens.getId()+"");
+                Cookie cookienom = new Cookie("nomens", ens.getNom());
+                Cookie cookieprenom = new Cookie("prenomens", ens.getPrenom());
+                response.addCookie(cookieid);
+                response.addCookie(cookienom);
+                response.addCookie(cookieprenom);
+                
+                HttpSession session = request.getSession();
+                session.setAttribute("ens", ens);
+                
+                this.getServletContext().getRequestDispatcher("/WEB-INF/viewens/EmploiEns.jsp").forward(request, response);
             }
         }
         

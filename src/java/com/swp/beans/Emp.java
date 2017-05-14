@@ -29,10 +29,10 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author genereux
+ * @author Pro
  */
 @Entity
-@Table(name = "Emp")
+@Table(name = "emp")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Emp.findAll", query = "SELECT e FROM Emp e")
@@ -40,7 +40,8 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Emp.findByJour", query = "SELECT e FROM Emp e WHERE e.jour = :jour")
     , @NamedQuery(name = "Emp.findByHeure", query = "SELECT e FROM Emp e WHERE e.heure = :heure")
     , @NamedQuery(name = "Emp.findByDateD", query = "SELECT e FROM Emp e WHERE e.dateD = :dateD")
-    , @NamedQuery(name = "Emp.findByDateF", query = "SELECT e FROM Emp e WHERE e.dateF = :dateF")})
+    , @NamedQuery(name = "Emp.findByDateF", query = "SELECT e FROM Emp e WHERE e.dateF = :dateF")
+    , @NamedQuery(name = "Emp.findByIdsemestre", query = "SELECT e FROM Emp e WHERE e.idsemestre = :idsemestre")})
 public class Emp implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -68,6 +69,10 @@ public class Emp implements Serializable {
     @Column(name = "DateF")
     @Temporal(TemporalType.DATE)
     private Date dateF;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "Id_semestre")
+    private int idsemestre;
     @JoinColumn(name = "NumE", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Enseignant numE;
@@ -87,12 +92,13 @@ public class Emp implements Serializable {
         this.numEmp = numEmp;
     }
 
-    public Emp(Integer numEmp, int jour, Date heure, Date dateD, Date dateF) {
+    public Emp(Integer numEmp, int jour, Date heure, Date dateD, Date dateF, int idsemestre) {
         this.numEmp = numEmp;
         this.jour = jour;
         this.heure = heure;
         this.dateD = dateD;
         this.dateF = dateF;
+        this.idsemestre = idsemestre;
     }
 
     public Integer getNumEmp() {
@@ -133,6 +139,14 @@ public class Emp implements Serializable {
 
     public void setDateF(Date dateF) {
         this.dateF = dateF;
+    }
+
+    public int getIdsemestre() {
+        return idsemestre;
+    }
+
+    public void setIdsemestre(int idsemestre) {
+        this.idsemestre = idsemestre;
     }
 
     public Enseignant getNumE() {

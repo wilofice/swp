@@ -29,10 +29,10 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author genereux
+ * @author Pro
  */
 @Entity
-@Table(name = "Creneau")
+@Table(name = "creneau")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Creneau.findAll", query = "SELECT c FROM Creneau c")
@@ -74,6 +74,13 @@ public class Creneau implements Serializable {
         this.numC = numC;
         this.date = date;
         this.heure = heure;
+    }
+    
+    public Creneau(Integer numc ,Date date, Date heure , Semaine s){
+        this.numC = numc;
+        this.date = date;
+        this.heure = heure;
+        this.idSemaine= s;
     }
 
     public Integer getNumC() {

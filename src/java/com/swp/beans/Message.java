@@ -27,14 +27,15 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author genereux
+ * @author Pro
  */
 @Entity
-@Table(name = "Message")
+@Table(name = "message")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Message.findAll", query = "SELECT m FROM Message m")
     , @NamedQuery(name = "Message.findByIdMsg", query = "SELECT m FROM Message m WHERE m.idMsg = :idMsg")
+    , @NamedQuery(name = "Message.findByObjet", query = "SELECT m FROM Message m WHERE m.objet = :objet")
     , @NamedQuery(name = "Message.findByTypeReceiver", query = "SELECT m FROM Message m WHERE m.typeReceiver = :typeReceiver")
     , @NamedQuery(name = "Message.findByReceiver", query = "SELECT m FROM Message m WHERE m.receiver = :receiver")
     , @NamedQuery(name = "Message.findByDate", query = "SELECT m FROM Message m WHERE m.date = :date")
@@ -53,6 +54,11 @@ public class Message implements Serializable {
     @Size(min = 1, max = 65535)
     @Column(name = "text")
     private String text;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 255)
+    @Column(name = "objet")
+    private String objet;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 255)
@@ -84,9 +90,10 @@ public class Message implements Serializable {
         this.idMsg = idMsg;
     }
 
-    public Message(Integer idMsg, String text, String typeReceiver, String receiver, Date date, Date time) {
+    public Message(Integer idMsg, String text, String objet, String typeReceiver, String receiver, Date date, Date time) {
         this.idMsg = idMsg;
         this.text = text;
+        this.objet = objet;
         this.typeReceiver = typeReceiver;
         this.receiver = receiver;
         this.date = date;
@@ -107,6 +114,14 @@ public class Message implements Serializable {
 
     public void setText(String text) {
         this.text = text;
+    }
+
+    public String getObjet() {
+        return objet;
+    }
+
+    public void setObjet(String objet) {
+        this.objet = objet;
     }
 
     public String getTypeReceiver() {

@@ -6,9 +6,11 @@
 package com.swp.sessions.stateless;
 
 import com.swp.beans.Groupe;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 /**
  *
@@ -28,5 +30,25 @@ public class GroupeFacade extends AbstractFacade<Groupe> {
     public GroupeFacade() {
         super(Groupe.class);
     }
+
+    public List<Groupe> findByNiveau(int niveau) {
+        TypedQuery<Groupe> query =
+        em.createNamedQuery("Groupe.findByNiveau", Groupe.class);
+        query.setParameter("niveau", niveau);
+        List<Groupe> results = query.getResultList();
+        return results;
+        
+    }
+    
+    public List<Groupe> findByNiveauAndFiliere(int niveau, String nomFiliere) {
+        TypedQuery<Groupe> query =
+        em.createQuery("SELECT g FROM Groupe g WHERE g.nomFiliere = :nomFiliere AND g.niveau = :niveau", Groupe.class);
+        query.setParameter("niveau", niveau);
+        query.setParameter("nomFiliere", nomFiliere);
+        List<Groupe> results = query.getResultList();
+        return results;
+        
+    }
+
     
 }

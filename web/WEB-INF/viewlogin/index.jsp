@@ -28,12 +28,12 @@
      <img class="background" src="images/emi.jpg" alt="emi" />
     <div class="login">
                     <form action="" method = "POST">
-                        <input type="text" placeholder="id" name="id"><br>
+                        <input type="email" placeholder="email" name="id" required><br>
                         <c:if test="${!empty erreurlogin}">
                             <p class="loginerror">Cet utisateur n'existe pas!</p>
                         </c:if>
                         
-                        <input type="password" placeholder="password" name="password"><br>
+                        <input type="password" placeholder="password" name="password" required><br>
                         <c:if test="${!empty erreurpassword}">
                             <p class="motdepasserror">Le mot de passe est incorrect.</p>
                         </c:if> 

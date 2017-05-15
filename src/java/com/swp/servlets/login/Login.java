@@ -60,6 +60,12 @@ public class Login extends HttpServlet {
                 HttpSession session = request.getSession();
                 session.setAttribute("ens", ens);
                 
+                Cookie cookieiduser = new Cookie("iduser", compte.getIdUser()+"");
+                Cookie cookiepassword = new Cookie("password", compte.getMotdepasse());
+                response.addCookie(cookieiduser);
+                response.addCookie(cookiepassword);
+                session.setAttribute("compte", compte);
+                
                 this.getServletContext().getRequestDispatcher("/WEB-INF/viewens/EmploiEns.jsp").forward(request, response);
             }
         }

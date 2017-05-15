@@ -60,7 +60,6 @@ $('.myradio-group .seance').dblclick(function(){
     
 });
 
-
 $('.myradio-group .seance').click(function(){
 
     $(this).parent().parent().find('.seance').removeClass('selected');

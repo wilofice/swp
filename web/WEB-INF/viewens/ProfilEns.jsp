@@ -50,7 +50,7 @@
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
                 </button>
-                <a class="navbar-brand" href="index.html"><img src="images/swp.png" width="180" height="25"></a>
+                <a class="navbar-brand" href="EmploiEns"><img src="images/swp.png" width="180" height="25"></a>
             </div>
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
@@ -124,7 +124,7 @@
                                     <label> Nom :</label>
                                 </div>
                                 <div class="col-lg-8">
-                                    <input type="text" id="NomEns" name="NomEns" class="form-control" value="" disabled="disabled" />
+                                    <input type="text" id="NomEns" name="NomEns" class="form-control" value="${sessionScope.ens.nom}" disabled="disabled" />
                                 </div>
                             </div>
                             <div class="row" style="padding-top: 10px;">
@@ -132,7 +132,7 @@
                                     <label> Prenom :</label>
                                 </div>
                                 <div class="col-lg-8">
-                                    <input type="text" id="PrenomEns" name="PrenomEns" class="form-control" value="" disabled="disabled" />
+                                    <input type="text" id="PrenomEns" name="PrenomEns" class="form-control" value="${sessionScope.ens.prenom}" disabled="disabled" />
                                 </div>
                             </div>
                             <div class="row" style="padding-top: 10px;">
@@ -140,7 +140,7 @@
                                     <label> Email : </label>
                                 </div>
                                 <div class="col-lg-8">
-                                    <input type="text" id="EmailEns" name="EmailEns" class="form-control" value="" disabled="disabled" />
+                                    <input type="text" id="EmailEns" name="EmailEns" class="form-control" value="${sessionScope.ens.email}" disabled="disabled" />
                                 </div>
                             </div>
                             <div class="row" style="padding-top: 10px;">
@@ -148,7 +148,15 @@
                                     <label> Téléphone : </label>
                                 </div>
                                 <div class="col-lg-8">
-                                    <input type="text" id="TelEns" name="TelEns" class="form-control" value="" disabled="disabled" />
+                                    <input type="text" id="TelEns" name="TelEns" class="form-control" value="${sessionScope.ens.tel}" disabled="disabled" />
+                                </div>
+                            </div>
+                            <div class="row" style="padding-top: 10px;">
+                                <div class="col-lg-3">
+                                    <label> Rôle : </label>
+                                </div>
+                                <div class="col-lg-8">
+                                    <input type="text" id="MdpEns" name="MdpEns" class="form-control" value="${sessionScope.ens.rôle}" disabled="disabled" />
                                 </div>
                             </div>
                             <div class="row" style="padding-top: 10px;">
@@ -156,7 +164,7 @@
                                     <label> Identifiant : </label>
                                 </div>
                                 <div class="col-lg-8">
-                                    <input type="text" id="IdEns" name="IdEns" class="form-control" value="" disabled="disabled" />
+                                    <input type="text" id="IdEns" name="IdEns" class="form-control" value="${sessionScope.ens.iduser}" disabled="disabled" />
                                 </div>
                             </div>
                             <div class="row" style="padding-top: 10px;">

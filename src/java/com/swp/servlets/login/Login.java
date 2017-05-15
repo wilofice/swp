@@ -7,9 +7,11 @@ package com.swp.servlets.login;
 
 import com.swp.beans.Comptes;
 import com.swp.beans.Enseignant;
+import com.swp.beans.Groupe;
+import com.swp.sessions.stateless.AbscenceFacade;
 import com.swp.sessions.stateless.ComptesFacade;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -24,6 +26,8 @@ public class Login extends HttpServlet {
 
     @EJB
     ComptesFacade comptesFacade;
+    @EJB
+    AbscenceFacade af;
     
     protected void processRequestGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -59,7 +63,8 @@ public class Login extends HttpServlet {
                 
                 HttpSession session = request.getSession();
                 session.setAttribute("ens", ens);
-                
+                List<Groupe> listGrp = af.getGroupeEnsX(ens);
+                request.setAttribute("listGrp",listGrp);
                 this.getServletContext().getRequestDispatcher("/WEB-INF/viewens/EmploiEns.jsp").forward(request, response);
             }
         }

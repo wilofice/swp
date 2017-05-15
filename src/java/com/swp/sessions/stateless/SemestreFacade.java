@@ -5,10 +5,13 @@
  */
 package com.swp.sessions.stateless;
 
+import com.swp.beans.Semaine;
 import com.swp.beans.Semestre;
+import java.util.Date;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -27,6 +30,26 @@ public class SemestreFacade extends AbstractFacade<Semestre> {
 
     public SemestreFacade() {
         super(Semestre.class);
+    }
+    
+    
+    public Date getDateFinSemestre(int idsemestre) {
+        
+        String squery = "SELECT MAX(sem.datedebut) FROM Semaine sem WHERE sem.idSemestre.idsemestre = :idSemestre";
+        Query query = em.createQuery(squery);
+        query.setParameter("idSemestre", idsemestre);
+        Date d = (Date) query.getSingleResult();
+        return d;
+    }
+    
+    public Semestre getSemestreBySemaine(Semaine sem) { 
+        String squery = "SELECT sem.idSemestre FROM Semaine sem WHERE sem = :sem";
+        
+        Query query = em.createQuery(squery);
+        
+        query.setParameter("sem", sem);
+        
+        return (Semestre) query.getSingleResult();
     }
     
 }

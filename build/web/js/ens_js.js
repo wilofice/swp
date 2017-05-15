@@ -1,3 +1,107 @@
+function initRequest() {
+    if (window.XMLHttpRequest) {
+        if (navigator.userAgent.indexOf('MSIE') !== -1) {
+            isIE = true;
+        }
+        return new XMLHttpRequest();
+    } else if (window.ActiveXObject) {
+        isIE = true;
+        return new ActiveXObject("Microsoft.XMLHTTP");
+    }
+}
+function getMatiere() {
+    var id = $('#grpselect option:selected').attr("value");
+    req = initRequest();
+    url = "/swp/getmatandcrenbyprp?classe=" + id;
+    req.open("GET", url, true);
+    req.onreadystatechange = callback;
+    req.send(null);
+}
+function callback() {
+    console.log(req);
+    
+    if (req.readyState === 4) {
+        if (req.status === 200) {
+            console.log(req.responseXML);
+            parseMessages(req.responseXML);
+            
+            
+        }
+    }
+}
+$('#grpselect').change(function(event){
+    groupeSelect = document.getElementById("grpselect");
+    while (groupeSelect.firstChild) {
+        groupeSelect.removeChild(groupeSelect.firstChild);
+    }
+
+    matiere = document.getElementById("matselect");
+    creneau = document.getElementById("creselect");
+    while (matiere.firstChild) {
+        matiere.removeChild(matiere.firstChild);
+    }
+
+    while (creneau.firstChild) {
+        creneau.removeChild(creneau.firstChild);
+    }
+    
+    getMatiere();
+     
+});
+
+
+function appendMatieres(codeM, nomM) {
+    //console.log("id = " + id + "nomg" + nomG );
+    option = document.createElement("option");
+    option.setAttribute("value", codeM );
+    option.innerHTML= nomM;
+    matiereselect = document.getElementById("matselect");
+    matiereselect.appendChild(option);
+}
+
+function appendCreneau(numC, dateC, heureC) {
+    option = document.createElement("option");
+    option.setAttribute("value", numC );
+    option.innerHTML= dateC + " " + heureC;
+    creneauselect = document.getElementById("creselect");
+    creneauselect.appendChild(option);
+}
+
+
+function parseMessages(responseXML) {
+    if (responseXML === null) {
+        console.log("in pasrse error");
+        return false;
+    } else {
+        console.log("in pasrse");
+        
+        var matieres = responseXML.getElementsByTagName("matieres")[0];
+        if (matieres.childNodes.length > 0) {
+            for (loop = 0; loop < matieres.childNodes.length; loop++) {
+                var matiere = matieres.childNodes[loop];
+                var codeM = matiere.getElementsByTagName("codeM")[0];
+                var nomM = matiere.getElementsByTagName("nomM")[0];
+                
+                appendMatieres(codeM, nomM);
+                console.log("in loop groupes");
+            }
+        }
+        
+        var creneaux = responseXML.getElementsByTagName("creneaux")[0];
+        if (creneaux.childNodes.length > 0) {
+            for (loop = 0; loop < creneaux.childNodes.length; loop++) {
+                var creneau = creneaux.childNodes[loop];
+                var numC = creneau.getElementsByTagName("idc")[0];
+                var dateC = creneau.getElementsByTagName("date")[0];
+                var heureC = creneau.getElementsByTagName("heureC")[0];
+                
+                appendCreneau(numC, dateC, heureC);
+                console.log("in loop semaines");
+            }
+        }
+    }
+
+}
 
 $(document).ready(function(){
     
@@ -102,6 +206,26 @@ $('.myradio-group .seance').click(function(){
     $("#Plann").attr("data-target", "#Plann" + this.id);
 
 });
+
+$('#grpselect').change(function(event){
+    
+
+    matiere = document.getElementById("matselect");
+    creneau = document.getElementById("creselect");
+    while (matiere.firstChild) {
+        matiere.removeChild(matiere.firstChild);
+    }
+
+    while (creneau.firstChild) {
+        creneau.removeChild(creneau.firstChild);
+    }
+    
+    getMatiere();
+     
+});
+
+
+
 $('#semaineselect').change(function(){
     var semaineid = $('#semaineselect option:selected').text();
     var postFormStr = '<form action="gestionemploiens" method="post">' +

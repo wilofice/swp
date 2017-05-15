@@ -52,7 +52,7 @@ public class Absenter {
     public void init() {
         s.setEtatS(0);
         seanceFacade.edit(s);
-        fin = abscenceFacade.getDateFin(e, m, g, 1);
+        fin = abscenceFacade.getDateFin(e, m, g, s.getNumEmp().getIdsemestre());
         vidCrenEns = abscenceFacade.getVidCrenEns(sysdate, fin, e);
         videGrp = abscenceFacade.getVideGrp(sysdate, fin, s.getNumC(), s.getNumEmp().getNumG(), s.getNumEmp().getIdsemestre());
         this.setVideGrpAndEns();

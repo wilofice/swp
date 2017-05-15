@@ -6,6 +6,7 @@
 package com.swp.sessions.stateless;
 
 import com.swp.beans.Emp;
+import com.swp.beans.Enseignant;
 import com.swp.beans.Groupe;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -37,6 +38,14 @@ public class EmpFacade extends AbstractFacade<Emp> {
         em.createQuery("SELECT e FROM Emp e WHERE e.idsemestre = :idsemestre AND e.numG = :numG", Emp.class);
         query.setParameter("idsemestre", semestre);
         query.setParameter("numG", grp);
+        List<Emp> results = query.getResultList();
+        return results;
+    }
+    
+    public List<Emp> findByEns(Enseignant e) {
+        TypedQuery<Emp> query =
+        em.createQuery("SELECT e FROM Emp e WHERE e.numE = :numE", Emp.class);
+        query.setParameter("numE", e);
         List<Emp> results = query.getResultList();
         return results;
     }

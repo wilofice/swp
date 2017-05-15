@@ -2,16 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/C:/Users/Pro/Desktop/SWP/swp_project/swp/src/java/com/swp/beans/Message.java</file>
-            <file>file:/C:/Users/Pro/Desktop/SWP/swp_project/swp/src/java/com/swp/beans/Filiere.java</file>
-            <file>file:/C:/Users/Pro/Desktop/SWP/swp_project/swp/src/java/com/swp/servlets/ens/SendMail.java</file>
-            <file>file:/C:/Users/Pro/Desktop/SWP/swp_project/swp/src/java/com/swp/beans/Groupe.java</file>
-            <file>file:/C:/Users/Pro/Desktop/SWP/swp_project/swp/web/WEB-INF/viewens/EmploiEns.jsp</file>
-            <file>file:/C:/Users/Pro/Desktop/SWP/swp_project/swp/src/java/com/swp/sessions/stateless/FiliereFacade.java</file>
-            <file>file:/C:/Users/Pro/Desktop/SWP/swp_project/swp/src/java/com/swp/servlets/ens/SignalerAbscence.java</file>
-            <file>file:/C:/Users/Pro/Desktop/SWP/swp_project/swp/web/js/ens_js.js</file>
-            <file>file:/C:/Users/Pro/Desktop/SWP/swp_project/swp/src/java/com/swp/beans/Enseignant.java</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>

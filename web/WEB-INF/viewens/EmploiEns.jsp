@@ -947,6 +947,7 @@
 
                                  <div class="modal fade" id="AjSeaSupp" role="dialog">
                                     <div class="modal-dialog">
+                                        <form >
                                         <div class="modal-content">
                                             <div class="modal-header">
                                                     <h4 class="modal-title">Ajouter Scéance supplémentaire</h4>
@@ -1007,6 +1008,7 @@
                                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                             </div>
                                         </div>
+                                        </form>
                                     </div>
                                 </div>
 

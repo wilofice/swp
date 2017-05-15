@@ -75,6 +75,7 @@ function parseMessages(responseXML) {
     } else {
         console.log("in pasrse");
         
+        
         var matieres = responseXML.getElementsByTagName("matieres")[0];
         if (matieres.childNodes.length > 0) {
             for (loop = 0; loop < matieres.childNodes.length; loop++) {
@@ -82,7 +83,7 @@ function parseMessages(responseXML) {
                 var codeM = matiere.getElementsByTagName("codeM")[0];
                 var nomM = matiere.getElementsByTagName("nomM")[0];
                 
-                appendMatieres(codeM, nomM);
+                appendMatieres(codeM.childNodes[0].nodeValue, nomM.childNodes[0].nodeValue);
                 console.log("in loop groupes");
             }
         }
@@ -93,9 +94,9 @@ function parseMessages(responseXML) {
                 var creneau = creneaux.childNodes[loop];
                 var numC = creneau.getElementsByTagName("idc")[0];
                 var dateC = creneau.getElementsByTagName("date")[0];
-                var heureC = creneau.getElementsByTagName("heureC")[0];
+                var heureC = creneau.getElementsByTagName("heure")[0];
                 
-                appendCreneau(numC, dateC, heureC);
+                appendCreneau(numC.childNodes[0].nodeValue, dateC.childNodes[0].nodeValue, heureC.childNodes[0].nodeValue);
                 console.log("in loop semaines");
             }
         }

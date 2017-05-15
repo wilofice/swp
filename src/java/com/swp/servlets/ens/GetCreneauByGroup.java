@@ -106,8 +106,9 @@ public class GetCreneauByGroup extends HttpServlet {
             sb.append("<matieres>");  
             
             while (matIterator.hasNext()) {
-                    System.out.println("des matieres son trouvés");
+                    
                     m = matIterator.next();
+                    System.out.println("des matieres son trouvés " + m.getCodeM());
                     sb.append("<matiere>");
                     sb.append("<codeM>").append(m.getCodeM()).append("</codeM>");
                     sb.append("<nomM>").append(m.getNomM()).append("</nomM>");
@@ -125,7 +126,9 @@ public class GetCreneauByGroup extends HttpServlet {
             Iterator<Creneau> creIt = videGrpAndEns.iterator();
             sb.append("<creneaux>");
             while(creIt.hasNext()) {
+                
                 Creneau c = creIt.next();
+                System.out.println("creneau trouvé = " + c.getDate());
                 sb.append("<creneau>");
                 sb.append("<idc>").append(c.getNumC()).append("</idc>");
                 sb.append("<date>").append(c.getDate()).append("</date>");
@@ -137,13 +140,15 @@ public class GetCreneauByGroup extends HttpServlet {
             sb.append("</matieres_creneaux>");
             
         if (matAdded) {
+            System.out.println("things are donne");
             response.setContentType("text/xml;charset=UTF-8");
             response.setHeader("Cache-Control", "no-cache");
-            
+            System.out.println("sb = " + sb.toString());
             response.getWriter().write(sb.toString());
            
         } else {
             //nothing to show
+            System.out.println("error in servlet");
             response.setStatus(HttpServletResponse.SC_NO_CONTENT);
         }
              

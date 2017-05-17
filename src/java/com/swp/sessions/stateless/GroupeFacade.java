@@ -59,4 +59,13 @@ public class GroupeFacade extends AbstractFacade<Groupe> {
 
     }
     
+    
+    public Groupe getGroupeById(Integer id){
+        TypedQuery<Groupe> query = em.createNamedQuery( "Groupe.findById", Groupe.class);
+        query.setParameter("id", id);
+        Groupe ens = new Groupe();
+        ens = query.getSingleResult();
+        return ens;
+    }
+    
 }

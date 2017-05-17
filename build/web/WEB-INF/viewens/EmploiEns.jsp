@@ -32,6 +32,7 @@
     <link href="css/sb-admin.css" rel="stylesheet">
     <link href="css/mycss.css" rel="stylesheet">
     <script type="text/javascript" src="js/ens_js.js" ></script>
+    <script type="text/javascript" src="js/notify.js" ></script>
     <script type="text/javascript">
     $(document).ready(function() {
         //$('#emailgroupe').multiselect();
@@ -1165,7 +1166,17 @@
                                                             </c:if>
                                                 </div>
                                  
-
+                                  <div style="display: none;">
+                                  <c:if test="${not empty notification}"> 
+                                      
+                                  <script>
+                                          $(document).ready(function() {
+                                             $.notify("Abscence correctement signalée!", "success"); 
+                                          });
+                                      </script>
+                                  </c:if>
+                                      
+                                  </div>
 </body>
 
 </html>

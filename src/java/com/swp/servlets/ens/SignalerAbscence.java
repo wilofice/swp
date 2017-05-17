@@ -99,6 +99,7 @@ public class SignalerAbscence extends HttpServlet {
         
         request.removeAttribute("seanceHashMap");
         request.setAttribute("seanceHashMap", seanceHashMap);
+        request.setAttribute("notification", "notification");
         this.getServletContext().getRequestDispatcher("/WEB-INF/viewens/EmploiEns.jsp").forward(request, response);
 //        
 //        

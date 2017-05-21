@@ -79,17 +79,17 @@ public class GestionEmploiEns extends HttpServlet {
         List<Groupe> listGrp = abscenceFacade.getGroupeEnsX(enseignant);
         
         request.setAttribute("listGrp",listGrp);
-        Calendar cal = Calendar.getInstance();
-            Date d = this.getMonday();
-            Semaine semaine = semaineFacade.findByDateD(d);
-            Semestre actusem = semaine.getIdSemestre();
-            String numGrpp= request.getParameter("classe");
-            int numGrp =Integer.parseInt(numGrpp);
-            
-            Groupe grp = groupeFacade.findGrpByNum(numGrp);
-            
-            
-            List<Matiere> listMat = abscenceFacade.getMatiereEnsX(enseignant, grp);
+//            Calendar cal = Calendar.getInstance();
+//                Date d = this.getMonday();
+//                Semaine semaine = semaineFacade.findByDateD(d);
+//                Semestre actusem = semaine.getIdSemestre();
+//                String numGrpp= request.getParameter("classe");
+//                int numGrp =Integer.parseInt(numGrpp);
+//
+//                Groupe grp = groupeFacade.findGrpByNum(numGrp);
+//
+//
+//                List<Matiere> listMat = abscenceFacade.getMatiereEnsX(enseignant, grp);
             
         this.getServletContext().getRequestDispatcher("/WEB-INF/viewens/EmploiEns.jsp").forward(request, response);
     }

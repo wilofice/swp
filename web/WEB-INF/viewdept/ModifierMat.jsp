@@ -1,8 +1,7 @@
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <%@ page pageEncoding="UTF-8" %>
-<html lang="en">
+<html lang="fr">
 
 <head>
 
@@ -13,15 +12,28 @@
     <meta name="author" content="">
 
     <title>SwapMyLecture</title>
+    <script src="js/VerifyForm.js"></script>
+    <!-- Morris Charts JavaScript -->
+    <script src="js/plugins/morris/raphael.min.js"></script>
+    <script src="js/plugins/morris/morris.min.js"></script>
+    <script src="js/plugins/morris/morris-data.js"></script>
 
-    <!-- Bootstrap Core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- Flot Charts JavaScript -->
+    <!--[if lte IE 8]><script src="js/excanvas.min.js"></script><![endif]-->
+    <script src="js/plugins/flot/jquery.flot.js"></script>
+    <script src="js/plugins/flot/jquery.flot.tooltip.min.js"></script>
+    <script src="js/plugins/flot/jquery.flot.resize.js"></script>
+    <script src="js/plugins/flot/jquery.flot.pie.js"></script>
+    <script src="js/plugins/flot/flot-data.js"></script>
     
-    
-    <script src="js/jquery.js"></script>
+     <script src="js/jquery.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
     <!-- Custom CSS -->
     <link href="css/sb-admin.css" rel="stylesheet">
 
@@ -30,31 +42,40 @@
 
     <!-- Custom Fonts -->
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <script type="text/javascript">
-        
-        function ModifierMat(codeM){
-            
-            //alert(codeM);
-            window.location.href = "http://localhost:8080/swp/ModifierMat?codeM="+codeM;
-        }
-        
-        function SupprimerMat(codeM){
-            //alert(codeM);
-            window.location.href = "http://localhost:8080/swp/SupprimerMat?codeM="+codeM;
-             
-        }
-        
-    </script>
+    
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
   
 
 </head>
- 
-<body>
-    
 
+<body>
+    <script type="text/javascript">
+        
+    function ModifierMat(codeM){
+            window.location.href = "http://localhost:8080/swp/ModifierMat?codeM="+codeM;
+        }
+        
+        function redirectToAdd(){
+            window.location.href = "http://localhost:8080/swp/addmatiere";
+            
+        }
+        
+       
+    $(window).on('load',function(){
+        $('#myModal').modal('show');
+    });
+</script>
+        
+        
+        
+       
+    </script>
 
     <div id="wrapper">
-
         <!-- Navigation -->
         <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -99,7 +120,7 @@
                    <a href="#" class="toggle"><i class="fa fa-question-circle"></i></a> 
                 </li>
                 <li class="dropdown">
-                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i><c:out value="${sessionScope.ens.nom}"></c:out> <c:out value="${sessionScope.ens.prenom}"></c:out><b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i><c:out value="${sessionScope.ens.nom}"></c:out> <c:out value="${sessionScope.ens.prenom}"></c:out><b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li>
                             <a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
@@ -121,11 +142,11 @@
                         <a href="index.html"><i class="fa fa-calendar "></i> Emplois du temps</a>
                     </li>
                     <li class="active">
-                        <a href="charts.html"><i class="fa fa-book"></i>  Matières</a>
-                    </li>
+                        <a href="addMatiere"><i class="fa fa-calendar "></i> Mes matières</a>
+                    </li> 
                     <li>
                         <a href="tables.html"><i class="fa fa-users"></i>  Groupes</a>
-                    </li>          
+                    </li>       
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -144,21 +165,22 @@
   <table class="table table-hover">
     <thead>
       <tr>
-        <th>Numero</th>
-        <th>Code</th>
-        <th>Nom</th>
+        <th>Numéro</th>
+        <th>code </th>
+        <th>Nom </th>
+       
       </tr>
     </thead>
     <tbody>
     <c:if test="${!empty listmat}">
-        <c:forEach items="${listmat}" var="mat"  varStatus="status">
+        <c:forEach items="${listmat}" var="mat" varStatus="status">
             <tr>
-                 <td><c:out value="${status.count}"/></td>
-                 <td><c:out value="${mat.codeM}"/></td>
+                <td><c:out value="${status.count}"/></td> 
+                <td><c:out value="${mat.codeM}"/></td>
                 <td><c:out value="${mat.nomM}"/></td>
                 <td>
-                    <button type="button" class="btn btn-default" onclick="ModifierMat('<c:out value="${mat.codeM}"/>')"><i class="fa fa-pencil-square-o fa-lg"></i> </button>
-                    <button type="button" class="btn btn-default" onclick="SupprimerMat('<c:out value="${mat.codeM}"/>')"><i class="fa fa-trash fa-lg"  ></i></button>
+                    <button type="button" class="btn btn-default" onclick="ModifierMat(<c:out value="${mat.codeM}"/>)" data-toggle="modal" data-target="#myModal"><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true"></i> </button> &nbsp;
+                    <button type="button" class="btn btn-default" onclick="SupprimerMat(<c:out value="${mat.codeM}"/>)"><i class="fa fa-trash fa-lg" aria-hidden="true" ></i></button>
                 </td>
             </tr>
          </c:forEach>
@@ -166,11 +188,9 @@
     </tbody>
   </table>
   <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-  Ajouter une matière
+<button type="button" class="btn btn-primary btn-lg" >
+  Ajouter une Matière
 </button>
- 
-  
 
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -178,41 +198,58 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Ajouter une matière </h4>
+        <h4 class="modal-title" id="myModalLabel"> Modifier Matière </h4>
       </div>
-        <form action="addmatiere" method="POST">
-      <div class="modal-body">
         
+        <form action="ModifierMat" method="Post" >
+      <div class="modal-body">
+          <input type="text" name="codeMat" style="display: none;" value="<c:out value="${matSelected.codeM}"/>"/>
+       <div class="form-group">
+        <label for="codeM">Code Matière</label>
+        <input type="text" class="form-control" id="codeM" name="codeM"  value="<c:out value="${matSelected.getCodeM()}"/>" required>
+        </div>
   <div class="form-group">
-    <label for="codeM">Code Matière</label>
-    <input type="text" class="form-control"  id="codeM" name="codeM" aria-describedby="emailHelp" placeholder="Entrer le code matiere" required>
-    </div>
-  <div class="form-group">
-    <label for="nomM">Nom matière</label>
-    <input type="text" class="form-control"  id="nomM" name="nomM" placeholder="Entrer le nom de la matière" required>
+        <label for="nomM">Nom Matière </label>
+        <input type="text" class="form-control" id="nomM" name="nomM"  value="<c:out value="${matSelected.getNomM()}"/>"required >
+        </div>
+
   </div>
-            
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" onclick="redirectToAdd()">Annuler</button>
+            <button id="submit" type="submit" class="btn btn-primary"  >Sauvegarder</button>
+          </div>
+        </form>
+        </div>
   </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
-        <input id="insert"  class="btn btn-default" type="submit" value="Enregistrer">
-      </div>
-    </form>
-    </div>
   </div>
-</div>
-</div>            </div>
-                </div>
-            </div>
+
+  </div>
+  </div>
+     </div>
+   </div>
             <!-- /.container-fluid -->
 
-        </div>
+    </div>
         <!-- /#page-wrapper -->
 
     </div>
     <!-- /#wrapper -->
 
     <!-- jQuery -->
+    
+    <script src="js/VerifyForm.js"></script>
+    <!-- Morris Charts JavaScript -->
+    <script src="js/plugins/morris/raphael.min.js"></script>
+    <script src="js/plugins/morris/morris.min.js"></script>
+    <script src="js/plugins/morris/morris-data.js"></script>
+
+    <!-- Flot Charts JavaScript -->
+    <!--[if lte IE 8]><script src="js/excanvas.min.js"></script><![endif]-->
+    <script src="js/plugins/flot/jquery.flot.js"></script>
+    <script src="js/plugins/flot/jquery.flot.tooltip.min.js"></script>
+    <script src="js/plugins/flot/jquery.flot.resize.js"></script>
+    <script src="js/plugins/flot/jquery.flot.pie.js"></script>
+    <script src="js/plugins/flot/flot-data.js"></script>
     
 
 </b

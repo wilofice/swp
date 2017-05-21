@@ -9,6 +9,7 @@ import com.swp.beans.Enseignant;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 /**
  *
@@ -29,4 +30,12 @@ public class EnseignantFacade extends AbstractFacade<Enseignant> {
         super(Enseignant.class);
     }
     
+    public Enseignant getEnseignantById(Integer id){
+        TypedQuery<Enseignant> query = em.createNamedQuery( "Enseignant.findById", Enseignant.class);
+        query.setParameter("id", id);
+        Enseignant ens = new Enseignant();
+        ens = query.getSingleResult();
+        return ens;
+    }
 }
+

@@ -5,7 +5,7 @@
 <html lang="en">
 
 <head>
-
+   
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -16,12 +16,7 @@
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
-    
-    
-    <script src="js/jquery.js"></script>
 
-    <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
     <!-- Custom CSS -->
     <link href="css/sb-admin.css" rel="stylesheet">
 
@@ -30,28 +25,24 @@
 
     <!-- Custom Fonts -->
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <script type="text/javascript">
-        
-        function ModifierMat(codeM){
-            
-            //alert(codeM);
-            window.location.href = "http://localhost:8080/swp/ModifierMat?codeM="+codeM;
-        }
-        
-        function SupprimerMat(codeM){
-            //alert(codeM);
-            window.location.href = "http://localhost:8080/swp/SupprimerMat?codeM="+codeM;
-             
-        }
-        
-    </script>
+
   
 
 </head>
- 
-<body>
-    
 
+<body>
+    <script src="js/VerifyForm.js"></script>
+    <script type="text/javascript">
+        
+        function editUtil(id){
+            window.location.href = "http://localhost:8080/swp/editUtilisateur?id="+id;
+        }
+        
+        function deleteUtil(id){
+            window.location.href = "http://localhost:8080/swp/deleteUtilisateur?id="+id;
+             
+        }
+    </script>
 
     <div id="wrapper">
 
@@ -99,7 +90,7 @@
                    <a href="#" class="toggle"><i class="fa fa-question-circle"></i></a> 
                 </li>
                 <li class="dropdown">
-                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i><c:out value="${sessionScope.ens.nom}"></c:out> <c:out value="${sessionScope.ens.prenom}"></c:out><b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> John Smith <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li>
                             <a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
@@ -118,14 +109,8 @@
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
                     <li>
-                        <a href="index.html"><i class="fa fa-calendar "></i> Emplois du temps</a>
-                    </li>
-                    <li class="active">
-                        <a href="charts.html"><i class="fa fa-book"></i>  Matières</a>
-                    </li>
-                    <li>
-                        <a href="tables.html"><i class="fa fa-users"></i>  Groupes</a>
-                    </li>          
+                        <a href="addUtilisateur"><i class="fa fa-calendar "></i> Liste Utilisateurs</a>
+                    </li>      
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -140,25 +125,31 @@
                     <div class="col-lg-12">
                        <div class="container">
  
- <h2>Les matières enregistrées</h2>      
+ <h2>Utilisateurs</h2>      
   <table class="table table-hover">
     <thead>
       <tr>
-        <th>Numero</th>
-        <th>Code</th>
         <th>Nom</th>
+        <th>Prénom</th>
+        <th>Mail</th>
+        <th>Téléphone</th>
+        <th>Rôle</th>
+        <th>idUser</th>
       </tr>
     </thead>
     <tbody>
-    <c:if test="${!empty listmat}">
-        <c:forEach items="${listmat}" var="mat"  varStatus="status">
+    <c:if test="${!empty listEns}">
+        <c:forEach items="${listEns}" var="Util" varStatus="status">
             <tr>
-                 <td><c:out value="${status.count}"/></td>
-                 <td><c:out value="${mat.codeM}"/></td>
-                <td><c:out value="${mat.nomM}"/></td>
+                <td><c:out value="${Util.nom}"/></td>
+                <td><c:out value="${Util.prenom}"/></td>
+                <td><c:out value="${Util.email}"/></td>
+                <td><c:out value="${Util.tel}"/></td>
+                <td><c:out value="${Util.rôle}"/></td>
+                <td><c:out value="${Util.idUser.idUser}"/></td>
                 <td>
-                    <button type="button" class="btn btn-default" onclick="ModifierMat('<c:out value="${mat.codeM}"/>')"><i class="fa fa-pencil-square-o fa-lg"></i> </button>
-                    <button type="button" class="btn btn-default" onclick="SupprimerMat('<c:out value="${mat.codeM}"/>')"><i class="fa fa-trash fa-lg"  ></i></button>
+                    <button type="button" class="btn btn-default" onclick="editUtil(<c:out value="${Util.id}"/>)"><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true" data-toggle="modal" data-target="#myModal" ></i> </button> &nbsp;
+                    <button type="button" class="btn btn-default" onclick="deleteUtil(<c:out value="${Util.id}"/>)"><i class="fa fa-trash fa-lg" aria-hidden="true" ></i></button>
                 </td>
             </tr>
          </c:forEach>
@@ -167,10 +158,8 @@
   </table>
   <!-- Button trigger modal -->
 <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-  Ajouter une matière
+  Ajouter Utilisateur
 </button>
- 
-  
 
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -178,42 +167,91 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Ajouter une matière </h4>
+        <h4 class="modal-title" id="myModalLabel"> Ajouter Utilisateur </h4>
       </div>
-        <form action="addmatiere" method="POST">
-      <div class="modal-body">
         
-  <div class="form-group">
-    <label for="codeM">Code Matière</label>
-    <input type="text" class="form-control"  id="codeM" name="codeM" aria-describedby="emailHelp" placeholder="Entrer le code matiere" required>
-    </div>
-  <div class="form-group">
-    <label for="nomM">Nom matière</label>
-    <input type="text" class="form-control"  id="nomM" name="nomM" placeholder="Entrer le nom de la matière" required>
-  </div>
+        <form action="addUtilisateur" method="Post" >
+      <div class="modal-body">
+      <div class="form-group">
+        <label for="nomU">Nom *</label>
+        <input type="text" class="form-control" id="nomU" name="nomU" aria-describedby="emailHelp" placeholder="Entrer le nom de l'utilisateur" required>
+        </div>
+      <div class="form-group">
+        <label for="prenomU">Prénom *</label>
+        <input type="text" class="form-control" id="prenomU" name="prenomU" placeholder="Entrer le Prénom de l'utilisateur" required>
+      </div>
+      <div class="form-group row">
+         
+          <div class="col-xs-7"> 
+             <label> Mail *</label>
+            <input type="text" class="form-control" id="P1Mail" name="P1Mail" placeholder="Entrer l'adresse mail de l'utilisateur" required>
+          </div>
+          <div class="col-xs-5"> 
+              <label> <br/> </label>
+                <select class="form-control form-control-inline" name="P2Mail" id="P2Mail">
+                    <option id="emi">@emi.ac.ma</option>
+                    <option id="gmail">@gmail.com</option>
+                    <option id="yahoo">@yahoo.fr</option>
+                </select>
+          </div>
+      </div>
+      <div class="form-group">
+        <label for="telU">Téléphone </label>
+        <input type="tel" class="form-control" onblur="verifTel(this)" id="telU" name="telU" placeholder="Entrer le numéro de  téléphone de l'utilisateur" required>
+      </div>
+       <div class="form-group">
+        <label for="RoleU">Rôle</label>
+            <select class="form-control" name="roleU" id="roleU" required>
+                <option id="Ens">Enseignant</option>
+                <option id="Chefdept">Chef de département</option>
+                <option id="Coordfil">Coordinateur de filière</option>
+            </select>
+       </div>
+      <div class="form-group">
+        <label for="idUser">IdUser</label>
+        <input type="text" class="form-control" id="idUser" name="idUser" placeholder="Entrer l'identifiant de l'utilisateur">
+      </div>
             
   </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
-        <input id="insert"  class="btn btn-default" type="submit" value="Enregistrer">
-      </div>
-    </form>
-    </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+            <button type="submit" class="btn btn-primary">Enregistrer</button>
+          </div>
+        </form>
+        </div>
   </div>
-</div>
-</div>            </div>
-                </div>
-            </div>
+  </div>
+
+  </div>
+  </div>
+     </div>
+   </div>
             <!-- /.container-fluid -->
 
-        </div>
+    </div>
         <!-- /#page-wrapper -->
 
     </div>
     <!-- /#wrapper -->
 
     <!-- jQuery -->
-    
+    <script src="js/jquery.js"></script>
 
-</b
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+    
+    <!-- Morris Charts JavaScript -->
+    <script src="js/plugins/morris/raphael.min.js"></script>
+    <script src="js/plugins/morris/morris.min.js"></script>
+    <script src="js/plugins/morris/morris-data.js"></script>
+
+    <!-- Flot Charts JavaScript -->
+    <!--[if lte IE 8]><script src="js/excanvas.min.js"></script><![endif]-->
+    <script src="js/plugins/flot/jquery.flot.js"></script>
+    <script src="js/plugins/flot/jquery.flot.tooltip.min.js"></script>
+    <script src="js/plugins/flot/jquery.flot.resize.js"></script>
+    <script src="js/plugins/flot/jquery.flot.pie.js"></script>
+    <script src="js/plugins/flot/flot-data.js"></script>
+
+</body>
 </html>

@@ -947,7 +947,7 @@
 
                                  <div class="modal fade" id="AjSeaSupp" role="dialog">
                                     <div class="modal-dialog">
-                                        <form >
+                                        <form action="addseance"  methode="POST">
                                         <div class="modal-content">
                                             <div class="modal-header">
                                                     <h4 class="modal-title">Ajouter Scéance supplémentaire</h4>
@@ -1004,7 +1004,7 @@
                                                 
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-default" data-dismiss="modal">Ajouter</button>
+                                                <button type="submit" class="btn btn-default">Ajouter</button>
                                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                             </div>
                                         </div>
@@ -1014,21 +1014,32 @@
 
                                 </div>
 
-                                 <div class="modal fade" id="Plann" role="dialog">
+                                 <!--<div class="modal fade" id="Plann" role="dialog">
                                     <div class="modal-dialog">
+                                        <form action="addexam" method="GET">
                                         <div class="modal-content">
                                             <div class="modal-header">
                                                     <h4 class="modal-title">Plannifier un Examen </h4>
                                             </div>
                                             <div class="modal-body">
+                                                
+                                                
                                                 <div class="row">
                                                     <div class="col-lg-12">
                                                         <div class="form-group">
-                                                            <select class="form-control">
-                                                            <option>Mercredi: 8h-10h</option>
-                                                            <option>Mercredi: 10h-12h</option>
-                                                            <option>Mercredi: 14h-16h</option>
-                                                            <option>Mercredi: 16h-18h</option>
+                                                            <select class="form-control" name="classe" id="grpselect">
+                                                            <c:forEach items="${listGrp}" var="grp">
+                                                                <option value="${grp.numG}">
+                                                                   Groupe <c:out value="${grp.nomG}"/>  Genie <c:out value="${grp.nomFiliere}"/> année <c:out value="${grp.niveau}"/>
+                                                                </option>
+                                                                <script>
+                                                                    var grps = document.getElementById("grpselect");
+                                                                    grps.selectedIndex = "-1";
+                                                                    </script>
+                                                                
+                                                                    
+                                                            </c:forEach>
+                                                            
                                                             </select>
                                                         </div>
                                                     </div>
@@ -1036,60 +1047,39 @@
                                                 <div class="row">
                                                     <div class="col-lg-12">
                                                         <div class="form-group">
-                                                            <select class="form-control">
-                                                            <option>1ére Année</option>
-                                                            <option>2éme Année</option>
-                                                            <option>3émé Année</option>
-                                                            </select>
+                                                            <select class="form-control" name="matiere" id="matselect">
+                                                            <!--<c:forEach items="${listMat}" var="mat">
+                                                                <option>
+                                                                  <c:out value="${mat.nomM}"/> 
+                                                                </option>
+                                                                
+                                                                
+                                                            </c:forEach>-->
+                                                          
+                                                            <!--</select>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-lg-12">
                                                         <div class="form-group">
-                                                            <select class="form-control">
-                                                            <option>Informatique</option>
-                                                            <option>Civil</option>
-                                                            <option>Electrique</option>
-                                                            <option>Mecanique</option>
-                                                            <option>Reseau et Telecome</option>
-                                                            <option>Minéral</option>
-                                                            <option>Procédés industrielles</option>
-                                                            <option>Modélisation des systèmes informatiques</option>
+                                                            <select class="form-control" name="creneau" id="creselect">
+                                                            
+                                  
                                                             </select>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="row">
-                                                    <div class="col-lg-12">
-                                                        <div class="form-group">
-                                                            <select class="form-control">
-                                                            <option>All</option>
-                                                            <option>GA</option>
-                                                            <option>GB</option>
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-lg-12">
-                                                        <div class="form-group">
-                                                            <select class="form-control">
-                                                            <option>UML et Pattern</option>
-                                                            <option>Algorithmique</option>
-                                                            <option>Innovation</option>
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                                
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-default" data-dismiss="modal">Ajouter</button>
                                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                             </div>
                                         </div>
+                                        </form>
                                     </div>
-                                </div>
+                                </div>-->
                     
                                   <!-- Le modal pour le choix d'une séance pour rattraper -->
               <div class="modal fade" id="SeanceRatt" role="dialog">

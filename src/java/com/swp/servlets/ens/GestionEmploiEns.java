@@ -54,6 +54,7 @@ public class GestionEmploiEns extends HttpServlet {
     protected void processRequestPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String semaineid = request.getParameter("semaineid");
+        if(semaineid == null) this.getServletContext().getRequestDispatcher("/WEB-INF/viewens/EmploiEns.jsp").forward(request, response);
         String idens = getEnseignantIdinCookies(request, "idens");
         
         Enseignant enseignant = enseignantFacade.find(Integer.parseInt(idens));
@@ -79,6 +80,17 @@ public class GestionEmploiEns extends HttpServlet {
         List<Groupe> listGrp = abscenceFacade.getGroupeEnsX(enseignant);
         
         request.setAttribute("listGrp",listGrp);
+//            Calendar cal = Calendar.getInstance();
+//                Date d = this.getMonday();
+//                Semaine semaine = semaineFacade.findByDateD(d);
+//                Semestre actusem = semaine.getIdSemestre();
+//                String numGrpp= request.getParameter("classe");
+//                int numGrp =Integer.parseInt(numGrpp);
+//
+//                Groupe grp = groupeFacade.findGrpByNum(numGrp);
+//
+//
+//                List<Matiere> listMat = abscenceFacade.getMatiereEnsX(enseignant, grp);
 //        Calendar cal = Calendar.getInstance();
 //            Date d = this.getMonday();
 //            Semaine semaine = semaineFacade.findByDateD(d);

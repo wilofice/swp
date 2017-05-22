@@ -1,8 +1,7 @@
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <%@ page pageEncoding="UTF-8" %>
-<html lang="en">
+<html lang="fr">
 
 <head>
 
@@ -12,7 +11,25 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Swap my lecture - Matière</title>
+    <title>SwapMyLecture</title>
+    <script src="js/VerifyForm.js"></script>
+    <!-- Morris Charts JavaScript -->
+    <script src="js/plugins/morris/raphael.min.js"></script>
+    <script src="js/plugins/morris/morris.min.js"></script>
+    <script src="js/plugins/morris/morris-data.js"></script>
+
+    <!-- Flot Charts JavaScript -->
+    <!--[if lte IE 8]><script src="js/excanvas.min.js"></script><![endif]-->
+    <script src="js/plugins/flot/jquery.flot.js"></script>
+    <script src="js/plugins/flot/jquery.flot.tooltip.min.js"></script>
+    <script src="js/plugins/flot/jquery.flot.resize.js"></script>
+    <script src="js/plugins/flot/jquery.flot.pie.js"></script>
+    <script src="js/plugins/flot/flot-data.js"></script>
+    
+     <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -38,21 +55,21 @@
 <body>
     <script type="text/javascript">
         
-        function editUtil(id){
-            window.location.href = "/swp/editUtilisateur?id="+id;
-           
+    function ModifierMat(codeM){
+            window.location.href = "http://localhost:8080/swp/ModifierMat?codeM="+codeM;
         }
         
         function redirectToAdd(){
-            window.location.href = "/swp/addUtilisateur";
+            window.location.href = "http://localhost:8080/swp/addmatiere";
             
         }
         
-        $(document).ready(function(){
-        // Show the Modal on load
-        console.log("i got here");
-        $("#myModal").modal("show"); });
-    console.log("i got here dkmjfqlkd");
+       
+    $(window).on('load',function(){
+        $('#myModal').modal('show');
+    });
+</script>
+        
         
         
        
@@ -103,7 +120,7 @@
                    <a href="#" class="toggle"><i class="fa fa-question-circle"></i></a> 
                 </li>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> John Smith <b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i><c:out value="${sessionScope.ens.nom}"></c:out> <c:out value="${sessionScope.ens.prenom}"></c:out><b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li>
                             <a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
@@ -122,8 +139,14 @@
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
                     <li>
-                        <a href="addUtilisateur"><i class="fa fa-calendar "></i> Liste Utilisateurs</a>
-                    </li>     
+                        <a href="index.html"><i class="fa fa-calendar "></i> Emplois du temps</a>
+                    </li>
+                    <li class="active">
+                        <a href="addMatiere"><i class="fa fa-calendar "></i> Mes matières</a>
+                    </li> 
+                    <li>
+                        <a href="tables.html"><i class="fa fa-users"></i>  Groupes</a>
+                    </li>       
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -138,31 +161,26 @@
                     <div class="col-lg-12">
                        <div class="container">
  
- <h2>Utilisateurs</h2>      
+ <h2>Les matières enregistrées</h2>      
   <table class="table table-hover">
     <thead>
       <tr>
-        <th>Nom</th>
-        <th>Prénom</th>
-        <th>Mail</th>
-        <th>Téléphone</th>
-        <th>Rôle</th>
-        <th>idUser</th>
+        <th>Numéro</th>
+        <th>code </th>
+        <th>Nom </th>
+       
       </tr>
     </thead>
     <tbody>
-    <c:if test="${!empty listEns}">
-        <c:forEach items="${listEns}" var="Util" varStatus="status">
+    <c:if test="${!empty listmat}">
+        <c:forEach items="${listmat}" var="mat" varStatus="status">
             <tr>
-                <td><c:out value="${Util.nom}"/></td>
-                <td><c:out value="${Util.prenom}"/></td>
-                <td><c:out value="${Util.email}"/></td>
-                <td><c:out value="${Util.tel}"/></td>
-                <td><c:out value="${Util.rôle}"/></td>
-                <td><c:out value="${Util.idUser.idUser}"/></td>
+                <td><c:out value="${status.count}"/></td> 
+                <td><c:out value="${mat.codeM}"/></td>
+                <td><c:out value="${mat.nomM}"/></td>
                 <td>
-                    <button type="button" class="btn btn-default" onclick="editUtil(<c:out value="${Util.id}"/>)" data-toggle="modal" data-target="#myModal"><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true"></i> </button> &nbsp;
-                    <button type="button" class="btn btn-default" onclick="deleteUtil(<c:out value="${Util.id}"/>)"><i class="fa fa-trash fa-lg" aria-hidden="true" ></i></button>
+                    <button type="button" class="btn btn-default" onclick="ModifierMat(<c:out value="${mat.codeM}"/>)" data-toggle="modal" data-target="#myModal"><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true"></i> </button> &nbsp;
+                    <button type="button" class="btn btn-default" onclick="SupprimerMat(<c:out value="${mat.codeM}"/>)"><i class="fa fa-trash fa-lg" aria-hidden="true" ></i></button>
                 </td>
             </tr>
          </c:forEach>
@@ -170,8 +188,8 @@
     </tbody>
   </table>
   <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-  Ajouter Utilisateur
+<button type="button" class="btn btn-primary btn-lg" >
+  Ajouter une Matière
 </button>
 
 <!-- Modal -->
@@ -180,56 +198,25 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel"> Modifier Utilisateur </h4>
+        <h4 class="modal-title" id="myModalLabel"> Modifier Matière </h4>
       </div>
         
-        <form action="editUtilisateur" method="Post" >
+        <form action="ModifierMat" method="Post" >
       <div class="modal-body">
-          <input type="text" name="ensid" style="display: none;" value="<c:out value="${ensSelected.id}"/>"/>
-      <div class="form-group">
-        <label for="nomU">Nom *</label>
-        <input type="text" class="form-control" id="nomU" name="nomU" aria-describedby="emailHelp" placeholder="Entrer le nom de l'utilisateur" value="<c:out value="${ensSelected.getNom()}"/>">
-        </div>
-      <div class="form-group">
-        <label for="prenomU">Prénom *</label>
-        <input type="text" class="form-control" id="prenomU" name="prenomU" placeholder="Entrer le Prénom de l'utilisateur" value="<c:out value="${ensSelected.getPrenom()}"/>">
-      </div>
-      <div class="form-group row">
-         
-          <div class="col-xs-7"> 
-             <label> Mail *</label>
-            <input type="text" class="form-control" id="P1Mail" name="P1Mail" placeholder="Entrer l'adresse mail de l'utilisateur" value="<c:out value="${ensSelected.email.split('@')[0]}"/>">
-          </div>
-          <div class="col-xs-5"> 
-              <label> <br/> </label>
-                <select class="form-control form-control-inline" name="P2Mail" id="P2Mail" value="<c:out value="${ensSelected.email.split('@')[1]}"/>">
-                    <option id="emi">@emi.ac.ma</option>
-                    <option id="gmail">@gmail.com</option>
-                    <option id="yahoo">@yahoo.fr</option>
-                </select>
-          </div>
-      </div>
-      <div class="form-group">
-        <label for="telU">Téléphone </label>
-        <input type="tel" class="form-control" onblur="verifTel(this)" id="telU" name="telU" placeholder="Entrer le numéro de  téléphone de l'utilisateur" value="<c:out value="${ensSelected.getTel()}"/>">
-      </div>
+          <input type="text" name="codeMat" style="display: none;" value="<c:out value="${matSelected.codeM}"/>"/>
        <div class="form-group">
-        <label for="RoleU">Rôle</label>
-            <select class="form-control" name="roleU" id="roleU" selectedOption="<c:out value="${ensSelected.getRôle()}"/>">
-                <option id="Ens" >Enseignant</option>
-                <option id="Chefdept">Chef de département</option>
-                <option id="Coordfil">Coordinateur de filière</option>
-            </select>
-       </div>
-      <div class="form-group">
-        <label for="idUser">IdUser</label>
-        <input type="text" class="form-control" id="idUser" name="idUser" placeholder="Entrer l'identifiant de l'utilisateur" value="<c:out value="${ensSelected.getIdUser().getIdUser()}"/>">
-      </div>
-            
+        <label for="codeM">Code Matière</label>
+        <input type="text" class="form-control" id="codeM" name="codeM"  value="<c:out value="${matSelected.getCodeM()}"/>" required>
+        </div>
+  <div class="form-group">
+        <label for="nomM">Nom Matière </label>
+        <input type="text" class="form-control" id="nomM" name="nomM"  value="<c:out value="${matSelected.getNomM()}"/>"required >
+        </div>
+
   </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" onclick="redirectToAdd()">Annuler</button>
-            <button type="submit" class="btn btn-primary">Enregistrer</button>
+            <button id="submit" type="submit" class="btn btn-primary"  >Sauvegarder</button>
           </div>
         </form>
         </div>
@@ -263,6 +250,7 @@
     <script src="js/plugins/flot/jquery.flot.resize.js"></script>
     <script src="js/plugins/flot/jquery.flot.pie.js"></script>
     <script src="js/plugins/flot/flot-data.js"></script>
+    
 
 </b
 </html>

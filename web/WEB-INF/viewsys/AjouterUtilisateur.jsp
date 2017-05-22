@@ -35,11 +35,11 @@
     <script type="text/javascript">
         
         function editUtil(id){
-            window.location.href = "http://localhost:8080/swp/editUtilisateur?id="+id;
+            window.location.href = "/swp/editUtilisateur?id="+id;
         }
         
         function deleteUtil(id){
-            window.location.href = "http://localhost:8080/swp/deleteUtilisateur?id="+id;
+            window.location.href = "/swp/deleteUtilisateur?id="+id;
              
         }
     </script>

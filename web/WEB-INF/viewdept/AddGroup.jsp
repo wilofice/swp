@@ -14,7 +14,12 @@
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
+    
+    
+    <script src="js/jquery.js"></script>
 
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
     <!-- Custom CSS -->
     <link href="css/sb-admin.css" rel="stylesheet">
 
@@ -23,12 +28,28 @@
 
     <!-- Custom Fonts -->
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
+    <script type="text/javascript">
+        
+        function ModifierMat(codeM){
+            
+            //alert(codeM);
+            window.location.href = "http://localhost:8080/swp/ModifierMat?codeM="+codeM;
+        }
+        
+        function SupprimerMat(codeM){
+            //alert(codeM);
+            window.location.href = "http://localhost:8080/swp/SupprimerMat?codeM="+codeM;
+             
+        }
+        
+    </script>
   
 
 </head>
-
+ 
 <body>
+    
+
 
     <div id="wrapper">
 
@@ -76,7 +97,7 @@
                    <a href="#" class="toggle"><i class="fa fa-question-circle"></i></a> 
                 </li>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> Pr.CHIADMI <b class="caret"></b></a>
+                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i><c:out value="${sessionScope.ens.nom}"></c:out> <c:out value="${sessionScope.ens.prenom}"></c:out><b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li>
                             <a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
@@ -95,13 +116,13 @@
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
                     <li>
-                        <a href="index.html"><i class="fa fa-calendar "></i> Emplois du temps</a>
-                    </li>
-                    <li >
-                        <a href="charts.html"><i class="fa fa-book"></i>  Matières</a>
+                        <a href="gestionemploi"><i class="fa fa-calendar "></i> Emplois du temps</a>
                     </li>
                     <li class="active">
-                        <a href="tables.html"><i class="fa fa-users"></i>  Groupes</a>
+                        <a href="addmatiere"><i class="fa fa-book"></i>  Matières</a>
+                    </li>
+                    <li>
+                        <a href="addgroupe"><i class="fa fa-users"></i> Groupes</a>
                     </li>          
                 </ul>
             </div>
@@ -128,15 +149,16 @@
       </tr>
     </thead>
     <tbody>
-    <c:if test="${!empty listgroup}">
-        <c:forEach items="${listgroup}" var="groupe" varStatus="status">
+    <c:if test="${!empty listmat}">
+        <c:forEach items="${listmat}" var="mat"  varStatus="status">
             <tr>
-                <td><c:out value="${status.count}"/></td>
-                <td><c:out value="${groupe.niveau}"/></td>
-                <td><c:out value="${groupe.nomG}"/></td>
-                <td><c:out value="${groupe.nomFiliere}"/></td>
-                
-                
+                 <td><c:out value="${status.count}"/></td>
+                 <td><c:out value="${mat.codeM}"/></td>
+                <td><c:out value="${mat.nomM}"/></td>
+                <td>
+                    <button type="button" class="btn btn-default" onclick="ModifierMat('<c:out value="${mat.codeM}"/>')"><i class="fa fa-pencil-square-o fa-lg"></i> </button>
+                    <button type="button" class="btn btn-default" onclick="SupprimerMat('<c:out value="${mat.codeM}"/>')"><i class="fa fa-trash fa-lg"  ></i></button>
+                </td>
             </tr>
          </c:forEach>
     </c:if>
@@ -146,6 +168,8 @@
 <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
   Ajouter un groupe
 </button>
+ 
+  
 
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -159,49 +183,24 @@
       <div class="modal-body">
         
   <div class="form-group">
-    <label for="nomG">Groupe</label>
-    <input type="text" class="form-control" id="nomG" name="nomG" aria-describedby="emailHelp" placeholder="Entrez le groupe">
+    <label for="codeM">Code Matière</label>
+    <input type="text" class="form-control"  id="codeM" name="codeM" aria-describedby="emailHelp" placeholder="Entrer le code matiere" required>
     </div>
   <div class="form-group">
-<label for="nomFiliere">Filière</label>  
-<select id="nomFiliere" class="form-control" name="nomFiliere">
-  
-  <option>Informatique</option>
-  <option>Civil</option>
-  <option>Électrique</option>
-  <option>RT</option>
-  <option>Industriel</option>
-  <option>Mécanique</option>
-  <option>Minéral</option>
-  <option>MIS</option>
-  <option>Procédés</option>  
-  
-</select>
-  </div>
-
-  <div class="form-group">
-    <label for="niveau">Niveau</label>    
-    <select id="niveau" class="form-control" name="niveau">
-        
-        <option>1</option>
-        <option>2</option>
-        <option>3</option>  
-  
-</select>
-  
+    <label for="nomM">Nom matière</label>
+    <input type="text" class="form-control"  id="nomM" name="nomM" placeholder="Entrer le nom de la matière" required>
   </div>
             
   </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
-        <button type="submit" class="btn btn-primary">Ajouter</button>
+        <input id="insert"  class="btn btn-default" type="submit" value="Enregistrer">
       </div>
     </form>
     </div>
   </div>
 </div>
-</div>
-                    </div>
+</div>            </div>
                 </div>
             </div>
             <!-- /.container-fluid -->
@@ -213,23 +212,7 @@
     <!-- /#wrapper -->
 
     <!-- jQuery -->
-    <script src="js/jquery.js"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
-
-    <!-- Morris Charts JavaScript -->
-    <script src="js/plugins/morris/raphael.min.js"></script>
-    <script src="js/plugins/morris/morris.min.js"></script>
-    <script src="js/plugins/morris/morris-data.js"></script>
-
-    <!-- Flot Charts JavaScript -->
-    <!--[if lte IE 8]><script src="js/excanvas.min.js"></script><![endif]-->
-    <script src="js/plugins/flot/jquery.flot.js"></script>
-    <script src="js/plugins/flot/jquery.flot.tooltip.min.js"></script>
-    <script src="js/plugins/flot/jquery.flot.resize.js"></script>
-    <script src="js/plugins/flot/jquery.flot.pie.js"></script>
-    <script src="js/plugins/flot/flot-data.js"></script>
+    
 
 </b>
 </html>

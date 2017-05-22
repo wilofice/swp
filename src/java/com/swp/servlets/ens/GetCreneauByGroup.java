@@ -6,8 +6,10 @@ import com.swp.beans.Semaine;
 import com.swp.beans.Semestre;
 import com.swp.beans.Enseignant;
 import com.swp.beans.Matiere;
+import com.swp.beans.Seance;
 import com.swp.sessions.stateless.AbscenceFacade;
 import com.swp.sessions.stateless.CreneauFacade;
+import com.swp.sessions.stateless.EmpFacade;
 import com.swp.sessions.stateless.EnseignantFacade;
 import com.swp.sessions.stateless.GroupeFacade;
 import com.swp.sessions.stateless.SeanceFacade;
@@ -18,6 +20,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -45,6 +48,8 @@ public class GetCreneauByGroup extends HttpServlet {
     EnseignantFacade enseignantFacade;
     @EJB
     SemaineFacade semaineFacade;
+    @EJB
+    EmpFacade empFacade;
             
     public Date getMonday() {
         Calendar cal=Calendar.getInstance();
@@ -151,13 +156,20 @@ public class GetCreneauByGroup extends HttpServlet {
             System.out.println("error in servlet");
             response.setStatus(HttpServletResponse.SC_NO_CONTENT);
         }
-             
          
-         
-         
-         
-         
-            
+//         AddSeance ad = null;
+//         ad.sf=seanceFacade;
+//         ad.ef=empFacade;
+//         ad.lc=videGrpAndEns;
+//         ad.s=new Seance();
+//         
+//         
+//         
+//            ad.addSeance();
+//         
+//         request.setAttribute("s", ad.s);
+//        this.getServletContext().getRequestDispatcher("/WEB-INF/viewdept/EmploiEns.jsp").forward(request, response);
+       
             
     }
 

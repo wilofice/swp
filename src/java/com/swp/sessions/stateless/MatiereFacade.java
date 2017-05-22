@@ -9,6 +9,7 @@ import com.swp.beans.Matiere;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 /**
  *
@@ -28,5 +29,11 @@ public class MatiereFacade extends AbstractFacade<Matiere> {
     public MatiereFacade() {
         super(Matiere.class);
     }
-    
+    public Matiere getMatieretByCodeM(String codeM){
+        TypedQuery<Matiere> query = em.createNamedQuery( "Matiere.findByCodeM", Matiere.class);
+        query.setParameter("codeM", codeM);
+        Matiere mat = new Matiere();
+        mat = query.getSingleResult();
+        return mat;
+    } 
 }

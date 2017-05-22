@@ -53,19 +53,35 @@ public class Login extends HttpServlet {
             }
             
             else {
+                
                 Enseignant ens = compte.getEnseignantList().get(0);
+                
+                if ( "Enseignant".equals(ens.getRôle())){
                 Cookie cookieid = new Cookie("idens", ens.getId()+"");
                 Cookie cookienom = new Cookie("nomens", ens.getNom());
                 Cookie cookieprenom = new Cookie("prenomens", ens.getPrenom());
                 response.addCookie(cookieid);
                 response.addCookie(cookienom);
                 response.addCookie(cookieprenom);
-                
                 HttpSession session = request.getSession();
                 session.setAttribute("ens", ens);
-                List<Groupe> listGrp = af.getGroupeEnsX(ens);
-                request.setAttribute("listGrp",listGrp);
+                System.out.println("Hello mon rôle est :" + ens.getRôle());
                 this.getServletContext().getRequestDispatcher("/WEB-INF/viewens/EmploiEns.jsp").forward(request, response);
+                } 
+                
+                else{
+                Cookie cookieid = new Cookie("idens", ens.getId()+"");
+                Cookie cookienom = new Cookie("nomens", ens.getNom());
+                Cookie cookieprenom = new Cookie("prenomens", ens.getPrenom());
+                response.addCookie(cookieid);
+                response.addCookie(cookienom);
+                response.addCookie(cookieprenom);
+                HttpSession sessionDept = request.getSession();
+                sessionDept.setAttribute("ens", ens);
+                System.out.println("Hello mon rôle est :" + ens.getRôle());
+                this.getServletContext().getRequestDispatcher("/WEB-INF/viewdept/Emploi_Dept.jsp").forward(request, response);
+                }
+                
             }
         }
         

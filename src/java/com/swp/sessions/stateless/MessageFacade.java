@@ -33,8 +33,8 @@ public class MessageFacade extends AbstractFacade<Message> {
     
     public Long countMessage(Enseignant ens){
          Query query =
-         em.createQuery("SELECT count(m) FROM Message m WHERE m.sender = :ens");
-         query.setParameter("ens", ens);
+         em.createQuery("SELECT count(m) FROM Message m WHERE m.receiver = :email");
+         query.setParameter("email", ens.getEmail());
          Long somme = (Long) query.getSingleResult();
          return somme;
     }

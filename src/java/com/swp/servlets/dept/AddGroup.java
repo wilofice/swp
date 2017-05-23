@@ -27,11 +27,12 @@ public class AddGroup  extends HttpServlet {
     
     @EJB
     GroupeFacade groupeFacade;
+    
     protected void processRequestGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
         List<Groupe> listgroup = groupeFacade.findAll();
-        request.setAttribute("listgroup", listgroup);
+        request.setAttribute("listGroupe", listgroup);
         this.getServletContext().getRequestDispatcher("/WEB-INF/viewdept/AddGroup.jsp").forward(request, response);
     }
     
@@ -40,16 +41,17 @@ public class AddGroup  extends HttpServlet {
         Integer niveau = Integer.parseInt(request.getParameter("niveau"));
         String nomG = request.getParameter("nomG");
         String nomFiliere = request.getParameter("nomFiliere");
+        String mail = request.getParameter("mail");
         
         
         //studentId = Integer.parseInt(request.getParameter("StudentId"));
         
         System.out.println("niveau= " + niveau + " nomG = " + nomG + "nomFiliere= " + nomFiliere );
-//        //Groupe group = new Groupe(1,nomG,niveau,nomFiliere);
-//     
-//        groupeFacade.create(group);
-//        List<Groupe> listgroup = groupeFacade.findAll();
-//        request.setAttribute("listgroup", listgroup);
+        Groupe group = new Groupe(1,nomG,niveau,nomFiliere,mail);
+     
+        groupeFacade.create(group);
+        List<Groupe> listgroup = groupeFacade.findAll();
+        request.setAttribute("listGroupe", listgroup);
         this.getServletContext().getRequestDispatcher("/WEB-INF/viewdept/AddGroup.jsp").forward(request, response);
     }
 

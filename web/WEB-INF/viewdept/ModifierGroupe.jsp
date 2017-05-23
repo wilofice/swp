@@ -38,13 +38,13 @@
 <body>
     <script type="text/javascript">
         
-        function editUtil(id){
-            window.location.href = "http://localhost:8080/swp/EditGroupe?id="+id;
+        function editGroupe(id){
+            window.location.href = "editGroupe?id="+id;
            
         }
         
         function redirectToAdd(){
-            window.location.href = "http://localhost:8080/swp/addgroup";
+            window.location.href = "addgroupe";
             
         }
         
@@ -151,16 +151,23 @@
         <th>Niveau</th>
         <th>Groupe</th>
         <th>Filière</th>
+        <th>Mail</th>
       </tr>
     </thead>
     <tbody>
-    <c:if test="${!empty listgroup}">
-        <c:forEach items="${listgroup}" var="groupe" varStatus="status">
+    <c:if test="${!empty listGroupe}">
+        <c:forEach items="${listGroupe}" var="groupe" varStatus="status">
             <tr>
                 <td><c:out value="${status.count}"/></td>
                 <td><c:out value="${groupe.niveau}"/></td>
                 <td><c:out value="${groupe.nomG}"/></td>
                 <td><c:out value="${groupe.nomFiliere}"/></td>
+                <td><c:out value="${groupe.email}"/></td>
+                
+                <td>
+                    <button type="button" class="btn btn-default" onclick="editGroup('<c:out value="${groupe.numG}"/>')"><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true" data-toggle="modal" data-target="#myModal" ></i> </button> &nbsp;
+                    <button type="button" class="btn btn-default" onclick="deleteGroup('<c:out value="${groupe.numG}"/>')"><i class="fa fa-trash fa-lg" aria-hidden="true" ></i></button>
+                 </td>
                 
                 
             </tr>
@@ -185,17 +192,12 @@
         
         <form action="editGroupe" method="Post" >
       <div class="modal-body">
-          <input type="text" name="groupeid" style="display: none;" value="<c:out value="${groupeSelected.id}"/>"/>
-      <!--
-          <div class="form-group">
-        <label for="nomU">Nom *</label>
-        <input type="text" class="form-control" id="nomU" name="nomU" aria-describedby="emailHelp" placeholder="Entrer le nom de l'utilisateur" value="<c:out value="${ensSelected.getNom()}"/>">
-        </div>
-        -->
+          <input type="text" name="numG" style="display: none;" value="<c:out value="${groupeSelected.numG}"/>"/>
+     
         
      <div class="form-group">
     <label for="nomG">Groupe</label>
-    <input type="text" class="form-control" id="nomG" name="nomG" aria-describedby="emailHelp" placeholder="Entrez le groupe" value="<c:out value="${groupeSelected.getNomG()}"/>">
+    <input type="text" class="form-control" id="nomG" name="nomG"  placeholder="Entrez le groupe" value="<c:out value="${groupeSelected.getNomG()}"/>">
     </div>
        <div class="form-group">
 <label for="nomFiliere">Filière</label>  
@@ -216,7 +218,7 @@
 
   <div class="form-group">
     <label for="niveau">Niveau</label>    
-    <select id="niveau" class="form-control" name="niveau" value="<c:out value="${groupeSelected.getNiveau()}"/>">
+    <select id="niveau" class="form-control" name="niveau" value="<c:out value="${groupeSelected.niveau}"/>">
         
         <option>1</option>
         <option>2</option>
@@ -225,11 +227,16 @@
 </select>
   
   </div>
+    
+      <div class="form-group">
+            <label for="mail">Mail</label>
+            <input type="email" class="form-control" id="mail" name="mail"  placeholder="Entrez le  mail du groupe" value="<c:out value="${groupeSelected.email}"/>">
+      </div>  
             
   </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
-        <button type="submit" class="btn btn-primary">Ajouter</button>
+        <button type="submit" class="btn btn-primary">Modifier</button>
       </div>
         </form>
         </div>

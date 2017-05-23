@@ -1,3 +1,5 @@
+taille = $('#notif').find('li').length;
+
 function initRequest() {
     if (window.XMLHttpRequest) {
         if (navigator.userAgent.indexOf('MSIE') !== -1) {
@@ -8,6 +10,69 @@ function initRequest() {
         isIE = true;
         return new ActiveXObject("Microsoft.XMLHTTP");
     }
+}
+
+function getCountMessage() {
+    var id = $('#idofens').text();
+    req = initRequest();
+    url = "/swp/notifications?ensid=" + id;
+    console.log("enseignant numero "+id);
+    req.open("GET", url, true);
+    console.log("test test test");
+    req.onreadystatechange = backcall;
+    req.send(null);
+}
+
+function appendNotif(mseg) {
+    var a = document.createElement("a");
+    a.setAttribute("href", "#");
+    a.innerHTML = mseg;
+    var li = document.createElement("li");
+    li.appendChild(a);
+    var ul = document.getElementById("notif");
+    ul.appendChild(li);
+    var tr = document.createElement("tr");
+    li.appendChild(tr); 
+    
+}
+function extractContent(responseXML) {
+     if (responseXML === null) {
+        console.log("in pasrse error");
+        return false;
+    }
+    else{
+         var m = responseXML.getElementsByTagName("message")[0];
+        var msg = m.childNodes[0].nodeValue;
+        console.log("msg rec = " + msg);
+        return msg;
+        
+        
+    }
+    
+}
+
+function testtaillechange() {
+    if (taille < $('#notif').find('li').length) {
+        getCountMessage();
+    }
+}
+
+function backcall() {
+    console.log(req);
+    
+    if (req.readyState === 4) {
+        if (req.status === 200) {
+            console.log(req.responseXML);
+            var m = extractContent(req.responseXML);
+            appendNotif(m);
+            console.log("in call21");
+            var numeronot = document.getElementById("numbernot");
+            numeronot.innerHTML = $("#notif").children("li").length;
+            getCountMessage();
+        }
+    }
+    
+    
 }
 function getMatiere() {
     var id = $('#grpselect option:selected').attr("value");
@@ -105,6 +170,8 @@ function parseMessages(responseXML) {
 }
 
 $(document).ready(function(){
+    
+    getCountMessage();
     
 var currentDate  = new Date(),
     currentDay   = currentDate.getDate() < 10 

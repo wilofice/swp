@@ -56,30 +56,9 @@
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell"></i> <b class="caret"></b></a>
-                    <ul class="dropdown-menu alert-dropdown">
-                        <li>
-                            <a href="#">Alert Name <span class="label label-default">Alert Badge</span></a>
-                        </li>
-                        <li>
-                            <a href="#">Alert Name <span class="label label-primary">Alert Badge</span></a>
-                        </li>
-                        <li>
-                            <a href="#">Alert Name <span class="label label-success">Alert Badge</span></a>
-                        </li>
-                        <li>
-                            <a href="#">Alert Name <span class="label label-info">Alert Badge</span></a>
-                        </li>
-                        <li>
-                            <a href="#">Alert Name <span class="label label-warning">Alert Badge</span></a>
-                        </li>
-                        <li>
-                            <a href="#">Alert Name <span class="label label-danger">Alert Badge</span></a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">View All</a>
-                        </li>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i  class="fa fa-bell"></i> <b class="caret"></b><span id="numbernot"  class="badge" ></span> </a>
+                    <ul  id="notif" class="dropdown-menu alert-dropdown">
+                       
                     </ul>
                 </li>
                 <li class="dropdown">
@@ -90,6 +69,7 @@
                 </li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i><c:out value="${sessionScope.ens.nom}"></c:out> <c:out value="${sessionScope.ens.prenom}"></c:out><b class="caret"></b></a>
+                    <p id="idofens" style="display: none;"><c:out value="${sessionScope.ens.id}"></c:out></p>
                     <ul class="dropdown-menu">
                         <li>
                             <a href="profil"><i class="fa fa-fw fa-user"></i> Profile</a>

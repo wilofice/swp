@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
-@WebServlet(name = "EditGroupe", urlPatterns = {"/editGroupe"})
+@WebServlet(name = "editGroupe", urlPatterns = {"/editGroupe"})
 public class EditGroupe extends HttpServlet {
     /*private static Integer idCounter = 0;
     public static synchronized String createID()
@@ -29,12 +29,16 @@ public class EditGroupe extends HttpServlet {
     
      @EJB
     GroupeFacade groupeFacade;
+     
     protected void processRequestGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        System.out.println("id = " + request.getParameter("id"));
-        int id = Integer.parseInt(request.getParameter("id"));
+        System.out.println("numG= " + request.getParameter("numG"));
+        int id = Integer.parseInt(request.getParameter("numG"));
         List<Groupe> listGroupe = groupeFacade.findAll(); 
-        Groupe groupe = groupeFacade.getGroupeById(id);
+        Groupe groupe = groupeFacade.find(id);
+        
+        
+        
         request.setAttribute("listGroupe", listGroupe);
         request.setAttribute("groupeSelected",groupe);
         this.getServletContext().getRequestDispatcher("/WEB-INF/viewdept/ModifierGroupe.jsp").forward(request, response);
@@ -42,22 +46,25 @@ public class EditGroupe extends HttpServlet {
     
     protected void processRequestPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        System.out.println("id recupere" + request.getParameter("groupeid"));
-        int id = Integer.parseInt(request.getParameter("groupebv id"));
-        Groupe groupe = groupeFacade.getGroupeById(id);
+        System.out.println("numG recupere" + request.getParameter("numG"));
+        int numG = Integer.parseInt(request.getParameter("numG"));
+        Groupe groupe = groupeFacade.find(numG);
         
        
         Integer niveau = Integer.parseInt(request.getParameter("niveau"));
         String nomG = request.getParameter("nomG");
         String nomFiliere = request.getParameter("nomFiliere");
+        String mail = request.getParameter("mail");
        
         
-     
-        
-        groupeFacade.edit(groupe);
         groupe.setNomG(nomG);
         groupe.setNiveau(niveau);
         groupe.setNomFiliere(nomFiliere);
+        groupe.setEmail(mail);
+        
+        groupeFacade.edit(groupe);
+        
+        
        
         
     

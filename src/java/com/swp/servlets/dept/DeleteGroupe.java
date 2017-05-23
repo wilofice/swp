@@ -18,28 +18,24 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
-@WebServlet(name = "DeleteGroupe", urlPatterns = {"/deleteGroupe"})
+@WebServlet(name = "deleteGroupe", urlPatterns = {"/deleteGroupe"})
 public class DeleteGroupe extends HttpServlet {
-    /*private static Integer idCounter = 0;
-    public static synchronized String createID()
-        {
-            return String.valueOf(idCounter++);
-        } */
-
+    
      
      @EJB
     GroupeFacade groupeFacade;
+     
     protected void processRequestGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        int id = Integer.parseInt(request.getParameter("id"));
-        Groupe groupe = groupeFacade.getGroupeById(id);
+        int numG = Integer.parseInt(request.getParameter("numG"));
+        Groupe groupe = groupeFacade.find(numG);
         groupeFacade.remove(groupe);
-        System.out.print("i got here after remove");
+        System.out.print("i got lnkjlhkjhlkhkljhlkhkl after remove");
 
         
         
-        List<Groupe> listGroupe = groupeFacade.findAll();
-        request.setAttribute("listGroupe", listGroupe);
+        List<Groupe> listgroup = groupeFacade.findAll();
+        request.setAttribute("listGroupe", listgroup);
         this.getServletContext().getRequestDispatcher("/WEB-INF/viewdept/AddGroup.jsp").forward(request, response);
     }
     

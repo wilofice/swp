@@ -7,10 +7,18 @@ package com.swp.servlets.login;
 
 import com.swp.beans.Comptes;
 import com.swp.beans.Enseignant;
+import com.swp.beans.Groupe;
+import com.swp.beans.Matiere;
+import com.swp.servlets.dept.GestionEmploi;
+import com.swp.sessions.stateless.AbscenceFacade;
 import com.swp.sessions.stateless.ComptesFacade;
+import com.swp.sessions.stateless.EnseignantFacade;
+import com.swp.sessions.stateless.MatiereFacade;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.ejb.EJB;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.Cookie;
@@ -24,6 +32,12 @@ public class Login extends HttpServlet {
 
     @EJB
     ComptesFacade comptesFacade;
+    @EJB
+    AbscenceFacade absenceFacade;
+    @EJB
+    MatiereFacade matiereFacade;
+    @EJB
+    EnseignantFacade enseignantFacade;
     
     protected void processRequestGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -37,6 +51,8 @@ public class Login extends HttpServlet {
         String login = request.getParameter("id");
         System.out.println("Le login est : " + login);
         Comptes compte = comptesFacade.find(login);
+        Comptes comptedept=comptesFacade.find("admin-dept@gmail.com");
+        Comptes comptesys =comptesFacade.find("admin-sys@gmail.com");
         if(compte == null) {
             request.setAttribute("erreurlogin", "login");
             this.getServletContext().getRequestDispatcher("/WEB-INF/viewlogin/index.jsp").forward(request, response);
@@ -49,24 +65,39 @@ public class Login extends HttpServlet {
             }
             
             else {
+                
                 Enseignant ens = compte.getEnseignantList().get(0);
+                
+                if ( "Enseignant".equals(ens.getRôle())){
                 Cookie cookieid = new Cookie("idens", ens.getId()+"");
                 Cookie cookienom = new Cookie("nomens", ens.getNom());
                 Cookie cookieprenom = new Cookie("prenomens", ens.getPrenom());
                 response.addCookie(cookieid);
                 response.addCookie(cookienom);
                 response.addCookie(cookieprenom);
-                
                 HttpSession session = request.getSession();
                 session.setAttribute("ens", ens);
+                System.out.println("Hello mon rôle est :" + ens.getRôle());
                 
-                Cookie cookieiduser = new Cookie("iduser", compte.getIdUser()+"");
-                Cookie cookiepassword = new Cookie("password", compte.getMotdepasse());
-                response.addCookie(cookieiduser);
-                response.addCookie(cookiepassword);
-                session.setAttribute("compte", compte);
+                    //RequestDispatcher rd = this.getServletContext().getRequestDispatcher("/gestionemploi?");
+                    
+                this.getServletContext().getRequestDispatcher("/gestionemploiens").forward(request, response);
                 
-                this.getServletContext().getRequestDispatcher("/WEB-INF/viewens/EmploiEns.jsp").forward(request, response);
+                } 
+                
+                else{
+                Cookie cookieid = new Cookie("idens", ens.getId()+"");
+                Cookie cookienom = new Cookie("nomens", ens.getNom());
+                Cookie cookieprenom = new Cookie("prenomens", ens.getPrenom());
+                response.addCookie(cookieid);
+                response.addCookie(cookienom);
+                response.addCookie(cookieprenom);
+                HttpSession sessionDept = request.getSession();
+                sessionDept.setAttribute("ens", ens);
+                System.out.println("Hello mon rôle est :" + ens.getRôle());
+                this.getServletContext().getRequestDispatcher("/WEB-INF/viewdept/Emploi_Dept.jsp").forward(request, response);
+                }
+                
             }
         }
         

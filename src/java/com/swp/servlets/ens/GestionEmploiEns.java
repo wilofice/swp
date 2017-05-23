@@ -2,10 +2,16 @@ package com.swp.servlets.ens;
 
 import com.swp.beans.Emp;
 import com.swp.beans.Enseignant;
+import com.swp.beans.Groupe;
+import com.swp.beans.Matiere;
 import com.swp.beans.Seance;
 import com.swp.beans.SeanceHashMap;
+import com.swp.beans.Semaine;
+import com.swp.beans.Semestre;
+import com.swp.sessions.stateless.AbscenceFacade;
 import com.swp.sessions.stateless.EmpFacade;
 import com.swp.sessions.stateless.EnseignantFacade;
+import com.swp.sessions.stateless.GroupeFacade;
 import com.swp.sessions.stateless.SeanceFacade;
 import com.swp.sessions.stateless.SemaineFacade;
 import java.io.IOException;
@@ -34,6 +40,10 @@ public class GestionEmploiEns extends HttpServlet {
     EmpFacade empFacade;
     @EJB
     SeanceFacade seanceFacade;
+    @EJB
+    AbscenceFacade abscenceFacade;
+    @EJB
+    GroupeFacade groupeFacade;
     protected void processRequestGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
@@ -48,6 +58,7 @@ public class GestionEmploiEns extends HttpServlet {
     protected void processRequestPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String semaineid = request.getParameter("semaineid");
+        if(semaineid == null) this.getServletContext().getRequestDispatcher("/WEB-INF/viewens/EmploiEns.jsp").forward(request, response);
         String idens = getEnseignantIdinCookies(request, "idens");
         
         Enseignant enseignant = enseignantFacade.find(Integer.parseInt(idens));
@@ -69,6 +80,33 @@ public class GestionEmploiEns extends HttpServlet {
             request.setAttribute("seancetoabsent", sa);
             System.out.println("seance to absent from session = " + sa.getNumS());
         }
+        
+        List<Groupe> listGrp = abscenceFacade.getGroupeEnsX(enseignant);
+        
+        request.setAttribute("listGrp",listGrp);
+//            Calendar cal = Calendar.getInstance();
+//                Date d = this.getMonday();
+//                Semaine semaine = semaineFacade.findByDateD(d);
+//                Semestre actusem = semaine.getIdSemestre();
+//                String numGrpp= request.getParameter("classe");
+//                int numGrp =Integer.parseInt(numGrpp);
+//
+//                Groupe grp = groupeFacade.findGrpByNum(numGrp);
+//
+//
+//                List<Matiere> listMat = abscenceFacade.getMatiereEnsX(enseignant, grp);
+//        Calendar cal = Calendar.getInstance();
+//            Date d = this.getMonday();
+//            Semaine semaine = semaineFacade.findByDateD(d);
+//            Semestre actusem = semaine.getIdSemestre();
+//            String numGrpp= request.getParameter("classe");
+//            int numGrp =Integer.parseInt(numGrpp);
+            
+//            Groupe grp = groupeFacade.findGrpByNum(numGrp);
+            
+            
+//            List<Matiere> listMat = abscenceFacade.getMatiereEnsX(enseignant, grp);
+            
         this.getServletContext().getRequestDispatcher("/WEB-INF/viewens/EmploiEns.jsp").forward(request, response);
     }
 
@@ -97,7 +135,35 @@ public class GestionEmploiEns extends HttpServlet {
     }
     
     
-    
+    public Date getMonday() {
+        Calendar cal=Calendar.getInstance();
+        int x =cal.get(Calendar.DAY_OF_WEEK);
+        switch(x){
+            case 1:
+                x= 1;
+                break;
+            case 2:
+                x= 0;
+                break;
+            case 3:
+                x= -1;
+                break;
+            case 4:
+                x= -2;
+                break;
+            case 5:
+                x= -3;
+                break;
+            case 6:
+                x= -4;
+            default:
+                x= 2;
+                break;
+               
+        }
+        cal.add(Calendar.DATE,x);
+        return new Date(cal.getTimeInMillis());
+    }
 
 
     @Override

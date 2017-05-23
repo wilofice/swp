@@ -42,7 +42,7 @@
                          
 			<input type="submit" value="Login">
                     </form>	
-        <a href="#"><span style="color: white;">Mot de passe oublié?</span></a>
+        <a href="/swp/mdpOublie"><span style="color: white;">Mot de passe oublié?</span></a>
     </div>
 		
 </body>

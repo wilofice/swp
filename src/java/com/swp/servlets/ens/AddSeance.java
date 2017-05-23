@@ -57,7 +57,6 @@ public class AddSeance {
             se.setNumEmp(emp);
             se.setEtatS(1);
             sf.create(se);
-            
         }
     }
     

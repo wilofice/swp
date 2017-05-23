@@ -121,6 +121,7 @@ public class GestionEmploi extends HttpServlet {
             throws ServletException, IOException {
         
         String groupe1 = request.getParameter("groupe1");
+        if(groupe1 == null) processRequest(request, response);
         Integer numgroupe1 = Integer.parseInt(groupe1);
         Groupe groupe = groupeFacade.find(numgroupe1);
         

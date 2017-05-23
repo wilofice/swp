@@ -5,10 +5,12 @@
  */
 package com.swp.sessions.stateless;
 
+import com.swp.beans.Enseignant;
 import com.swp.beans.Message;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -27,6 +29,14 @@ public class MessageFacade extends AbstractFacade<Message> {
 
     public MessageFacade() {
         super(Message.class);
+    }
+    
+    public Long countMessage(Enseignant ens){
+         Query query =
+         em.createQuery("SELECT count(m) FROM Message m WHERE m.sender = :ens");
+         query.setParameter("ens", ens);
+         Long somme = (Long) query.getSingleResult();
+         return somme;
     }
     
 }

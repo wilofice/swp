@@ -97,5 +97,27 @@ public class AbscenceFacade {
         return results;
     }
     
+    public List<Groupe> getGroupeEnsX(Enseignant e){
+        List<Groupe> results;
+   
+        Query query = em.createQuery("SELECT DISTINCT g FROM Groupe g, IN (g.empList) emp WHERE emp.numE = :numE");
+        query.setParameter("numE", e);
+        results=query.getResultList();
+
+        return results;
+
+    }
+    
+    
+    public List<Matiere> getMatiereEnsX(Enseignant e,Groupe g){
+        List<Matiere> results;
+    
+        Query query = em.createQuery("SELECT m FROM Matiere m, IN(m.empList) emp WHERE emp.numE=:numE AND emp.numG=:numG");
+         query.setParameter("numE",e);
+         query.setParameter("numG",g);
+         results=query.getResultList();
+         return results;
+    }
+    
     
 }

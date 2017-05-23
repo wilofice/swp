@@ -182,14 +182,14 @@
             <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
-                    <li class="active">
-                        <a href="index_dept.html"><i class="fa fa-fw fa-dashboard"></i>Emplois du temps</a>
+                    <li>
+                        <a href="gestionemploi"><i class="fa fa-calendar "></i> Emplois du temps</a>
                     </li>
-                    <li >
-                        <a href="mat_dept.html"><i class="fa fa-book"></i>Matières</a>
+                    <li class="active">
+                        <a href="addmatiere"><i class="fa fa-book"></i>  Matières</a>
                     </li>
                     <li>
-                        <a href="tables.html"><i class="fa fa-users"></i>Groupes</a>
+                        <a href="addgroupe"><i class="fa fa-users"></i> Groupes</a>
                     </li>          
                 </ul>
             </div>

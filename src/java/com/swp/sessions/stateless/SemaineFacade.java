@@ -39,4 +39,17 @@ public class SemaineFacade extends AbstractFacade<Semaine> {
         Semaine sem = query.getSingleResult();
         return sem;
     }
+     
+     public Semaine findByDateD(Date d){
+        TypedQuery<Semaine> query = em.createNamedQuery("Semaine.findByDatedebut", Semaine.class);
+        query.setParameter("datedebut",d);
+        
+        Semaine semaine = query.getSingleResult();
+        
+        
+        
+        
+        
+        return semaine;
+    } 
 }

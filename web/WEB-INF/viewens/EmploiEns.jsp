@@ -102,7 +102,7 @@
             <div class="row">
                 <div class="col-lg-9">
                     <div class="panel panel-default">
-                        <div class="panel-heading" style="font-weight: bold;">EMPLOI DU TEMPS <span id="datedujour">29/04/2017</span> Semaine  <span id="semaineactuelle"> 1</span></div>
+                        <div class="panel-heading" style="font-weight: bold;">EMPLOI DU TEMPS <span id="datedujour">29/04/2017</span> Semaine  <span id=""> <c:out value="${semainecurrent}"></c:out> </span></div>
                                     
                     
                         <div class="panel-body">
@@ -112,7 +112,16 @@
                                 <div class="col-lg-2">
                                     <label>Semaine</label>
                                     <!--<select class="form-control" id="semaineselect" onfocus="this.size=5;" onblur="this.size=1;" onchange="this.size=1;this.blur();">-->
-                                    <select class="form-control" id="semaineselect" ></select>
+                                    <select class="form-control" id="semaineselect" > 
+                                    <c:forEach var="i" begin="1" end="28" step="1">
+                                        <c:if test="${semainecurrent == i}">
+                                            <option selected value="${i}">${i}</option>
+                                        </c:if>
+                                        <c:if test="${!(semainecurrent == i)}">
+                                            <option value="${i}">${i}</option>
+                                        </c:if>
+                                    </c:forEach>
+                                    </select>
                                 </div>
                                 <div class="col-lg-5">
                                 </div>
@@ -821,9 +830,15 @@
                                <div class="btn-group-vertical" >
                                     <button type="button" class="btn btn-primary active"data-toggle="modal" data-target="#SigAbsc">Signaler Abscence</button>
                                     <br>
-                                    <button type="button" class="btn btn-primary active"data-toggle="modal" data-target="#AjSeaSupp">Ajouter Scéance supplémentaire</button>
+                                    <button type="button" class="btn btn-primary active"data-toggle="modal" data-target="#AjSeaSupp">Ajouter Séance supplémentaire</button>
                                     <br>
-                                    <button type="button" class="btn btn-primary active"data-toggle="modal" data-target="#Plann">Plannifier un Examen</button>
+                                    <button type="button" class="btn btn-primary active"data-toggle="modal" data-target="#Plann">Planifier un Examen</button>
+                                    <br>
+       
+                                    <button type="button" class="btn btn-primaryy "data-toggle="modal" data-target="#SuppExam">Supprimer Examen</button>
+                                    <br>
+                                    
+                                    <button type="button" class="btn btn-primaryy "data-toggle="modal" data-target="#SuppSeance">Supprimer Séance supplémentaire</button>
                                     <br>
                                 </div>
                               
@@ -949,7 +964,9 @@
                                                                 </option>
                                                                 <script>
                                                                     var grps = document.getElementById("grpselect");
+                                                                    
                                                                     grps.selectedIndex = "-1";
+                                                                    console.log('i kdnloy here');
                                                                     </script>
                                                                 
                                                                     
@@ -963,13 +980,7 @@
                                                     <div class="col-lg-12">
                                                         <div class="form-group">
                                                             <select class="form-control" name="matiere" id="matselect">
-                                                            <!--<c:forEach items="${listMat}" var="mat">
-                                                                <option>
-                                                                  <c:out value="${mat.nomM}"/> 
-                                                                </option>
-                                                                
-                                                                
-                                                            </c:forEach>-->
+                                                          
                                                           
                                                             </select>
                                                         </div>
@@ -998,12 +1009,12 @@
 
                                 </div>-->
 
-                                 <!--<div class="modal fade" id="Plann" role="dialog">
+                                 <div class="modal fade" id="Plann" role="dialog">
                                     <div class="modal-dialog">
                                         <form action="addexam" method="GET">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                    <h4 class="modal-title">Plannifier un Examen </h4>
+                                                    <h4 class="modal-title">Planifier un Examen </h4>
                                             </div>
                                             <div class="modal-body">
                                                 
@@ -1011,15 +1022,16 @@
                                                 <div class="row">
                                                     <div class="col-lg-12">
                                                         <div class="form-group">
-                                                            <select class="form-control" name="classe" id="grpselect">
+                                                            <select class="form-control" name="classe" id="grpexamselect">
                                                             <c:forEach items="${listGrp}" var="grp">
                                                                 <option value="${grp.numG}">
                                                                    Groupe <c:out value="${grp.nomG}"/>  Genie <c:out value="${grp.nomFiliere}"/> année <c:out value="${grp.niveau}"/>
                                                                 </option>
                                                                 <script>
-                                                                    var grps = document.getElementById("grpselect");
+                                                                    var grps = document.getElementById("grpexamselect");
+                                                                    
                                                                     grps.selectedIndex = "-1";
-                                                                    </script>
+                                                                 </script>
                                                                 
                                                                     
                                                             </c:forEach>
@@ -1031,23 +1043,17 @@
                                                 <div class="row">
                                                     <div class="col-lg-12">
                                                         <div class="form-group">
-                                                            <select class="form-control" name="matiere" id="matselect">
-                                                            <!--<c:forEach items="${listMat}" var="mat">
-                                                                <option>
-                                                                  <c:out value="${mat.nomM}"/> 
-                                                                </option>
-                                                                
-                                                                
-                                                            </c:forEach>-->
+                                                            <select class="form-control" name="matiere" id="matexamselect">
+                                                            
                                                           
-                                                            <!--</select>
+                                                            </select>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-lg-12">
                                                         <div class="form-group">
-                                                            <select class="form-control" name="creneau" id="creselect">
+                                                            <select class="form-control" name="creneau" id="creexamselect">
                                                             
                                   
                                                             </select>
@@ -1063,7 +1069,7 @@
                                         </div>
                                         </form>
                                     </div>
-                                </div>-->
+                                </div>
                     
                                   <!-- Le modal pour le choix d'une séance pour rattraper -->
               <div class="modal fade" id="SeanceRatt" role="dialog">
@@ -1120,6 +1126,77 @@
                                             
                                         </div>
                                     </div>
+                                   <div class="modal fade" id="SuppSeance" role="dialog">
+                                    <div class="modal-dialog">
+                                        <form action="saradeleteseance"  method="POST">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                    <h4 class="modal-title">Supprimer Séance supplémentaire</h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                
+                                                
+                                                <div class="row">
+                                                    <div class="col-lg-12">
+                                                        <div class="form-group">
+                                                            <select class="form-control" name="seancesajoutees" id="seancesAjoutees">
+                                                                
+                                                                 <c:forEach items="${listseances}" var="s">
+                                                                <option value="${s.numS}">
+                                                                
+                                                                   Séance numéro <c:out value="${s.numS}"/> 
+                                                                </option>
+                                                                </c:forEach>
+                                                                
+                                                                
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
+                                                
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="submit" class="btn btn-default">Supprimer</button>
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+                                            </div>
+                                        </div>
+                                        </form>
+                                    </div>
+                                </div>
+
+                                </div>
+                                 <div class="modal fade" id="SuppExam" role="dialog">
+                                    <div class="modal-dialog">
+                                        <form action="deleteExam"  methode="POST">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                    <h4 class="modal-title">Supprimer examen</h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                
+                                                
+                                                <div class="row">
+                                                    <div class="col-lg-12">
+                                                        <div class="form-group">
+                                                            <select class="form-control" name="examsajoutes"  id="examsajoutes">
+                                                           
+                                                            
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
+                                            <div class="modal-footer">
+                                                <button type="submit" class="btn btn-default">Supprimer</button>
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+                                            </div>
+                                        </div>
+                                        </form>
+                                    </div>
+                                </div>
+
+                                </div>
                                   
                                   
                                                     <div style="display: none;" class="abscenceclass" id="abscanca">

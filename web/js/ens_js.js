@@ -82,6 +82,15 @@ function getMatiere() {
     req.onreadystatechange = callback;
     req.send(null);
 }
+function getExamMatiere() {
+    var id = $('#grpexamselect option:selected').attr("value");
+    req = initRequest();
+    url = "/swp/getmatandcrenbyprp?classe=" + id;
+    req.open("GET", url, true);
+    req.onreadystatechange = callback;
+    req.send(null);
+}
+
 function callback() {
     console.log(req);
     
@@ -171,7 +180,7 @@ function parseMessages(responseXML) {
 
 $(document).ready(function(){
     
-    getCountMessage();
+    //getCountMessage();
     
 var currentDate  = new Date(),
     currentDay   = currentDate.getDate() < 10 
@@ -183,12 +192,19 @@ var currentDate  = new Date(),
 
 document.getElementById("datedujour").innerHTML = currentDay + '/' + currentMonth + '/' +  currentDate.getFullYear();
 
-for(var i = 1; i <= 28; i++) {
-    option = document.createElement("option");
-    option.innerHTML = i;
-    $('#semaineselect').append(option);
-}
-$("#semaineselect").prop("selectedIndex", -1);
+//for(var i = 1; i <= 28; i++) {
+//    option = document.createElement("option");
+//    option.innerHTML = i;
+//    $('#semaineselect').append(option);
+//}
+//var sara=13;
+//$('#semaineselect').val(sara);
+//console.log("SARA SARA GOT HERE ");
+//$("#semaineselect").prop("selectedIndex",25 );
+// $(window).on('load',function(){
+//        var sara=13;
+//        $('#semaineselect').val(sara);
+//    });
 
 $('.myradio-group .seance').dblclick(function(){ 
     $(this).parent().parent().find('.seance').removeClass('selected');

@@ -44,11 +44,6 @@ public class SemaineFacade extends AbstractFacade<Semaine> {
         query.setParameter("datedebut",d);
         
         Semaine semaine = query.getSingleResult();
-        
-        
-        
-        
-        
         return semaine;
     } 
 }

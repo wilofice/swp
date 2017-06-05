@@ -218,8 +218,8 @@ $(document).ready(function(){
     $("#sfselect").prop("selectedIndex", -1);
     $("#enseignantselect").prop("selectedIndex", -1);
     $("#matiereselect").prop("selectedIndex", -1);
-    $("#semestres").prop("selectedIndex", -1);
-    $("#groupes").prop("selectedIndex", -1);
+    //$("#semestres").prop("selectedIndex", -1);
+    //$("#groupes").prop("selectedIndex", -1);
     groupeselected = $("#groupes option:selected").attr("id");
     semestreactuelle = $("#semestres option:selected").text();
        

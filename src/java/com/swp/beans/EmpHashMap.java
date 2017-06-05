@@ -5,6 +5,7 @@
  */
 package com.swp.beans;
 
+import com.swp.sessions.stateless.EmpFacade;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
@@ -16,6 +17,12 @@ import java.util.List;
  * @author genereux
  */
 public class EmpHashMap {
+    
+    EmpFacade empFacade;
+    
+    public EmpHashMap(EmpFacade empFacade) {
+        this.empFacade = empFacade;
+    }
     
     public static HashMap<String, HashMap<String, Emp>> getEmpAsHashMap(List<Emp> listemp) {
         HashMap<String, Emp> lundi = new HashMap<>();
@@ -35,7 +42,6 @@ public class EmpHashMap {
             cal.setTime(heure);
             hour = cal.get(Calendar.HOUR_OF_DAY);
             if(emp.getJour() == 2) {
-                
                 if(hour == 8) {
                     lundi.put("8", emp);
                 }

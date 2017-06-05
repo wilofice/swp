@@ -171,7 +171,7 @@ function parseMessages(responseXML) {
 
 $(document).ready(function(){
     
-    getCountMessage();
+    //getCountMessage();
     
 var currentDate  = new Date(),
     currentDay   = currentDate.getDate() < 10 

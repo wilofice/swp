@@ -67,7 +67,7 @@
                         <c:if test="${!empty erreur}"> <span style="color: red"><em> Le mail que vous avez saisi est incorrecte </em> </span></c:if>
                       </div>
                       <button type="submit" class="btn btn-default">Envoyer</button>
-                      <button type="button" class="btn btn-default" onclick="window.location.href = 'http://localhost:8080/swpG/login';"> Annuler</button>
+                      <button type="button" class="btn btn-default" onclick="window.location.href = 'http://localhost:8080/swp/login';"> Annuler</button>
                       <br/><br/>
                     </form>
                     

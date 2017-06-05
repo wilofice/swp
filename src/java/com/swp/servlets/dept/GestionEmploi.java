@@ -6,9 +6,11 @@
 package com.swp.servlets.dept;
 
 import com.swp.beans.Emp;
+import com.swp.beans.EmpHashMap;
 import com.swp.beans.Enseignant;
 import com.swp.beans.Groupe;
 import com.swp.beans.Matiere;
+import com.swp.beans.Seance;
 import com.swp.beans.Semaine;
 import com.swp.beans.Semestre;
 import com.swp.sessions.stateless.EmpFacade;
@@ -16,12 +18,14 @@ import com.swp.sessions.stateless.EnseignantFacade;
 import com.swp.sessions.stateless.FiliereFacade;
 import com.swp.sessions.stateless.GroupeFacade;
 import com.swp.sessions.stateless.MatiereFacade;
+import com.swp.sessions.stateless.SeanceFacade;
 import com.swp.sessions.stateless.SemaineFacade;
 import com.swp.sessions.stateless.SemestreFacade;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import javax.ejb.EJB;
@@ -53,6 +57,8 @@ public class GestionEmploi extends HttpServlet {
     SemestreFacade semestreFacade;
     @EJB
     FiliereFacade filiereFacade;
+    @EJB
+    SeanceFacade seanceFacade;
     
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -77,6 +83,31 @@ public class GestionEmploi extends HttpServlet {
         request.setAttribute("listegroupe",listeGroupeTemp);
         request.setAttribute("listeMatiere",listeMatiere);
         request.setAttribute("listeenseignant",listeenseignant);
+        
+        System.out.println("Heeeeello");
+        String groupeid = request.getParameter("grpid");
+        Integer grpid = Integer.parseInt(groupeid);
+        String semestreid = request.getParameter("semestreid");
+        Integer semstrid = Integer.parseInt(semestreid);
+        Groupe grp = groupeFacade.find(grpid);
+        List<Emp> listemp = empFacade.findByGrpAndSemestre(grp, semstrid);
+        List<Emp> listeEmp = new ArrayList<Emp>();
+        
+        Iterator<Emp> empIterator = listemp.iterator();
+        while (empIterator.hasNext()) {
+                Emp e = empIterator.next();
+                Date datefin = e.getDateF();
+                if(!e.getDateD().equals(datefin)){
+                    System.out.println("emp ajoute");
+                    listeEmp.add(e);
+                }
+        }
+        HashMap<String, HashMap<String, Emp>> empHashMap =  EmpHashMap.getEmpAsHashMap(listeEmp);
+        
+        request.removeAttribute("empHashMap");
+        request.setAttribute("empHashMap", empHashMap);
+        request.setAttribute("groupeSelect", groupeid);
+        request.setAttribute("semaineSelect", semestreid);
         
         HttpSession session = request.getSession();
         session.setAttribute("listesemestre",listesemestre);

@@ -81,12 +81,6 @@
                     </ul>
                 </li>
                 <li class="dropdown">
-                    <a href="#" class="toggle"><i class="fa fa-fw fa-gear"></i></a> 
-                </li>
-                <li class="dropdown">
-                    <a href="#" class="toggle"><i class="fa fa-question-circle"></i></a> 
-                </li>
-                <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> Pr.CHIADMI <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li>
@@ -106,13 +100,13 @@
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
                     <li>
-                        <a href="index.html"><i class="fa fa-calendar "></i> Emplois du temps</a>
+                        <a href="/swp/gestionemploi?grpid=1&semestreid=2"><i class="fa fa-calendar "></i> Emplois du temps</a>
                     </li>
                     <li >
-                        <a href="charts.html"><i class="fa fa-book"></i>  Matières</a>
+                        <a href="/swp/addmatiere"><i class="fa fa-book"></i>  Matières</a>
                     </li>
                     <li class="active">
-                        <a href="tables.html"><i class="fa fa-users"></i>  Groupes</a>
+                        <a href="/swp/addgroupe"><i class="fa fa-users"></i>  Groupes</a>
                     </li>          
                 </ul>
             </div>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  localhost
--- Généré le :  Lun 15 Mai 2017 à 20:22
+-- Généré le :  Mar 23 Mai 2017 à 16:31
 -- Version du serveur :  10.1.21-MariaDB
 -- Version de PHP :  7.0.18
 
@@ -387,7 +387,13 @@ CREATE TABLE `Emp` (
 INSERT INTO `Emp` (`NumEmp`, `NumM`, `NumG`, `NumE`, `Jour`, `Heure`, `DateD`, `DateF`, `Id_semestre`) VALUES
 (1, 'jee2017s4', 1, 1, 2, '08:00:00', '2017-05-01', '2017-05-29', 2),
 (7, 'jee2017s4', 1, 1, 5, '10:00:00', '2017-02-20', '2017-03-20', 2),
-(848, 'jee2017s4', 1, 1, 2, '08:00:00', '2017-05-15', '2017-05-15', 2);
+(848, 'jee2017s4', 1, 1, 2, '08:00:00', '2017-05-15', '2017-05-15', 2),
+(850, 'jee2017s4', 1, 1, 3, '16:00:00', '2017-05-16', '2017-05-16', 2),
+(889, 'jee2017s4', 1, 1, 5, '10:00:00', '2017-05-18', '2017-05-18', 2),
+(1074, 'jee2017s4', 1, 1, 5, '08:00:00', '2017-05-18', '2017-05-18', 2),
+(1075, 'jee2017s4', 1, 1, 5, '14:00:00', '2017-05-18', '2017-05-18', 2),
+(1076, 'jee2017s4', 1, 1, 5, '10:00:00', '2017-05-15', '2017-05-22', 2),
+(1096, 'jee2017s4', 1, 1, 3, '08:00:00', '2017-05-16', '2017-05-16', 2);
 
 -- --------------------------------------------------------
 
@@ -410,10 +416,10 @@ CREATE TABLE `Enseignant` (
 --
 
 INSERT INTO `Enseignant` (`id`, `Nom`, `Prenom`, `Email`, `Tel`, `Rôle`, `IdUser`) VALUES
-(1, 'ALAHASSA', 'Genereux', 'wilofice@gmail.com', '680479349', 'Enseignant', 'wilofice@gmail.com'),
+(1, 'Wilcox', 'fdsGenereux', 'wilofice@gmail.com', '680479349', 'Enseignant', 'wilofice@gmail.com'),
 (2, 'Belhsen', 'Oumaima', 'oumaima.belahsen212@gmail.com', '', 'Chef département', 'oumaima.belahsen212@gmail.com'),
 (3, 'Azough', 'Mehdi', 'mehdiazough@gmail.com', '', 'Coordinateur de filière ', 'mehdiazough@gmail.com'),
-(4, 'Wilofice', 'Genereux', 'g.ofice@hotmail.com', '', 'Chef departement', 'g.ofice@hotmail.com');
+(4, 'Wilofice', 'Genereux', 'g.ofice@emi.ac.ma', '+212680479349', 'Enseignant', 'g.ofice@hotmail.com');
 
 -- --------------------------------------------------------
 
@@ -456,7 +462,7 @@ CREATE TABLE `Groupe` (
 INSERT INTO `Groupe` (`NumG`, `NomG`, `Niveau`, `NomFiliere`, `Email`) VALUES
 (1, 'A', 1, 'Informatique', 'bouayadsalma94@gmail.com'),
 (2, 'B', 1, 'Informatique', 'ginf2019@gmail.com'),
-(3, 'IQL', 3, 'Informatique', 'ginf2017@gmail.com'),
+(3, 'IQLL', 1, 'Informatique', 'ginf2017@gmail.com'),
 (4, 'SI', 3, 'Informatique', 'ginf2017@gmail.com'),
 (5, 'A', 2, 'Informatique', 'ginf2018@gmail.com'),
 (6, 'B', 2, 'Informatique', 'ginf2018@gmail.com');
@@ -535,7 +541,13 @@ INSERT INTO `Message` (`id_msg`, `text`, `objet`, `sender`, `type_receiver`, `re
 (31, 'Bonjour chers eleves, je ne pourrai pas assurer la seance de JAVA EE du Lundi de 08h Ã  10h Une seance de rattrapage sera programmee plus tard!\r\nCordialement.', 'Report de la seance de JAVA EE du Lundi', 1, 'Coordinateur Filiere', 'mehdiazough@gmail.com', '2017-05-09', '16:30:20'),
 (32, 'Bonjour chers eleves, je ne pourrai pas assurer la seance de JAVA EE du Lundi de 08h Ã  10h Une seance de rattrapage sera programmee plus tard!\r\nCordialement.', 'Report de la seance de JAVA EE du Lundi', 1, 'groupe', 'bouayadsalma94@gmail.com', '2017-05-09', '16:31:17'),
 (33, 'Bonjour chers eleves, je ne pourrai pas assurer la seance de JAVA EE du Lundi de 08h Ã  10h Une seance de rattrapage sera programmee plus tard!\r\nCordialement.', 'Report de la seance de JAVA EE du Lundi', 1, 'Chef Departement', 'g.ofice@hotmail.com', '2017-05-09', '16:31:17'),
-(34, 'Bonjour chers eleves, je ne pourrai pas assurer la seance de JAVA EE du Lundi de 08h Ã  10h Une seance de rattrapage sera programmee plus tard!\r\nCordialement.', 'Report de la seance de JAVA EE du Lundi', 1, 'Coordinateur Filiere', 'mehdiazough@gmail.com', '2017-05-09', '16:31:17');
+(34, 'Bonjour chers eleves, je ne pourrai pas assurer la seance de JAVA EE du Lundi de 08h Ã  10h Une seance de rattrapage sera programmee plus tard!\r\nCordialement.', 'Report de la seance de JAVA EE du Lundi', 1, 'Coordinateur Filiere', 'mehdiazough@gmail.com', '2017-05-09', '16:31:17'),
+(35, 'Bonjour chers eleves, je ne pourrai pas assurer la seance de JAVA EE du Lundi de 08h Ã  10h Une seance de rattrapage sera programmee plus tard!\r\nCordialement.', 'Report de la seance de JAVA EE du Lundi', 2, 'Coordinateur Filiere', 'wilofice@gmail.com', '2017-05-23', '13:20:25'),
+(36, 'Bonjour chers eleves, je ne pourrai pas assurer la seance de JAVA EE du Lundi de 08h Ã  10h Une seance de rattrapage sera programmee plus tard!\r\nCordialement.', 'Report de la seance de JAVA EE du Lundi', 3, 'Chef Departement', 'wilofice@gmail.com', '2017-05-23', '09:52:43'),
+(37, 'Bonjour chers eleves, je ne pourrai pas assurer la seance de JAVA EE du Lundi de 08h a 10h Une seance de rattrapage sera programmee plus tard!\r\nCordialement.', 'Report de la seance de JAVA EE du Lundi', 1, 'groupe', 'bouayadsalma94@gmail.com', '2017-04-30', '12:11:32'),
+(38, 'Bonjour chers eleves, je ne pourrai pas assurer la seance de JAVA EE du Lundi de 08h a 10h Une seance de rattrapage sera programmee plus tard!\r\nCordialement.', 'Report de la seance de JAVA EE du Lundi', 2, 'groupe', 'wilofice@gmail.com', '2017-04-30', '12:11:32'),
+(39, 'Bonjour chers eleves, je ne pourrai pas assurer la seance de JAVA EE du Lundi de 08h a 10h Une seance de rattrapage sera programmee plus tard!\r\nCordialement.', 'Report de la seance de JAVA EE du Lundi', 1, 'groupe', 'wilofice@gmail.com', '2017-04-30', '12:11:32'),
+(40, 'Bonjour chers eleves, je ne pourrai pas assurer la seance de JAVA EE du Lundi de 08h a 10h Une seance de rattrapage sera programmee plus tard!\r\nCordialement.', 'Report de la seance de JAVA EE du Lundi', 1, 'groupe', 'wilofice@gmail.com', '2017-04-30', '12:11:32');
 
 -- --------------------------------------------------------
 
@@ -557,10 +569,14 @@ CREATE TABLE `Seance` (
 
 INSERT INTO `Seance` (`NumS`, `type`, `NumC`, `NumEmp`, `EtatS`) VALUES
 (11, 'seance', 635, 7, 1),
-(12, 'seance', 655, 7, 1),
 (13, 'seance', 675, 7, 1),
 (14, 'seance', 695, 7, 1),
-(855, 'seance', 802, 848, 1);
+(857, 'examen', 809, 850, 1),
+(896, 'seance', 815, 889, 1),
+(929, 'examen', 816, 1075, 1),
+(930, 'seance', 815, 1076, 1),
+(931, 'seance', 835, 1076, 1),
+(951, 'seance', 806, 1096, 1);
 
 -- --------------------------------------------------------
 
@@ -712,7 +728,7 @@ ALTER TABLE `Creneau`
 -- AUTO_INCREMENT pour la table `Emp`
 --
 ALTER TABLE `Emp`
-  MODIFY `NumEmp` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=849;
+  MODIFY `NumEmp` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1097;
 --
 -- AUTO_INCREMENT pour la table `Enseignant`
 --
@@ -732,12 +748,12 @@ ALTER TABLE `Groupe`
 -- AUTO_INCREMENT pour la table `Message`
 --
 ALTER TABLE `Message`
-  MODIFY `id_msg` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `id_msg` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 --
 -- AUTO_INCREMENT pour la table `Seance`
 --
 ALTER TABLE `Seance`
-  MODIFY `NumS` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=856;
+  MODIFY `NumS` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=952;
 --
 -- Contraintes pour les tables exportées
 --

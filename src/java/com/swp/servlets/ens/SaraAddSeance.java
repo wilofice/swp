@@ -131,7 +131,7 @@ public class SaraAddSeance extends HttpServlet {
             emp.setNumM(mat);
             empFacade.create(emp);
             System.out.println("in method get 3");
-        Seance s=new Seance(1,"seance",1);
+        Seance s=new Seance(1,"seancesupp",1);
             s.setNumC(cr);
             s.setNumEmp(emp);
             seanceFacade.create(s);

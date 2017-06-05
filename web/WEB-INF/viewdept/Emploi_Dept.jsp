@@ -163,13 +163,13 @@
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
                     <li class="active">
-                        <a href="index_dept.html"><i class="fa fa-fw fa-dashboard"></i>Emplois du temps</a>
+                        <a href="gestionemploi"><i class="fa fa-fw fa-dashboard"></i>Emplois du temps</a>
                     </li>
                     <li >
-                        <a href="mat_dept.html"><i class="fa fa-book"></i>Matières</a>
+                        <a href="addmatiere"><i class="fa fa-book"></i>Matières</a>
                     </li>
                     <li>
-                        <a href="tables.html"><i class="fa fa-users"></i>Groupes</a>
+                        <a href="addgroupe"><i class="fa fa-users"></i>Groupes</a>
                     </li>          
                 </ul>
             </div>
@@ -178,6 +178,7 @@
         
         <div style="display: none;" id="listeenseignant">
             <c:forEach items="${listeenseignant}" var="ens">
+                
                 <p id="<c:out value="${ens.id}"/>"><c:out value="${ens.nom}"/> <c:out value="${ens.prenom}"/></p>
             </c:forEach>
         </div>
@@ -209,8 +210,13 @@
                                 
                                 <label>Groupe</label>
                                 <select  id="groupes" class="form-control">
-                                    <c:forEach items="${listegroupe}" var="groupe"> 
-                                        <option id="<c:out value='${groupe.numG}'></c:out>">Groupe <c:out value="${groupe.nomG}"></c:out> <c:out value="${groupe.niveau}"></c:out> Année</option>
+                                    <c:forEach items="${listegroupe}" var="groupe">
+                                        <c:if test="${groupe.numG == numGselected}">
+                                            <option id="<c:out value='${groupe.numG}'></c:out>">Groupe <c:out value="${groupe.nomG}"></c:out> <c:out value="${groupe.niveau}"></c:out> Année</option>
+                                        </c:if>
+                                        <c:if test="${!(groupe.numG == numGselected)}">
+                                            <option id="<c:out value='${groupe.numG}'></c:out>">Groupe <c:out value="${groupe.nomG}"></c:out> <c:out value="${groupe.niveau}"></c:out> Année</option>
+                                        </c:if>
                                     </c:forEach>
                                 </select>
                                  </div>
@@ -218,7 +224,7 @@
                                 <label>Semestre</label>
                                 <select id="semestres" class="form-control">
                                  <option>1</option>
-                                 <option>2 </option>
+                                 <option selected>2 </option>
                                  </select>
                                  </div>
                                 <div class="col-lg-5">
@@ -263,7 +269,7 @@
                                    <tbody class="myradio-group">
                                         <tr>
                                             <td>LUNDI</td>
-                                            <td class="myradio" id="1" data-container="body" data-toggle="popover" data-placement="right" data-content="">
+                                            <td class="myradio" id="1" data-container="body" data-toggle="popover" data-trigger="focus" data-placement="right" data-content="">
                                                 
                                                 <span style ="display: none; " id="emp1">1</span>
                                                 <span id="matiere1"></span>

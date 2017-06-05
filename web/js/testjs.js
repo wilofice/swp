@@ -132,7 +132,7 @@ function edit() {
 }
 
 function mydelete() {
-    var idthis =$(".myradio-group").find('.selected').attr("id");
+    var idthis = $(".myradio-group").find('.selected').attr("id");
     $("#matiere" + idthis).text("");
     $("#matiereid" + idthis).text("");
     $("#sd" + idthis).text("");
@@ -218,8 +218,8 @@ $(document).ready(function(){
     $("#sfselect").prop("selectedIndex", -1);
     $("#enseignantselect").prop("selectedIndex", -1);
     $("#matiereselect").prop("selectedIndex", -1);
-    $("#semestres").prop("selectedIndex", -1);
-    $("#groupes").prop("selectedIndex", -1);
+    //$("#semestres").prop("selectedIndex", -1);
+    // $("#groupes").prop("selectedIndex", -1);
     
 $('.myradio-group .myradio').click(function(){
     var id =$(".myradio-group").find('.selected').attr("id");
@@ -333,13 +333,13 @@ $('.myradio-group .myradio').click(function(){
                              '</form>');
     }
     
-    $("#" + idthis).popover({
+    $(this).popover({
          html: true,
         template: '<div class="popover" role="tooltip"><div class="arrow"></div><h3 class="popover-title"></h3><div class="popover-content"></div></div>'
     });
     console.log("i'm here");
-    $("#" + idthis).popover('show');
-   
+    $(this).popover('show');
+    console.log("i'm here threeee");
    
 });
 

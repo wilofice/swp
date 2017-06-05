@@ -56,30 +56,9 @@
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell"></i> <b class="caret"></b></a>
-                    <ul class="dropdown-menu alert-dropdown">
-                        <li>
-                            <a href="#">Alert Name <span class="label label-default">Alert Badge</span></a>
-                        </li>
-                        <li>
-                            <a href="#">Alert Name <span class="label label-primary">Alert Badge</span></a>
-                        </li>
-                        <li>
-                            <a href="#">Alert Name <span class="label label-success">Alert Badge</span></a>
-                        </li>
-                        <li>
-                            <a href="#">Alert Name <span class="label label-info">Alert Badge</span></a>
-                        </li>
-                        <li>
-                            <a href="#">Alert Name <span class="label label-warning">Alert Badge</span></a>
-                        </li>
-                        <li>
-                            <a href="#">Alert Name <span class="label label-danger">Alert Badge</span></a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">View All</a>
-                        </li>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i  class="fa fa-bell"></i> <b class="caret"></b><span id="numbernot"  class="badge" ></span> </a>
+                    <ul  id="notif" class="dropdown-menu alert-dropdown">
+                       
                     </ul>
                 </li>
                 <li class="dropdown">
@@ -90,6 +69,7 @@
                 </li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i><c:out value="${sessionScope.ens.nom}"></c:out> <c:out value="${sessionScope.ens.prenom}"></c:out><b class="caret"></b></a>
+                    <p id="idofens" style="display: none;"><c:out value="${sessionScope.ens.id}"></c:out></p>
                     <ul class="dropdown-menu">
                         <li>
                             <a href="profil"><i class="fa fa-fw fa-user"></i> Profile</a>
@@ -644,7 +624,7 @@
                                                     <span id="heurev16" style="display: none;">16h à 18h</span>
                                                     <span id="jourv16" style="display: none;">Vendredi</span>
                                                 </c:if>
-                                                
+                                                  
                                             </td>
                                         </tr>
                                     </tbody>
@@ -754,7 +734,7 @@
                                                     <div class="col-lg-8">
                                                         <textarea id="message" class="form-control" rows="5" cols="200" style="text-align: left" name="message">
                                                         </textarea>
-                                                        <textarea id="messageD" name="messageD" style="display: none;"></textarea>
+                                                        <!--<textarea id="messageD" name="messageA" style="display: none;"></textarea>-->
                                                         </div>
                                                     </div>
                                                 </div> 
@@ -775,7 +755,7 @@
                                         <form action="addseance"  methode="POST">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                    <h4 class="modal-title">Ajouter Scéance supplémentaire</h4>
+                                                    <h4 class="modal-title">Ajout de scéance supplémentaire</h4>
                                             </div>
                                             <div class="modal-body">
                                                 
@@ -795,7 +775,7 @@
                                                                 
                                                                     
                                                             </c:forEach>
-                                                            
+                                                            <textarea id="messageA" name="messageA" style="display: none;"></textarea>
                                                             </select>
                                                         </div>
                                                     </div>
@@ -864,7 +844,7 @@
                                                                 
                                                                     
                                                             </c:forEach>
-                                                            
+                                                            <textarea id="messageP" name="messageP" style="display: none;"></textarea>
                                                             </select>
                                                         </div>
                                                     </div>
@@ -912,7 +892,7 @@
                                         <div class="modal-content">
                                             <form action="choisirseancederattrapage" method="POST">
                                             <div class="modal-header">
-                                                     <h4 class="modal-title">Reporter Seance </h4>
+                                                     <h4 class="modal-title">Report</h4>
                                             </div>
                                             <div class="modal-body">
                                                 <div class="row">

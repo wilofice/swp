@@ -1,3 +1,5 @@
+taille = $('#notif').find('li').length;
+
 function initRequest() {
     if (window.XMLHttpRequest) {
         if (navigator.userAgent.indexOf('MSIE') !== -1) {
@@ -8,6 +10,69 @@ function initRequest() {
         isIE = true;
         return new ActiveXObject("Microsoft.XMLHTTP");
     }
+}
+
+function getCountMessage() {
+    var id = $('#idofens').text();
+    req = initRequest();
+    url = "/swp/notifications?ensid=" + id;
+    console.log("enseignant numero "+id);
+    req.open("GET", url, true);
+    console.log("test test test");
+    req.onreadystatechange = backcall;
+    req.send(null);
+}
+
+function appendNotif(mseg) {
+    var a = document.createElement("a");
+    a.setAttribute("href", "#");
+    a.innerHTML = mseg;
+    var li = document.createElement("li");
+    li.appendChild(a);
+    var ul = document.getElementById("notif");
+    ul.appendChild(li);
+    var tr = document.createElement("tr");
+    li.appendChild(tr); 
+    
+}
+function extractContent(responseXML) {
+     if (responseXML === null) {
+        console.log("in pasrse error");
+        return false;
+    }
+    else{
+        var m = responseXML.getElementsByTagName("message")[0];
+        var msg = m.childNodes[0].nodeValue;
+        console.log("msg rec = " + msg);
+        return msg;
+        
+        
+    }
+    
+}
+
+function testtaillechange() {
+    if (taille < $('#notif').find('li').length) {
+        getCountMessage();
+    }
+}
+
+function backcall() {
+    console.log(req);
+    
+    if (req.readyState === 4) {
+        if (req.status === 200) {
+            console.log(req.responseXML);
+            var m = extractContent(req.responseXML);
+            appendNotif(m);
+            console.log("in call21");
+            var numeronot = document.getElementById("numbernot");
+            numeronot.innerHTML = $("#notif").children("li").length;
+            getCountMessage();
+        }
+    }
+    
+    
 }
 function getMatiere() {
     var id = $('#grpselect option:selected').attr("value");
@@ -106,6 +171,8 @@ function parseMessages(responseXML) {
 
 $(document).ready(function(){
     
+    getCountMessage();
+    
 var currentDate  = new Date(),
     currentDay   = currentDate.getDate() < 10 
                  ? '0' + currentDate.getDate() 
@@ -119,7 +186,9 @@ document.getElementById("datedujour").innerHTML = currentDay + '/' + currentMont
 for(var i = 15; i <= 28; i++) {
     option = document.createElement("option");
     option.innerHTML = i;
+    
     $('#semaineselect').append(option);
+    console.log(" i got here 1234")
 }
 $("#semaineselect").prop("selectedIndex", -1);
 
@@ -154,10 +223,10 @@ $('.myradio-group .seance').dblclick(function(){
     option.innerHTML = groupemail;
     emailgroupeselect = document.getElementById("emailgroupeReport");
     emailgroupeselect.appendChild(option);
-    var messageReport = "Bonjour chers élèves, La séance annulée de " + matierenom + " du " + jour + " de " + heure + " Sera programmée pour "+ jourSelected +" de "+heureSelected;
+    var messageReport = "La séance annulée de " + matierenom + " du " + jour + " de " + heure + " Sera programmée pour "+ jourSelected +" de "+heureSelected;
     $('#messageReport').text(messageReport);
     
-    var objetmessageReport = "séance de Rattrapage de " + matierenom + " le " + jourSelected + " de " + heureSelected;
+    var objetmessageReport = "Séance de Rattrapage de " + matierenom + " le " + jourSelected + " de " + heureSelected;
     $('#objetmessageReport').attr("value", objetmessageReport);  
     
     $('#SeanceRatt').modal("show");
@@ -191,13 +260,13 @@ $('.myradio-group .seance').click(function(){
     emailgroupeselect = document.getElementById("emailgroupe");
     emailgroupeselect.appendChild(option);
     
-    var message = "Bonjour chers eleves, je ne pourrai pas assurer la seance de " + matierenom + " du " + jour + " de " + heure + " Une seance de rattrapage sera programmee plus tard!"+"\n"+"Cordialement.";
+    var message = "La seance de " + matierenom + " du " + jour + " de " + heure + " a été reportée pour une date ultérieure"+"\n";
     $('#message').text(message);      
-    var objetmessage = "Report de la seance de " + matierenom + " du " + jour;
+    var objetmessage = "Report";
     $('#objetmessage').attr("value", objetmessage);
     
-    var messageD = "Bonjour, je ne pourrai pas assurer la seance de " + matierenom + " du " + jour + " de " + heure + " Une seance de rattrapage sera programmee plus tard!"+"\n"+"Cordialement.";
-    $('#messageD').text(messageD);
+//    var messageD = "La seance de " + matierenom + " du " + jour + " de " + heure + " a été reportée pour une date ultérieure"+"\n";
+//    $('#messageD').text(messageD);
     
     var currentsemaineid = $('#semaineselect option:selected').text();
     currentsemaineid = "15";

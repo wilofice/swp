@@ -58,7 +58,7 @@ public class GestionEmploiEns extends HttpServlet {
     protected void processRequestPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String semaineid = request.getParameter("semaineid");
-        if(semaineid == null) this.getServletContext().getRequestDispatcher("/WEB-INF/viewens/EmploiEns.jsp").forward(request, response);
+        //if(semaineid == null) this.getServletContext().getRequestDispatcher("/WEB-INF/viewens/EmploiEns.jsp").forward(request, response);
         String idens = getEnseignantIdinCookies(request, "idens");
         
         Enseignant enseignant = enseignantFacade.find(Integer.parseInt(idens));

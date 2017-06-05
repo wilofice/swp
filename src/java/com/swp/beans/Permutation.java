@@ -5,6 +5,7 @@
  */
 package com.swp.beans;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -14,6 +15,11 @@ import java.util.List;
 public class Permutation {
     private Enseignant e;
     private List<Creneau> listCreneauxOfferts;
+
+    public Permutation() {
+        
+        this.listCreneauxOfferts = new ArrayList<>();
+    }
 
     public Enseignant getE() {
         return e;

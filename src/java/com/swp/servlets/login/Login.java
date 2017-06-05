@@ -81,7 +81,7 @@ public class Login extends HttpServlet {
                 
                     //RequestDispatcher rd = this.getServletContext().getRequestDispatcher("/gestionemploi?");
                     
-                this.getServletContext().getRequestDispatcher("/gestionemploiens").forward(request, response);
+                this.getServletContext().getRequestDispatcher("/WEB-INF/viewens/EmploiEns.jsp").forward(request, response);
                 
                 } 
                 

@@ -110,74 +110,75 @@ public class Login extends HttpServlet {
             }
             else {
                if(compte.equals(comptedept)){
-                Enseignant ens = compte.getEnseignantList().get(0);
-                Cookie cookieid = new Cookie("idens", ens.getId()+"");
-                Cookie cookienom = new Cookie("nomens", ens.getNom());
-                Cookie cookieprenom = new Cookie("prenomens", ens.getPrenom());
-                response.addCookie(cookieid);
-                response.addCookie(cookienom);
-                response.addCookie(cookieprenom);
-                
-                HttpSession session = request.getSession();
-                session.setAttribute("ens", ens);
-                List<Matiere> listmat = matiereFacade.findAll();
-                request.setAttribute("listmat", listmat);
-                response.sendRedirect("gestionemploi");}
-               if(compte.equals(comptesys)){
-                Enseignant ens = compte.getEnseignantList().get(0);
-                Cookie cookieid = new Cookie("idens", ens.getId()+"");
-                Cookie cookienom = new Cookie("nomens", ens.getNom());
-                Cookie cookieprenom = new Cookie("prenomens", ens.getPrenom());
-                response.addCookie(cookieid);
-                response.addCookie(cookienom);
-                response.addCookie(cookieprenom);
-                
-                HttpSession session = request.getSession();
-                session.setAttribute("ens", ens);
-                List<Enseignant> listens = enseignantFacade.findAll();
-                request.setAttribute("listens", listens);
-                response.sendRedirect("addutilisateur");
+                    Enseignant ens = compte.getEnseignantList().get(0);
+                    Cookie cookieid = new Cookie("idens", ens.getId()+"");
+                    Cookie cookienom = new Cookie("nomens", ens.getNom());
+                    Cookie cookieprenom = new Cookie("prenomens", ens.getPrenom());
+                    response.addCookie(cookieid);
+                    response.addCookie(cookienom);
+                    response.addCookie(cookieprenom);
+
+                    HttpSession session = request.getSession();
+                    session.setAttribute("ens", ens);
+                    List<Matiere> listmat = matiereFacade.findAll();
+                    request.setAttribute("listmat", listmat);
+                    response.sendRedirect("gestionemploi?grpid=1&semestreid=2");
+               }
+               else if(compte.equals(comptesys)){
+                    Enseignant ens = compte.getEnseignantList().get(0);
+                    Cookie cookieid = new Cookie("idens", ens.getId()+"");
+                    Cookie cookienom = new Cookie("nomens", ens.getNom());
+                    Cookie cookieprenom = new Cookie("prenomens", ens.getPrenom());
+                    response.addCookie(cookieid);
+                    response.addCookie(cookienom);
+                    response.addCookie(cookieprenom);
+
+                    HttpSession session = request.getSession();
+                    session.setAttribute("ens", ens);
+                    List<Enseignant> listens = enseignantFacade.findAll();
+                    request.setAttribute("listens", listens);
+                    response.sendRedirect("addutilisateur");
                 } 
                else{
-                Enseignant ens = compte.getEnseignantList().get(0);
-                Cookie cookieid = new Cookie("idens", ens.getId()+"");
-                Cookie cookienom = new Cookie("nomens", ens.getNom());
-                Cookie cookieprenom = new Cookie("prenomens", ens.getPrenom());
-                response.addCookie(cookieid);
-                response.addCookie(cookienom);
-                response.addCookie(cookieprenom);
-                
-                HttpSession session = request.getSession();
-                session.setAttribute("ens", ens);
-                List<Groupe> listGrp=absenceFacade.getGroupeEnsX(ens);
-                request.setAttribute("listGrp",listGrp);
-                
-                
-                Date d = this.getMonday();
-                Semaine semaine = semaineFacade.findByDateD(d);
-                
-                List<Emp> lemp = empFacade.findByEns(ens);
-        System.out.println("lemp lenght = " + lemp.size());
-        SeanceHashMap shm = new SeanceHashMap(seanceFacade);
-        shm.init();
-        List<Seance> listSeance = shm.getSeanceEnsBySemaine(lemp, semaine.getIdsemaine());
-        HashMap<String, HashMap<String, Seance>> seanceHashMap = shm.getHashMap(listSeance);
+                    Enseignant ens = compte.getEnseignantList().get(0);
+                    Cookie cookieid = new Cookie("idens", ens.getId()+"");
+                    Cookie cookienom = new Cookie("nomens", ens.getNom());
+                    Cookie cookieprenom = new Cookie("prenomens", ens.getPrenom());
+                    response.addCookie(cookieid);
+                    response.addCookie(cookienom);
+                    response.addCookie(cookieprenom);
+
+                    HttpSession session = request.getSession();
+                    session.setAttribute("ens", ens);
+                    List<Groupe> listGrp=absenceFacade.getGroupeEnsX(ens);
+                    request.setAttribute("listGrp",listGrp);
+
+
+                    Date d = this.getMonday();
+                    Semaine semaine = semaineFacade.findByDateD(d);
+
+                    List<Emp> lemp = empFacade.findByEns(ens);
+                    System.out.println("lemp lenght = " + lemp.size());
+                    SeanceHashMap shm = new SeanceHashMap(seanceFacade);
+                    shm.init();
+                    List<Seance> listSeance = shm.getSeanceEnsBySemaine(lemp, semaine.getIdsemaine());
+                    HashMap<String, HashMap<String, Seance>> seanceHashMap = shm.getHashMap(listSeance);
+
+                    request.removeAttribute("seanceHashMap");
+                    request.setAttribute("seanceHashMap", seanceHashMap);
+
+
+                    Seance sa = (Seance) session.getAttribute("seancetoabsent");
+
+
+                    if(sa != null) {
+                        request.setAttribute("seancetoabsent", sa);
+                        System.out.println("seance to absent from session = " + sa.getNumS());
+                    }
+
+                    request.setAttribute("semainecurrent", semaine.getIdsemaine());
         
-        request.removeAttribute("seanceHashMap");
-        request.setAttribute("seanceHashMap", seanceHashMap);
-        
-        
-        Seance sa = (Seance) session.getAttribute("seancetoabsent");
-        
-        
-        if(sa != null) {
-            request.setAttribute("seancetoabsent", sa);
-            System.out.println("seance to absent from session = " + sa.getNumS());
-        }
-        
-        request.setAttribute("semainecurrent", semaine.getIdsemaine());
-        
-                  response.sendRedirect("gestionemploiens") ;
+                    response.sendRedirect("gestionemploiens");
             }
                 
             }

@@ -98,9 +98,9 @@ public class SignalerAbscence extends HttpServlet {
         request.removeAttribute("seanceHashMap");
         request.setAttribute("seanceHashMap", seanceHashMap);
         request.setAttribute("notification", "notification");
-        this.getServletContext().getRequestDispatcher("/WEB-INF/viewens/EmploiEns.jsp").forward(request, response);
+        response.sendRedirect("gestionemploiens");
         
-        Enseignant enstest = enseignantFacade.find(1);
+//        Enseignant enstest = enseignantFacade.find(1);
         
         System.out.println(seanceid);
         Seance s = seanceFacade.find(Integer.parseInt(seanceid));
@@ -121,19 +121,19 @@ public class SignalerAbscence extends HttpServlet {
         String objetmessage = request.getParameter("objetmessage");
         //System.out.println("taille du objetmessage " + objetmessage.length());
         
-        Message msgt = new Message();
+//        Message msgt = new Message();
         Calendar cal = Calendar.getInstance();
-        msgt.setDate(cal.getTime());
-        
-        msgt.setTypeReceiver("groupe");
-        msgt.setIdMsg(1);
-        msgt.setSender(ens);
-        msgt.setText(message);
-        msgt.setTime(cal.getTime());
-        msgt.setObjet(objetmessage);
-        msgt.setReceiver(enstest.getEmail());
-        System.out.println("before creating");
-        messageFacade.create(msgt);
+//        msgt.setDate(cal.getTime());
+//        
+//        msgt.setTypeReceiver("groupe");
+//        msgt.setIdMsg(1);
+//        msgt.setSender(ens);
+//        msgt.setText(message);
+//        msgt.setTime(cal.getTime());
+//        msgt.setObjet(objetmessage);
+//        msgt.setReceiver(enstest.getEmail());
+//        System.out.println("before creating");
+//        messageFacade.create(msgt);
         //System.out.println("ensnom  " + ens.getPrenom());
         String nomEns = getEnseignantInfoCookies(request, "nomens");
         String prenomEns = getEnseignantInfoCookies(request, "prenomens");

@@ -259,7 +259,7 @@ $(document).ready(function(){
                 $("#btnAfficher").addClass('btn-primary');
                 $("#btnAfficher").addClass('active');
                 //$("#btnAfficher").toggleClass('btn-default'); 
-                $('.myratt').css('background-color','lightslategray');
+                $('.myratt').css('background-color','#d1250e');
                 $('.myratt').css('color','black');
             }
             
@@ -325,10 +325,10 @@ $('.myradio-group .seance').dblclick(function(){
     var jourSelected = $('#jour' + idselected).text();
     var heureSelected = $('#heure' + idselected).text();
     console.log("Hello jour et heure " + $('#jour' + idselected).text() + $('#heure' + idselected).text());
-    
+    var semaineselected = $('#semaineselect option:selected').attr("value");
     $('#seancereportid').attr("value", idselected);
     $('#seanceAbsenceid').attr("value", numS);
-    $('#currentsemainereportid').attr("value", "25");
+    $('#currentsemainereportid').attr("value", semaineselected);
     option = document.createElement("option");
     option.setAttribute("value", groupemail);
     

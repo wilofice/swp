@@ -228,7 +228,7 @@ public class ChoisirSeanceDeRattrapage extends HttpServlet {
         HttpSession session = request.getSession();
         session.removeAttribute("seancetoabsent");
         
-        this.getServletContext().getRequestDispatcher("/WEB-INF/viewens/EmploiEns.jsp").forward(request, response);
+        response.sendRedirect("gestionemploiens");
     }
 
     @Override

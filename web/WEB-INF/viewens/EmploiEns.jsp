@@ -55,12 +55,12 @@
             </div>
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
-                <li class="dropdown">
+                <!--<li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i  class="fa fa-bell"></i> <b class="caret"></b><span id="numbernot"  class="badge" ></span> </a>
                     <ul  id="notif" class="dropdown-menu alert-dropdown">
                        
                     </ul>
-                </li>
+                </li>-->
                 
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i><c:out value="${sessionScope.ens.nom}"></c:out> <c:out value="${sessionScope.ens.prenom}"></c:out><b class="caret"></b></a>
@@ -162,7 +162,7 @@
                                                             <script>
                                                                 document.write("<span>Report programmé</span><br>");
                                                                 $(document).ready(function(){
-                                                                   $('#l8').addClass('myratt');
+                                                                   $('#l8').addClass('myreport');
                                                                 });
                                                             </script>
                                                         </c:when> 
@@ -191,6 +191,14 @@
                                                                 });
                                                             </script>
                                                         </c:when>
+                                                        <c:otherwise>
+                                                            <script>
+                                                                document.write("<span>Rattrapage Possible</span><br>");
+                                                                $(document).ready(function(){
+                                                                   $('#l8').addClass('myratt');
+                                                                });
+                                                            </script>
+                                                        </c:otherwise>
                                                     </c:choose>
                                                    
                                                     <span id="idseancel8" style="display: none;"><c:out value='${(seanceHashMap["lundi"])["8"].numS}'></c:out></span>
@@ -225,7 +233,7 @@
                                                             <script>
                                                                 document.write("<span>Report programmé</span><br>");
                                                                 $(document).ready(function(){
-                                                                   $('#l10').addClass('myratt');
+                                                                   $('#l10').addClass('myreport');
                                                                 });
                                                             </script>
                                                         </c:when> 
@@ -254,6 +262,14 @@
                                                                 });
                                                             </script>
                                                         </c:when>
+                                                        <c:otherwise>
+                                                            <script>
+                                                                document.write("<span>Rattrapage Possible</span><br>");
+                                                                $(document).ready(function(){
+                                                                   $('#l10').addClass('myratt');
+                                                                });
+                                                            </script>
+                                                        </c:otherwise>
                                                     </c:choose>
                                                     <span id="idseancel10" style="display: none;"><c:out value='${(seanceHashMap["lundi"])["10"].numS}'></c:out></span>
                                                     <!-- Enregistrer les ids des groupes et matieres dans des élements html invisibles pour après les réutiliser-->
@@ -287,7 +303,7 @@
                                                             <script>
                                                                 document.write("<span>Report programmé</span><br>");
                                                                 $(document).ready(function(){
-                                                                   $('#l14').addClass('myratt');
+                                                                   $('#l14').addClass('myreport');
                                                                 });
                                                             </script>
                                                         </c:when> 
@@ -316,6 +332,14 @@
                                                                 });
                                                             </script>
                                                         </c:when>
+                                                        <c:otherwise>
+                                                            <script>
+                                                                document.write("<span>Rattrapage Possible</span><br>");
+                                                                $(document).ready(function(){
+                                                                   $('#l14').addClass('myratt');
+                                                                });
+                                                            </script>
+                                                        </c:otherwise>
                                                     </c:choose>
                                                     <span id="idseancel14" style="display: none;"><c:out value='${(seanceHashMap["lundi"])["14"].numS}'></c:out></span>
                                                     <!-- Enregistrer les ids des groupes et matieres dans des élements html invisibles pour après les réutiliser-->
@@ -349,7 +373,7 @@
                                                             <script>
                                                                 document.write("<span>Report programmé</span><br>");
                                                                 $(document).ready(function(){
-                                                                   $('#l16').addClass('myratt');
+                                                                   $('#l16').addClass('myreport');
                                                                 });
                                                             </script>
                                                         </c:when> 
@@ -378,6 +402,14 @@
                                                                 });
                                                             </script>
                                                         </c:when>
+                                                        <c:otherwise>
+                                                            <script>
+                                                                document.write("<span>Rattrapage Possible</span><br>");
+                                                                $(document).ready(function(){
+                                                                   $('#l16').addClass('myratt');
+                                                                });
+                                                            </script>
+                                                        </c:otherwise>
                                                     </c:choose>
                                                     <span id="idseancel16" style="display: none;"><c:out value='${(seanceHashMap["lundi"])["16"].numS}'></c:out></span>
                                                     <!-- Enregistrer les ids des groupes et matieres dans des élements html invisibles pour après les réutiliser-->
@@ -413,7 +445,7 @@
                                                             <script>
                                                                 document.write("<span>Report programmé</span><br>");
                                                                 $(document).ready(function(){
-                                                                   $('#m8').addClass('myratt');
+                                                                   $('#m8').addClass('myreport');
                                                                 });
                                                             </script>
                                                         </c:when> 
@@ -442,6 +474,14 @@
                                                                 });
                                                             </script>
                                                         </c:when>
+                                                        <c:otherwise>
+                                                            <script>
+                                                                document.write("<span>Rattrapage Possible</span><br>");
+                                                                $(document).ready(function(){
+                                                                   $('#m8').addClass('myratt');
+                                                                });
+                                                            </script>
+                                                        </c:otherwise>
                                                     </c:choose>
                                                     <span id="idseancem8" style="display: none;"><c:out value='${(seanceHashMap["mardi"])["8"].numS}'></c:out></span>
                                                     <!-- Enregistrer les ids des groupes et matieres dans des élements html invisibles pour après les réutiliser-->
@@ -474,7 +514,7 @@
                                                             <script>
                                                                 document.write("<span>Report programmé</span><br>");
                                                                 $(document).ready(function(){
-                                                                   $('#m10').addClass('myratt');
+                                                                   $('#m10').addClass('myreport');
                                                                 });
                                                             </script>
                                                         </c:when> 
@@ -503,6 +543,14 @@
                                                                 });
                                                             </script>
                                                         </c:when>
+                                                        <c:otherwise>
+                                                            <script>
+                                                                document.write("<span>Rattrapage Possible</span><br>");
+                                                                $(document).ready(function(){
+                                                                   $('#m10').addClass('myratt');
+                                                                });
+                                                            </script>
+                                                        </c:otherwise>
                                                     </c:choose>
                                                     <span id="idseancem10" style="display: none;"><c:out value='${(seanceHashMap["mardi"])["10"].numS}'></c:out></span>
                                                     <!-- Enregistrer les ids des groupes et matieres dans des élements html invisibles pour après les réutiliser-->
@@ -535,7 +583,7 @@
                                                             <script>
                                                                 document.write("<span>Report programmé</span><br>");
                                                                 $(document).ready(function(){
-                                                                   $('#m14').addClass('myratt');
+                                                                   $('#m14').addClass('myreport');
                                                                 });
                                                             </script>
                                                         </c:when> 
@@ -564,6 +612,14 @@
                                                                 });
                                                             </script>
                                                         </c:when>
+                                                        <c:otherwise>
+                                                            <script>
+                                                                document.write("<span>Rattrapage Possible</span><br>");
+                                                                $(document).ready(function(){
+                                                                   $('#m14').addClass('myratt');
+                                                                });
+                                                            </script>
+                                                        </c:otherwise>
                                                     </c:choose>
                                                     <span id="idseancem14" style="display: none;"><c:out value='${(seanceHashMap["mardi"])["14"].numS}'></c:out></span>
                                                     <!-- Enregistrer les ids des groupes et matieres dans des élements html invisibles pour après les réutiliser-->
@@ -596,7 +652,7 @@
                                                             <script>
                                                                 document.write("<span>Report programmé</span><br>");
                                                                 $(document).ready(function(){
-                                                                   $('#m16').addClass('myratt');
+                                                                   $('#m16').addClass('myreport');
                                                                 });
                                                             </script>
                                                         </c:when> 
@@ -625,6 +681,14 @@
                                                                 });
                                                             </script>
                                                         </c:when>
+                                                        <c:otherwise>
+                                                            <script>
+                                                                document.write("<span>Rattrapage Possible</span><br>");
+                                                                $(document).ready(function(){
+                                                                   $('#m16').addClass('myratt');
+                                                                });
+                                                            </script>
+                                                        </c:otherwise>    
                                                     </c:choose>
                                                     <span id="idseancem16" style="display: none;"><c:out value='${(seanceHashMap["mardi"])["16"].numS}'></c:out></span>
                                                     <!-- Enregistrer les ids des groupes et matieres dans des élements html invisibles pour après les réutiliser-->
@@ -660,7 +724,7 @@
                                                             <script>
                                                                 document.write("<span>Report programmé</span><br>");
                                                                 $(document).ready(function(){
-                                                                   $('#mer8').addClass('myratt');
+                                                                   $('#mer8').addClass('myreport');
                                                                 });
                                                             </script>
                                                         </c:when> 
@@ -689,6 +753,14 @@
                                                                 });
                                                             </script>
                                                         </c:when>
+                                                        <c:otherwise>
+                                                            <script>
+                                                                document.write("<span>Rattrapage Possible</span><br>");
+                                                                $(document).ready(function(){
+                                                                   $('#mer8').addClass('myratt');
+                                                                });
+                                                            </script>
+                                                        </c:otherwise>    
                                                     </c:choose>
                                                     <span id="idseancemer8" style="display: none;"><c:out value='${(seanceHashMap["mercredi"])["8"].numS}'></c:out></span>
                                                     <!-- Enregistrer les ids des groupes et matieres dans des élements html invisibles pour après les réutiliser-->
@@ -721,7 +793,7 @@
                                                             <script>
                                                                 document.write("<span>Report programmé</span><br>");
                                                                 $(document).ready(function(){
-                                                                   $('#mer10').addClass('myratt');
+                                                                   $('#mer10').addClass('myreport');
                                                                 });
                                                             </script>
                                                         </c:when> 
@@ -750,6 +822,14 @@
                                                                 });
                                                             </script>
                                                         </c:when>
+                                                        <c:otherwise>
+                                                            <script>
+                                                                document.write("<span>Rattrapage Possible</span><br>");
+                                                                $(document).ready(function(){
+                                                                   $('#mer10').addClass('myratt');
+                                                                });
+                                                            </script>
+                                                        </c:otherwise>
                                                     </c:choose>
                                                     <span id="idseancemer10" style="display: none;"><c:out value='${(seanceHashMap["mercredi"])["10"].numS}'></c:out></span>
                                                     <!-- Enregistrer les ids des groupes et matieres dans des élements html invisibles pour après les réutiliser-->
@@ -782,7 +862,7 @@
                                                             <script>
                                                                 document.write("<span>Report programmé</span><br>");
                                                                 $(document).ready(function(){
-                                                                   $('#mer14').addClass('myratt');
+                                                                   $('#mer14').addClass('myreport');
                                                                 });
                                                             </script>
                                                         </c:when> 
@@ -811,6 +891,14 @@
                                                                 });
                                                             </script>
                                                         </c:when>
+                                                        <c:otherwise>
+                                                            <script>
+                                                                document.write("<span>Rattrapage Possible</span><br>");
+                                                                $(document).ready(function(){
+                                                                   $('#mer14').addClass('myratt');
+                                                                });
+                                                            </script>
+                                                        </c:otherwise>
                                                     </c:choose>
                                                     <span id="idseancemer14" style="display: none;"><c:out value='${(seanceHashMap["mercredi"])["14"].numS}'></c:out></span>
                                                     <!-- Enregistrer les ids des groupes et matieres dans des élements html invisibles pour après les réutiliser-->
@@ -843,7 +931,7 @@
                                                             <script>
                                                                 document.write("<span>Report programmé</span><br>");
                                                                 $(document).ready(function(){
-                                                                   $('#mer16').addClass('myratt');
+                                                                   $('#mer16').addClass('myreport');
                                                                 });
                                                             </script>
                                                         </c:when> 
@@ -872,6 +960,14 @@
                                                                 });
                                                             </script>
                                                         </c:when>
+                                                        <c:otherwise>
+                                                            <script>
+                                                                document.write("<span>Rattrapage Possible</span><br>");
+                                                                $(document).ready(function(){
+                                                                   $('#mer16').addClass('myratt');
+                                                                });
+                                                            </script>
+                                                        </c:otherwise>
                                                     </c:choose>
                                                     <span id="idseancemer16" style="display: none;"><c:out value='${(seanceHashMap["mercredi"])["16"].numS}'></c:out></span>
                                                     <!-- Enregistrer les ids des groupes et matieres dans des élements html invisibles pour après les réutiliser-->
@@ -907,7 +1003,7 @@
                                                             <script>
                                                                 document.write("<span>Report programmé</span><br>");
                                                                 $(document).ready(function(){
-                                                                   $('#j8').addClass('myratt');
+                                                                   $('#j8').addClass('myreport');
                                                                 });
                                                             </script>
                                                         </c:when> 
@@ -936,6 +1032,14 @@
                                                                 });
                                                             </script>
                                                         </c:when>
+                                                        <c:otherwise>
+                                                            <script>
+                                                                document.write("<span>Rattrapage Possible</span><br>");
+                                                                $(document).ready(function(){
+                                                                   $('#j8').addClass('myratt');
+                                                                });
+                                                            </script>
+                                                        </c:otherwise>
                                                     </c:choose>
                                                     <span id="idseancej8" style="display: none;"><c:out value='${(seanceHashMap["jeudi"])["8"].numS}'></c:out></span>
                                                     <!-- Enregistrer les ids des groupes et matieres dans des élements html invisibles pour après les réutiliser-->
@@ -968,7 +1072,7 @@
                                                             <script>
                                                                 document.write("<span>Report programmé</span><br>");
                                                                 $(document).ready(function(){
-                                                                   $('#j10').addClass('myratt');
+                                                                   $('#j10').addClass('myreport');
                                                                 });
                                                             </script>
                                                         </c:when> 
@@ -997,6 +1101,14 @@
                                                                 });
                                                             </script>
                                                         </c:when>
+                                                        <c:otherwise>
+                                                            <script>
+                                                                document.write("<span>Rattrapage Possible</span><br>");
+                                                                $(document).ready(function(){
+                                                                   $('#j10').addClass('myratt');
+                                                                });
+                                                            </script>
+                                                        </c:otherwise>
                                                     </c:choose>
                                                     <span id="idseancej10" style="display: none;"><c:out value='${(seanceHashMap["jeudi"])["10"].numS}'></c:out></span>
                                                     <!-- Enregistrer les ids des groupes et matieres dans des élements html invisibles pour après les réutiliser-->
@@ -1029,7 +1141,7 @@
                                                             <script>
                                                                 document.write("<span>Report programmé</span><br>");
                                                                 $(document).ready(function(){
-                                                                   $('#j14').addClass('myratt');
+                                                                   $('#j14').addClass('myreport');
                                                                 });
                                                             </script>
                                                         </c:when> 
@@ -1058,6 +1170,14 @@
                                                                 });
                                                             </script>
                                                         </c:when>
+                                                        <c:otherwise>
+                                                            <script>
+                                                                document.write("<span>Rattrapage Possible</span><br>");
+                                                                $(document).ready(function(){
+                                                                   $('#j14').addClass('myratt');
+                                                                });
+                                                            </script>
+                                                        </c:otherwise>
                                                     </c:choose>
                                                     <span id="idseancej14" style="display: none;"><c:out value='${(seanceHashMap["jeudi"])["14"].numS}'></c:out></span>
                                                     <!-- Enregistrer les ids des groupes et matieres dans des élements html invisibles pour après les réutiliser-->
@@ -1090,7 +1210,7 @@
                                                             <script>
                                                                 document.write("<span>Report programmé</span><br>");
                                                                 $(document).ready(function(){
-                                                                   $('#j16').addClass('myratt');
+                                                                   $('#j16').addClass('myreport');
                                                                 });
                                                             </script>
                                                         </c:when> 
@@ -1119,6 +1239,14 @@
                                                                 });
                                                             </script>
                                                         </c:when>
+                                                        <c:otherwise>
+                                                            <script>
+                                                                document.write("<span>Rattrapage Possible</span><br>");
+                                                                $(document).ready(function(){
+                                                                   $('#j16').addClass('myratt');
+                                                                });
+                                                            </script>
+                                                        </c:otherwise>
                                                     </c:choose>
                                                     <span id="idseancej16" style="display: none;"><c:out value='${(seanceHashMap["jeudi"])["16"].numS}'></c:out></span>
                                                     <!-- Enregistrer les ids des groupes et matieres dans des élements html invisibles pour après les réutiliser-->
@@ -1154,7 +1282,7 @@
                                                             <script>
                                                                 document.write("<span>Report programmé</span><br>");
                                                                 $(document).ready(function(){
-                                                                   $('#v8').addClass('myratt');
+                                                                   $('#v8').addClass('myreport');
                                                                 });
                                                             </script>
                                                         </c:when> 
@@ -1183,6 +1311,14 @@
                                                                 });
                                                             </script>
                                                         </c:when>
+                                                        <c:otherwise>
+                                                            <script>
+                                                                document.write("<span>Rattrapage Possible</span><br>");
+                                                                $(document).ready(function(){
+                                                                   $('#v8').addClass('myratt');
+                                                                });
+                                                            </script>
+                                                        </c:otherwise>
                                                     </c:choose>
 
                                                     <span id="idseancev8" style="display: none;"><c:out value='${(seanceHashMap["vendredi"])["8"].numS}'></c:out></span>
@@ -1216,7 +1352,7 @@
                                                             <script>
                                                                 document.write("<span>Report programmé</span><br>");
                                                                 $(document).ready(function(){
-                                                                   $('#v10').addClass('myratt');
+                                                                   $('#v10').addClass('myreport');
                                                                 });
                                                             </script>
                                                         </c:when> 
@@ -1245,6 +1381,14 @@
                                                                 });
                                                             </script>
                                                         </c:when>
+                                                        <c:otherwise>
+                                                            <script>
+                                                                document.write("<span>Rattrapage Possible</span><br>");
+                                                                $(document).ready(function(){
+                                                                   $('#v10').addClass('myratt');
+                                                                });
+                                                            </script>
+                                                        </c:otherwise>
                                                     </c:choose>
 
                                                     <span id="idseancev10" style="display: none;"><c:out value='${(seanceHashMap["vendredi"])["10"].numS}'></c:out></span>
@@ -1278,7 +1422,7 @@
                                                             <script>
                                                                 document.write("<span>Report programmé</span><br>");
                                                                 $(document).ready(function(){
-                                                                   $('#v14').addClass('myratt');
+                                                                   $('#v14').addClass('myreport');
                                                                 });
                                                             </script>
                                                         </c:when> 
@@ -1307,6 +1451,14 @@
                                                                 });
                                                             </script>
                                                         </c:when>
+                                                        <c:otherwise>
+                                                            <script>
+                                                                document.write("<span>Rattrapage Possible</span><br>");
+                                                                $(document).ready(function(){
+                                                                   $('#v14').addClass('myratt');
+                                                                });
+                                                            </script>
+                                                        </c:otherwise>
                                                     </c:choose>
 
                                                     <span id="idseancev14" style="display: none;"><c:out value='${(seanceHashMap["vendredi"])["14"].numS}'></c:out></span>
@@ -1340,7 +1492,7 @@
                                                             <script>
                                                                 document.write("<span>Report programmé</span><br>");
                                                                 $(document).ready(function(){
-                                                                   $('#v16').addClass('myratt');
+                                                                   $('#v16').addClass('myreport');
                                                                 });
                                                             </script>
                                                         </c:when> 
@@ -1369,6 +1521,14 @@
                                                                 });
                                                             </script>
                                                         </c:when>
+                                                        <c:otherwise>
+                                                            <script>
+                                                                document.write("<span>Rattrapage Possible</span><br>");
+                                                                $(document).ready(function(){
+                                                                   $('#v16').addClass('myratt');
+                                                                });
+                                                            </script>
+                                                        </c:otherwise>
                                                     </c:choose>
 
                                                     <span id="idseancev16" style="display: none;"><c:out value='${(seanceHashMap["vendredi"])["16"].numS}'></c:out></span>
@@ -1746,7 +1906,7 @@
                                 </div>
                                  <div class="modal fade" id="SuppExam" role="dialog">
                                     <div class="modal-dialog">
-                                        <form action="deleteExam"  methode="POST">
+                                        <form action="deleteexam"  method="POST">
                                         <div class="modal-content">
                                             <div class="modal-header">
                                                     <h4 class="modal-title">Supprimer examen</h4>
@@ -1757,7 +1917,7 @@
                                                 <div class="row">
                                                     <div class="col-lg-12">
                                                         <div class="form-group">
-                                                            <select class="form-control" name="examsajoutes"  id="examsajoutes">
+                                                            <select class="form-control" name="seancesajoutees"  id="examsajoutes">
                                                             <c:forEach items="${listexams}"  var="e">
                                                                 <option value="${e.numS}">
                                                                     examen de : <c:out value="${e.numEmp.numM.nomM}"/>  au groupe  <c:out value="${e.numEmp.numG.nomG}"/>  

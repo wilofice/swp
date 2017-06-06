@@ -122,7 +122,7 @@ public class Login extends HttpServlet {
                 session.setAttribute("ens", ens);
                 List<Matiere> listmat = matiereFacade.findAll();
                 request.setAttribute("listmat", listmat);
-                this.getServletContext().getRequestDispatcher("/WEB-INF/viewdept/AjouterMat.jsp").forward(request, response);}
+                response.sendRedirect("gestionemploi");}
                if(compte.equals(comptesys)){
                 Enseignant ens = compte.getEnseignantList().get(0);
                 Cookie cookieid = new Cookie("idens", ens.getId()+"");
@@ -136,7 +136,7 @@ public class Login extends HttpServlet {
                 session.setAttribute("ens", ens);
                 List<Enseignant> listens = enseignantFacade.findAll();
                 request.setAttribute("listens", listens);
-                this.getServletContext().getRequestDispatcher("/WEB-INF/viewsys/AjouterUtilisateur.jsp").forward(request, response);
+                response.sendRedirect("addutilisateur");
                 } 
                else{
                 Enseignant ens = compte.getEnseignantList().get(0);

@@ -177,7 +177,7 @@ public class Login extends HttpServlet {
         
         request.setAttribute("semainecurrent", semaine.getIdsemaine());
         
-                this.getServletContext().getRequestDispatcher("/WEB-INF/viewens/EmploiEns.jsp").forward(request, response);
+                  response.sendRedirect("gestionemploiens") ;
             }
                 
             }

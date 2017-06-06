@@ -966,7 +966,7 @@
                                                                     var grps = document.getElementById("grpselect");
                                                                     
                                                                     grps.selectedIndex = "-1";
-                                                                    console.log('i kdnloy here');
+                                                                    
                                                                     </script>
                                                                 
                                                                     
@@ -1029,7 +1029,6 @@
                                                                 </option>
                                                                 <script>
                                                                     var grps = document.getElementById("grpexamselect");
-                                                                    
                                                                     grps.selectedIndex = "-1";
                                                                  </script>
                                                                 
@@ -1180,7 +1179,13 @@
                                                     <div class="col-lg-12">
                                                         <div class="form-group">
                                                             <select class="form-control" name="examsajoutes"  id="examsajoutes">
-                                                           
+                                                            <c:forEach items="${listexams}"  var="e">
+                                                                <option value="${e.numS}">
+                                                                    examen numéro <c:out value="${e.numS}"/>
+                                                                 
+                                                                 </option>
+                                                                
+                                                            </c:forEach>
                                                             
                                                             </select>
                                                         </div>

@@ -165,8 +165,7 @@ public class SaraAddSeance extends HttpServlet {
 //        
 //        request.setAttribute("listGrp",listGrp);
             
-        this.getServletContext().getRequestDispatcher("/WEB-INF/viewens/EmploiEns.jsp").forward(request, response);    
-        
+        response.sendRedirect("gestionemploiens") ;
      }
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)

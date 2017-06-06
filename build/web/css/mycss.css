@@ -1,0 +1,32 @@
+.selected{
+ 
+   background-color: #6699ff;
+   border-radius:6%;
+        -moz-border-radius:6%;
+        -webkit-border-radius:6%;
+}
+
+.myradio:hover {
+	cursor:pointer;
+        
+}
+
+.myradio {
+        text-align: center;
+}
+
+.seance:hover {
+	cursor:pointer;
+}
+
+.seance {
+    text-align: center;
+}
+/*#myp {
+    display: none !important ;
+    font-size: 20px;
+}*/
+
+.myratt {
+    background-color: lightslategray;
+}

@@ -100,13 +100,13 @@
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
                     <li>
-                        <a href="/swp/gestionemploi?grpid=1&semestreid=2"><i class="fa fa-calendar "></i> Emplois du temps</a>
+                        <a href="gestionemploi?grpid=1&semestreid=2"><i class="fa fa-calendar "></i> Emplois du temps</a>
                     </li>
                     <li >
-                        <a href="/swp/addmatiere"><i class="fa fa-book"></i>  Matières</a>
+                        <a href="addmatiere"><i class="fa fa-book"></i>  Matières</a>
                     </li>
                     <li class="active">
-                        <a href="/swp/addgroupe"><i class="fa fa-users"></i>  Groupes</a>
+                        <a href="addgroupe"><i class="fa fa-users"></i>  Groupes</a>
                     </li>          
                 </ul>
             </div>

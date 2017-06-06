@@ -41,7 +41,7 @@ function extractContent(responseXML) {
         return false;
     }
     else{
-         var m = responseXML.getElementsByTagName("message")[0];
+        var m = responseXML.getElementsByTagName("message")[0];
         var msg = m.childNodes[0].nodeValue;
         console.log("msg rec = " + msg);
         return msg;
@@ -82,6 +82,15 @@ function getMatiere() {
     req.onreadystatechange = callback;
     req.send(null);
 }
+function getExamMatiere() {
+    var id = $('#grpexamselect option:selected').attr("value");
+    req = initRequest();
+    url = "/swp/examgetmatandcrenbyprp?classe=" + id;
+    req.open("GET", url, true);
+    req.onreadystatechange = callexamback;
+    req.send(null);
+}
+
 function callback() {
     console.log(req);
     
@@ -94,6 +103,19 @@ function callback() {
         }
     }
 }
+function callexamback() {
+    console.log(req);
+    
+    if (req.readyState === 4) {
+        if (req.status === 200) {
+            console.log(req.responseXML);
+            parseExamMessages(req.responseXML);
+            
+            
+        }
+    }
+}
+
 $('#grpselect').change(function(event){
     groupeSelect = document.getElementById("grpselect");
     while (groupeSelect.firstChild) {
@@ -123,6 +145,14 @@ function appendMatieres(codeM, nomM) {
     matiereselect = document.getElementById("matselect");
     matiereselect.appendChild(option);
 }
+function appendExamMatieres(codeM, nomM) {
+    //console.log("id = " + id + "nomg" + nomG );
+    option = document.createElement("option");
+    option.setAttribute("value", codeM );
+    option.innerHTML= nomM;
+    matiereexamselect = document.getElementById("matexamselect");
+    matiereexamselect.appendChild(option);
+}
 
 function appendCreneau(numC, dateC, heureC) {
     option = document.createElement("option");
@@ -130,6 +160,13 @@ function appendCreneau(numC, dateC, heureC) {
     option.innerHTML= dateC + " " + heureC;
     creneauselect = document.getElementById("creselect");
     creneauselect.appendChild(option);
+}
+function appendExamCreneau(numC, dateC, heureC) {
+    option = document.createElement("option");
+    option.setAttribute("value", numC );
+    option.innerHTML= dateC + " " + heureC;
+    creneauexamselect = document.getElementById("creexamselect");
+    creneauexamselect.appendChild(option);
 }
 
 
@@ -168,10 +205,80 @@ function parseMessages(responseXML) {
     }
 
 }
+function parseExamMessages(responseXML) {
+    if (responseXML === null) {
+        console.log("in pasrse error");
+        return false;
+    } else {
+        console.log("in pasrse");
+        
+        
+        var matieres = responseXML.getElementsByTagName("matieres")[0];
+        if (matieres.childNodes.length > 0) {
+            for (loop = 0; loop < matieres.childNodes.length; loop++) {
+                var matiere = matieres.childNodes[loop];
+                var codeM = matiere.getElementsByTagName("codeM")[0];
+                var nomM = matiere.getElementsByTagName("nomM")[0];
+                
+                appendExamMatieres(codeM.childNodes[0].nodeValue, nomM.childNodes[0].nodeValue);
+                console.log("in loop groupes");
+            }
+        }
+        
+        var creneaux = responseXML.getElementsByTagName("creneaux")[0];
+        if (creneaux.childNodes.length > 0) {
+            for (loop = 0; loop < creneaux.childNodes.length; loop++) {
+                var creneau = creneaux.childNodes[loop];
+                var numC = creneau.getElementsByTagName("idc")[0];
+                var dateC = creneau.getElementsByTagName("date")[0];
+                var heureC = creneau.getElementsByTagName("heure")[0];
+                
+                appendExamCreneau(numC.childNodes[0].nodeValue, dateC.childNodes[0].nodeValue, heureC.childNodes[0].nodeValue);
+                console.log("in loop semaines");
+            }
+        }
+    }
+
+}
 
 $(document).ready(function(){
     
-    //getCountMessage();
+
+        
+        
+        
+        //$('.myratt').css('background-color','red');
+
+
+        $("#btnAfficher").click(function(){
+            if(!$("#btnAfficher").hasClass('active')) {
+                $("#btnMasquer").removeClass('btn-primary');
+                $("#btnMasquer").removeClass('active');
+                $("#btnMasquer").addClass('btn-default');            
+                $("#btnAfficher").removeClass('btn-default');
+                $("#btnAfficher").addClass('btn-primary');
+                $("#btnAfficher").addClass('active');
+                //$("#btnAfficher").toggleClass('btn-default'); 
+                $('.myratt').css('background-color','#d1250e');
+                $('.myratt').css('color','black');
+            }
+            
+        });
+        $("#btnMasquer").click(function(){
+            if(!$("#btnMasquer").hasClass('active')){
+                $("#btnMasquer").removeClass('btn-default');
+                $("#btnMasquer").addClass('btn-primary');
+                $("#btnMasquer").addClass('active');
+                $("#btnAfficher").removeClass('btn-primary');
+                $("#btnAfficher").removeClass('active');
+                $("#btnAfficher").addClass('btn-default');
+                //$("#btnAfficher").toggleClass('btn-default'); 
+                $('.myratt').css('background-color','white');
+                $('.myratt').css('color','white');  
+            }
+            
+        });
+ 
     
 var currentDate  = new Date(),
     currentDay   = currentDate.getDate() < 10 
@@ -183,12 +290,19 @@ var currentDate  = new Date(),
 
 document.getElementById("datedujour").innerHTML = currentDay + '/' + currentMonth + '/' +  currentDate.getFullYear();
 
-for(var i = 1; i <= 28; i++) {
-    option = document.createElement("option");
-    option.innerHTML = i;
-    $('#semaineselect').append(option);
-}
-$("#semaineselect").prop("selectedIndex", -1);
+//for(var i = 1; i <= 28; i++) {
+//    option = document.createElement("option");
+//    option.innerHTML = i;
+//    $('#semaineselect').append(option);
+//}
+//var sara=13;
+//$('#semaineselect').val(sara);
+//console.log("SARA SARA GOT HERE ");
+//$("#semaineselect").prop("selectedIndex",25 );
+// $(window).on('load',function(){
+//        var sara=13;
+//        $('#semaineselect').val(sara);
+//    });
 
 $('.myradio-group .seance').dblclick(function(){ 
     $(this).parent().parent().find('.seance').removeClass('selected');
@@ -211,27 +325,26 @@ $('.myradio-group .seance').dblclick(function(){
     var jourSelected = $('#jour' + idselected).text();
     var heureSelected = $('#heure' + idselected).text();
     console.log("Hello jour et heure " + $('#jour' + idselected).text() + $('#heure' + idselected).text());
-    
+    var semaineselected = $('#semaineselect option:selected').attr("value");
     $('#seancereportid').attr("value", idselected);
     $('#seanceAbsenceid').attr("value", numS);
-    $('#currentsemainereportid').attr("value", "25");
+    $('#currentsemainereportid').attr("value", semaineselected);
     option = document.createElement("option");
     option.setAttribute("value", groupemail);
     
     option.innerHTML = groupemail;
     emailgroupeselect = document.getElementById("emailgroupeReport");
     emailgroupeselect.appendChild(option);
-    var messageReport = "Bonjour chers élèves, La séance annulée de " + matierenom + " du " + jour + " de " + heure + " Sera programmée pour "+ jourSelected +" de "+heureSelected;
+    var messageReport = "La séance annulée de " + matierenom + " du " + jour + " de " + heure + " Sera programmée pour "+ jourSelected +" de "+heureSelected;
     $('#messageReport').text(messageReport);
     
-    var objetmessageReport = "séance de Rattrapage de " + matierenom + " le " + jourSelected + " de " + heureSelected;
+    var objetmessageReport = "Séance de Rattrapage de " + matierenom + " le " + jourSelected + " de " + heureSelected;
     $('#objetmessageReport').attr("value", objetmessageReport);  
     
     $('#SeanceRatt').modal("show");
     
     
 });
-
 
 $('.myradio-group .seance').click(function(){
 
@@ -251,6 +364,7 @@ $('.myradio-group .seance').click(function(){
     var filierenom = $('#filierenom' + id).text();
     var matierenom = $('#matierenom' + id).text();
     var realdate = $('#realdate' + id).text();
+    
     $('#seancetoabsentid').attr("value", numS);
     option = document.createElement("option");
     option.setAttribute("value", groupemail);
@@ -258,13 +372,13 @@ $('.myradio-group .seance').click(function(){
     emailgroupeselect = document.getElementById("emailgroupe");
     emailgroupeselect.appendChild(option);
     
-    var message = "Bonjour chers eleves, je ne pourrai pas assurer la seance de " + matierenom + " du " + jour + " de " + heure + " Une seance de rattrapage sera programmee plus tard!"+"\n"+"Cordialement.";
+    var message = "La seance de " + matierenom + " du " + jour + " de " + heure + " a été reportée pour une date ultérieure"+"\n";
     $('#message').text(message);      
-    var objetmessage = "Report de la seance de " + matierenom + " du " + jour;
+    var objetmessage = "Report";
     $('#objetmessage').attr("value", objetmessage);
     
-    var messageD = "Bonjour, je ne pourrai pas assurer la seance de " + matierenom + " du " + jour + " de " + heure + " Une seance de rattrapage sera programmee plus tard!"+"\n"+"Cordialement.";
-    $('#messageD').text(messageD);
+//    var messageD = "La seance de " + matierenom + " du " + jour + " de " + heure + " a été reportée pour une date ultérieure"+"\n";
+//    $('#messageD').text(messageD);
     
     var currentsemaineid = $('#semaineselect option:selected').text();
     currentsemaineid = "15";
@@ -291,6 +405,23 @@ $('#grpselect').change(function(event){
     getMatiere();
      
 });
+$('#grpexamselect').change(function(event){
+    
+
+    matiere = document.getElementById("matexamselect");
+    creneau = document.getElementById("creexamselect");
+    while (matiere.firstChild) {
+        matiere.removeChild(matiere.firstChild);
+    }
+
+    while (creneau.firstChild) {
+        creneau.removeChild(creneau.firstChild);
+    }
+    
+    getExamMatiere();
+     
+});
+
 
 
 

@@ -7,18 +7,13 @@ package com.swp.servlets.login;
 
 import com.swp.beans.Comptes;
 import com.swp.beans.Enseignant;
-import com.swp.beans.Groupe;
-import com.swp.beans.Matiere;
-import com.swp.servlets.dept.GestionEmploi;
 import com.swp.sessions.stateless.AbscenceFacade;
 import com.swp.sessions.stateless.ComptesFacade;
 import com.swp.sessions.stateless.EnseignantFacade;
 import com.swp.sessions.stateless.MatiereFacade;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 import javax.ejb.EJB;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.Cookie;

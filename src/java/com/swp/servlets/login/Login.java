@@ -137,7 +137,7 @@ public class Login extends HttpServlet {
                     session.setAttribute("ens", ens);
                     List<Enseignant> listens = enseignantFacade.findAll();
                     request.setAttribute("listens", listens);
-                    response.sendRedirect("addutilisateur");
+                    response.sendRedirect("addUtilisateur");
                 } 
                else{
                     Enseignant ens = compte.getEnseignantList().get(0);

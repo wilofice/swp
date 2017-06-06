@@ -90,7 +90,7 @@
                    <a href="#" class="toggle"><i class="fa fa-question-circle"></i></a> 
                 </li>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> John Smith <b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> Admin Sys <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li>
                             <a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
@@ -200,7 +200,7 @@
         <input type="tel" class="form-control" onblur="verifTel(this)" id="telU" name="telU" placeholder="Entrer le numéro de  téléphone de l'utilisateur" required>
       </div>
        <div class="form-group">
-        <label for="RoleU">Rôle</label>
+        <label for="RoleU">Rôle *</label>
             <select class="form-control" name="roleU" id="roleU" required>
                 <option id="Ens">Enseignant</option>
                 <option id="Chefdept">Chef de département</option>
@@ -208,8 +208,8 @@
             </select>
        </div>
       <div class="form-group">
-        <label for="idUser">IdUser</label>
-        <input type="text" class="form-control" id="idUser" name="idUser" placeholder="Entrer l'identifiant de l'utilisateur">
+        <label for="idUser">Identifiant *</label>
+        <input type="email" class="form-control" id="idUser" name="idUser" placeholder="Entrer l'identifiant de l'utilisateur">
       </div>
             
   </div>

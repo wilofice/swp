@@ -159,7 +159,16 @@
                                 <div class="col-lg-2">
                                 <label>Semestre</label>
                                 <select id="semestres" class="form-control">
-                                    
+                                    <c:forEach var="i" begin="1" end="2" step="1">
+                                        <c:if test="${semaineSelect == i}">
+                                            <option selected value="${i}">${i}</option>
+                                        </c:if>
+                                        <c:if test="${!(semaineSelect == i)}">
+                                            <option value="${i}">${i}</option>
+                                        </c:if>
+                                    </c:forEach>
+                                 
+                              
                                  </select>
                                  </div>
                                  
@@ -204,14 +213,14 @@
                                    <tbody class="myradio-group">
                                         <tr>
                                             <td>LUNDI</td>
-                                    <c:forEach var="i" begin="1" end="2" step="1">
+                                    <!--<c:forEach var="i" begin="1" end="2" step="1">
                                         <c:if test="${semaineSelect == i}">
                                             <option selected value="${i}">${i}</option>
                                         </c:if>
                                         <c:if test="${!(semaineSelect == i)}">
                                             <option value="${i}">${i}</option>
                                         </c:if>
-                                    </c:forEach>
+                                    </c:forEach>-->
                                  
                               
                                             </td>

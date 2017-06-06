@@ -100,7 +100,7 @@
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
                     <li>
-                        <a href="gestionemploi"><i class="fa fa-calendar "></i> Emplois du temps</a>
+                        <a href="gestionemploi?grpid=1&semestreid=2"><i class="fa fa-calendar "></i> Emplois du temps</a>
                     </li>
                     <li >
                         <a href="addmatiere"><i class="fa fa-book"></i>  Matières</a>

@@ -46,20 +46,43 @@ public class GestionEmploiEns extends HttpServlet {
     GroupeFacade groupeFacade;
     protected void processRequestGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        Date d = this.getMonday();
+                Semaine semaine = semaineFacade.findByDateD(d);
+                String idens = getEnseignantIdinCookies(request, "idens");
+                Enseignant enseignant = enseignantFacade.find(Integer.parseInt(idens));
+                List<Emp> lemp = empFacade.findByEns(enseignant);
+        System.out.println("lemp lenght = " + lemp.size());
+        SeanceHashMap shm = new SeanceHashMap(seanceFacade);
+        shm.init();
+        List<Seance> listSeance = shm.getSeanceEnsBySemaine(lemp, semaine.getIdsemaine());
+        HashMap<String, HashMap<String, Seance>> seanceHashMap = shm.getHashMap(listSeance);
         
-        Calendar cal = Calendar.getInstance();
-        Date date = cal.getTime();
+        request.removeAttribute("seanceHashMap");
+        request.setAttribute("seanceHashMap", seanceHashMap);
+        
+      List<Seance> listseances= seanceFacade.findByType("seancesupp");
+         request.setAttribute("listseances", listseances);
+         HttpSession session = request.getSession();
+         Seance sa = (Seance) session.getAttribute("seancetoabsent");
         
         
-      
+        if(sa != null) {
+            request.setAttribute("seancetoabsent", sa);
+            System.out.println("seance to absent from session = " + sa.getNumS());
+        }
+        
+        request.setAttribute("semainecurrent", semaine.getIdsemaine());
         this.getServletContext().getRequestDispatcher("/WEB-INF/viewens/EmploiEns.jsp").forward(request, response);
     }
     
     protected void processRequestPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
         String semaineid = request.getParameter("semaineid");
         //if(semaineid == null) this.getServletContext().getRequestDispatcher("/WEB-INF/viewens/EmploiEns.jsp").forward(request, response);
         String idens = getEnseignantIdinCookies(request, "idens");
+        List<Seance> listseances= seanceFacade.findByType("seancesupp");
+         request.setAttribute("listseances", listseances);
         
         Enseignant enseignant = enseignantFacade.find(Integer.parseInt(idens));
         List<Emp> lemp = empFacade.findByEns(enseignant);
@@ -80,6 +103,8 @@ public class GestionEmploiEns extends HttpServlet {
             request.setAttribute("seancetoabsent", sa);
             System.out.println("seance to absent from session = " + sa.getNumS());
         }
+        
+        request.setAttribute("semainecurrent", semaineid);
         
         List<Groupe> listGrp = abscenceFacade.getGroupeEnsX(enseignant);
         

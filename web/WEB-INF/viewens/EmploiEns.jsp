@@ -98,7 +98,7 @@
             <div class="row">
                 <div class="col-lg-9">
                     <div class="panel panel-default">
-                        <div class="panel-heading" style="font-weight: bold;">EMPLOI DU TEMPS <span id="datedujour">29/04/2017</span> Semaine  <span id="sessionScope.semainenow"> 1</span></div>
+                        <div class="panel-heading" style="font-weight: bold;">EMPLOI DU TEMPS <span id="datedujour">29/04/2017</span> Semaine  <span id=""> ${sessionScope.semainenow}</span></div>
                                     
                     
                         <div class="panel-body">

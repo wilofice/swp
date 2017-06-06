@@ -91,14 +91,14 @@ public class SignalerAbscence extends HttpServlet {
         List<Creneau> listc = absenter.getVideGrpAndEns();
         List<Permutation> listpermut = absenter.getListpermutation();
         
-        Iterator<Permutation> pIt = listpermut.iterator();
-        System.out.println("List des creneaux trouvés");
-        
-        while(pIt.hasNext()) {
-            Permutation p = pIt.next();
-            System.out.println("creneau num " + p.getE().getNom() + " prenom " + p.getE().getPrenom() );
-        }
-        
+//        Iterator<Permutation> pIt = listpermut.iterator();
+//        System.out.println("List des creneaux trouvés");
+//        
+//        while(pIt.hasNext()) {
+//            Permutation p = pIt.next();
+//            System.out.println("creneau num " + p.getE().getNom() + " prenom " + p.getE().getPrenom() );
+//        }
+//        
         
 //        AddSeance addSeance = new AddSeance(seanceFacade, ef, listc, sa);
 //        addSeance.addSeance();
@@ -165,13 +165,13 @@ public class SignalerAbscence extends HttpServlet {
         //System.out.println("idens = " + idEns);
         //System.out.println("ensid = " + ensid);
         
-//        String messageD = request.getParameter("messageD");
-//        System.out.println(messageD);
-//        String messagetosendD = fromWhichEns + "\n" + messageD;
+        String messageD = request.getParameter("messageD");
+        System.out.println(messageD);
+        String messagetosendD = fromWhichEns + "\n" + messageD;
         
-//        SendMail.envoyerMail(emailgroupe, objetmessage, messagetosend);
-//        SendMail.envoyerMail(emailchefdepartement, objetmessage, messagetosend);
-//        SendMail.envoyerMail(emailcoordinateur, objetmessage, messagetosend);
+        SendMail.envoyerMail(emailgroupe, objetmessage, messagetosend);
+        SendMail.envoyerMail(emailchefdepartement, objetmessage, messagetosend);
+        SendMail.envoyerMail(emailcoordinateur, objetmessage, messagetosend);
         
         
         

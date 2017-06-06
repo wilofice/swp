@@ -85,7 +85,7 @@ function getMatiere() {
 function getExamMatiere() {
     var id = $('#grpexamselect option:selected').attr("value");
     req = initRequest();
-    url = "/swp/getmatandcrenbyprp?classe=" + id;
+    url = "/swp/examgetmatandcrenbyprp?classe=" + id;
     req.open("GET", url, true);
     req.onreadystatechange = callexamback;
     req.send(null);

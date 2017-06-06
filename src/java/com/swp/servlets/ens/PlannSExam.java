@@ -69,7 +69,9 @@ public class PlannSExam {
             while(videGrpIterator.hasNext())  {
                 deGrp = videGrpIterator.next();
                 if(Objects.equals(deGrp.getNumC(), deEns.getNumC())) {
-                    if(videGrpAndEns == null) videGrpAndEns = new ArrayList<>();
+                    if(deEns.getIdSemaine().getIdsemaine().equals("7") || deEns.getIdSemaine().getIdsemaine().equals("SExamen1") || deEns.getIdSemaine().getIdsemaine().equals("14") || deEns.getIdSemaine().getIdsemaine().equals("SExamen2") ||
+                            deEns.getIdSemaine().getIdsemaine().equals("21") || deEns.getIdSemaine().getIdsemaine().equals("SExamen3") ||
+                            deEns.getIdSemaine().getIdsemaine().equals("28") || deEns.getIdSemaine().getIdsemaine().equals("SExamen4") ) 
                     videGrpAndEns.add(deEns);
                 }
             }

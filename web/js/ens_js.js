@@ -82,6 +82,15 @@ function getMatiere() {
     req.onreadystatechange = callback;
     req.send(null);
 }
+function getExamMatiere() {
+    var id = $('#grpexamselect option:selected').attr("value");
+    req = initRequest();
+    url = "/swp/getmatandcrenbyprp?classe=" + id;
+    req.open("GET", url, true);
+    req.onreadystatechange = callexamback;
+    req.send(null);
+}
+
 function callback() {
     console.log(req);
     
@@ -94,6 +103,19 @@ function callback() {
         }
     }
 }
+function callexamback() {
+    console.log(req);
+    
+    if (req.readyState === 4) {
+        if (req.status === 200) {
+            console.log(req.responseXML);
+            parseExamMessages(req.responseXML);
+            
+            
+        }
+    }
+}
+
 $('#grpselect').change(function(event){
     groupeSelect = document.getElementById("grpselect");
     while (groupeSelect.firstChild) {
@@ -123,6 +145,14 @@ function appendMatieres(codeM, nomM) {
     matiereselect = document.getElementById("matselect");
     matiereselect.appendChild(option);
 }
+function appendExamMatieres(codeM, nomM) {
+    //console.log("id = " + id + "nomg" + nomG );
+    option = document.createElement("option");
+    option.setAttribute("value", codeM );
+    option.innerHTML= nomM;
+    matiereexamselect = document.getElementById("matexamselect");
+    matiereexamselect.appendChild(option);
+}
 
 function appendCreneau(numC, dateC, heureC) {
     option = document.createElement("option");
@@ -130,6 +160,13 @@ function appendCreneau(numC, dateC, heureC) {
     option.innerHTML= dateC + " " + heureC;
     creneauselect = document.getElementById("creselect");
     creneauselect.appendChild(option);
+}
+function appendExamCreneau(numC, dateC, heureC) {
+    option = document.createElement("option");
+    option.setAttribute("value", numC );
+    option.innerHTML= dateC + " " + heureC;
+    creneauexamselect = document.getElementById("creexamselect");
+    creneauexamselect.appendChild(option);
 }
 
 
@@ -168,6 +205,41 @@ function parseMessages(responseXML) {
     }
 
 }
+function parseExamMessages(responseXML) {
+    if (responseXML === null) {
+        console.log("in pasrse error");
+        return false;
+    } else {
+        console.log("in pasrse");
+        
+        
+        var matieres = responseXML.getElementsByTagName("matieres")[0];
+        if (matieres.childNodes.length > 0) {
+            for (loop = 0; loop < matieres.childNodes.length; loop++) {
+                var matiere = matieres.childNodes[loop];
+                var codeM = matiere.getElementsByTagName("codeM")[0];
+                var nomM = matiere.getElementsByTagName("nomM")[0];
+                
+                appendExamMatieres(codeM.childNodes[0].nodeValue, nomM.childNodes[0].nodeValue);
+                console.log("in loop groupes");
+            }
+        }
+        
+        var creneaux = responseXML.getElementsByTagName("creneaux")[0];
+        if (creneaux.childNodes.length > 0) {
+            for (loop = 0; loop < creneaux.childNodes.length; loop++) {
+                var creneau = creneaux.childNodes[loop];
+                var numC = creneau.getElementsByTagName("idc")[0];
+                var dateC = creneau.getElementsByTagName("date")[0];
+                var heureC = creneau.getElementsByTagName("heure")[0];
+                
+                appendExamCreneau(numC.childNodes[0].nodeValue, dateC.childNodes[0].nodeValue, heureC.childNodes[0].nodeValue);
+                console.log("in loop semaines");
+            }
+        }
+    }
+
+}
 
 $(document).ready(function(){
     
@@ -183,14 +255,19 @@ var currentDate  = new Date(),
 
 document.getElementById("datedujour").innerHTML = currentDay + '/' + currentMonth + '/' +  currentDate.getFullYear();
 
-for(var i = 15; i <= 28; i++) {
-    option = document.createElement("option");
-    option.innerHTML = i;
-    
-    $('#semaineselect').append(option);
-    console.log(" i got here 1234")
-}
-$("#semaineselect").prop("selectedIndex", -1);
+//for(var i = 1; i <= 28; i++) {
+//    option = document.createElement("option");
+//    option.innerHTML = i;
+//    $('#semaineselect').append(option);
+//}
+//var sara=13;
+//$('#semaineselect').val(sara);
+//console.log("SARA SARA GOT HERE ");
+//$("#semaineselect").prop("selectedIndex",25 );
+// $(window).on('load',function(){
+//        var sara=13;
+//        $('#semaineselect').val(sara);
+//    });
 
 $('.myradio-group .seance').dblclick(function(){ 
     $(this).parent().parent().find('.seance').removeClass('selected');
@@ -293,6 +370,23 @@ $('#grpselect').change(function(event){
     getMatiere();
      
 });
+$('#grpexamselect').change(function(event){
+    
+
+    matiere = document.getElementById("matexamselect");
+    creneau = document.getElementById("creexamselect");
+    while (matiere.firstChild) {
+        matiere.removeChild(matiere.firstChild);
+    }
+
+    while (creneau.firstChild) {
+        creneau.removeChild(creneau.firstChild);
+    }
+    
+    getExamMatiere();
+     
+});
+
 
 
 

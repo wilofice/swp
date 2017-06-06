@@ -95,6 +95,7 @@ public class SaraAddSeance extends HttpServlet {
     
      protected void processRequestGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+         
          System.out.println("in method get");
        Integer classeid = Integer.parseInt(request.getParameter("classe"));
        String matiereid = request.getParameter("matiere");
@@ -124,16 +125,21 @@ public class SaraAddSeance extends HttpServlet {
        
        
        Integer idsem=actusem.getIdsemestre();
+       //List<Emp> listEmpp = empFacade.findAll();
+       
        
            Emp emp = new Emp(1, jour, heure, datecr, datecr,idsem);
+          
             emp.setNumG(classe);
             emp.setNumE(ens);
             emp.setNumM(mat);
+           
             empFacade.create(emp);
             System.out.println("in method get 3");
         Seance s=new Seance(1,"seancesupp",1);
             s.setNumC(cr);
             s.setNumEmp(emp);
+            s.setType("seancesupp");
             seanceFacade.create(s);
             System.out.println("in method get 4");
 //         List<Emp> lemp = empFacade.findByEns(ens);
@@ -159,8 +165,7 @@ public class SaraAddSeance extends HttpServlet {
 //        
 //        request.setAttribute("listGrp",listGrp);
             
-        this.getServletContext().getRequestDispatcher("/WEB-INF/viewens/EmploiEns.jsp").forward(request, response);    
-        
+        response.sendRedirect("gestionemploiens") ;
      }
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)

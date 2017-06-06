@@ -18,6 +18,7 @@ import com.swp.sessions.stateless.SemestreFacade;
 import java.io.IOException;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.Iterator;
 import java.util.List;
 import javax.annotation.PostConstruct;
@@ -133,11 +134,20 @@ public class GetCreneauByGroup extends HttpServlet {
             while(creIt.hasNext()) {
                 
                 Creneau c = creIt.next();
+                Calendar cale = Calendar.getInstance();
+                Calendar cale1 = Calendar.getInstance();
+    cale.setTime(c.getDate());
+    cale1.setTime(c.getHeure());
+    int day = cale.get(Calendar.DAY_OF_MONTH);
+    int month=cale.get(Calendar.MONTH);
+    int year=cale.get(Calendar.YEAR);
+    int hour = cale1.get(Calendar.HOUR_OF_DAY);
                 System.out.println("creneau trouvé = " + c.getDate());
                 sb.append("<creneau>");
                 sb.append("<idc>").append(c.getNumC()).append("</idc>");
-                sb.append("<date>").append(c.getDate()).append("</date>");
-                sb.append("<heure>").append(c.getHeure()).append("</heure>");
+                
+                sb.append("<date>").append(" le " + day +" / "+ month+" / " +year).append("</date>");
+                sb.append("<heure>").append(" de " +hour+" h " +" à "+ (hour+2) +" h ").append("</heure>");
                 sb.append("</creneau>");
             }
             

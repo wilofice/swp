@@ -124,10 +124,11 @@ public class AddExam extends HttpServlet {
             emp.setNumE(ens);
             emp.setNumM(mat);
             empFacade.create(emp);
-            System.out.println("in method get 3");
+           
         Seance s=new Seance(1,"examen",1);
             s.setNumC(cr);
             s.setNumEmp(emp);
+            s.setType("examen");
             seanceFacade.create(s);
             System.out.println("in method get 4");
 //         List<Emp> lemp = empFacade.findByEns(ens);

@@ -218,87 +218,53 @@ $(document).ready(function(){
     $("#sfselect").prop("selectedIndex", -1);
     $("#enseignantselect").prop("selectedIndex", -1);
     $("#matiereselect").prop("selectedIndex", -1);
-    //$("#semestres").prop("selectedIndex", -1);
-    //$("#groupes").prop("selectedIndex", -1);
+    $("#semestres").prop("selectedIndex", -1);
+    $("#groupes").prop("selectedIndex", -1);
     groupeselected = $("#groupes option:selected").attr("id");
     semestreactuelle = $("#semestres option:selected").text();
        
 $('.myradio-group .myradio').click(function(){
     var id =$(".myradio-group").find('.selected').attr("id");
-    console.log(id);
-        
     $(".myradio-group").find('.selected').popover("hide");
     $(this).parent().parent().find('.myradio').removeClass('selected');
     $(this).addClass('selected');
     var idthis = $(this).attr("id");
-    console.log(idthis);
     groupeselected = $("#groupes option:selected").attr("id");
-    empid = $("#idseanceEmp" + idthis).text();
-    jour = $("#jourEmp" + idthis).text();
-    heure = $("#heureEmp" + idthis).text();
-    matierenom = $("#matiereNomEmp" + idthis).text();
-    matiereid = $("#matiereEmp" + idthis).text();
-    semainedebut = $("#dateDEmp" + idthis).text();
-    semainefin = $("#dateFEmp" + idthis).text();
-    enseignantnom = $("#nomEnsEmp" + idthis).text();
-    enseignantid = $("#idEnsEmp" + idthis).text();
-     console.log("resultat de la recuperation");
-       
-     console.log(enseignantnom);
-     console.log(enseignantid);
+    empid = $("#emp" + idthis).text();
+    jour = $("#jour" + idthis).text();
+    heure = $("#heure" + idthis).text();
+    matierenom = $("#matiere" + idthis).text();
+    matiereid = $("#matiereid" + idthis).text();
+    semainedebut = $("#sd" + idthis).text();
+    semainefin = $("#sf" + idthis).text();
+    enseignantnom = $("#enseignant" + idthis).text();
+    enseignantid = $("#enseignantid" + idthis).text();
     var semestreactuelle = $("#semestres option:selected").text();
     var optionsemestretext = "";
     if(semestreactuelle === "1") {
         for(loop = 1; loop <= 14; loop++) {
-            if( semainedebut===loop){
-                  optionsemestretext += '<option "selected="selected">' + loop + '</option>';
-            }
-            else{
-                  optionsemestretext += '<option>' + loop + '</option>';
-            }
-            
+            optionsemestretext += '<option>' + loop + '</option>';
         }
     } else {
         for(loop = 15; loop <= 28; loop++) {
-             if($(this).attr("id")===loop){
-                  optionsemestretext += '<option "selected="selected">' + loop + '</option>';
-            }
-            else{
-                  optionsemestretext += '<option>' + loop + '</option>';
-            }
+            optionsemestretext += '<option>' + loop + '</option>';
         }
     }
     var listeenseignanttext = "";
     $("#listeenseignant").children("p").each(function() {
        console.log($(this));
-        if($(this).attr("id")===enseignantid ){
-             listeenseignanttext += '<option' + ' id = "' + $(this).attr("id") + '" selected="selected" value="'+ $(this).attr("id") + '">' +  $(this).text() + '</option>';
-        }
-        else{
-            listeenseignanttext += '<option' + ' id = "' + $(this).attr("id") + '" value="'+ $(this).attr("id") + '">' +  $(this).text() + '</option>';
-        }
-        console.log("voici ens select");
-        
+        listeenseignanttext += '<option' + ' id = "' + $(this).attr("id") + '" value="'+ $(this).attr("id") + '">' +  $(this).text() + '</option>';
     });
     
     var listematiere  = "";
     
     $("#listematiere").children("p").each(function() {
-        if($(this).attr("id")=== matiereid ){
-              listematiere += '<option' + ' id = "' + $(this).attr("id") + '" selected="selected" value="'+ $(this).attr("id") + '" >' +  $(this).text() + '</option>';
-        }
-        else{
-             listematiere += '<option' + ' id = "' + $(this).attr("id") + '" value="'+ $(this).attr("id") + '" >' +  $(this).text() + '</option>';
-        }
-     
+        listematiere += '<option' + ' id = "' + $(this).attr("id") + '" value="'+ $(this).attr("id") + '" >' +  $(this).text() + '</option>';
     });
     
     $(this).attr("title", "Emploi du temps");
     console.log("jour = " + jour + "heure = " + heure); 
     if(enseignantnom === ''){
-        console.log(enseignantnom);
-        console.log(enseignantid);
-        console.log(matierenom);
         $(this).attr("data-content", '<form id="myform" action="addemp" name="myformtoemp" method="POST"><span id="emptoeditadd" name="emptoeditadd" style="display: none;" >' + empid + '</span> '+
                                           '<span id="numerocase" name="numerocase" style="display: none;">' + idthis + '</span>'+
                                           '<span id="jour" >' + (jour === undefined? '':jour) + '</span>  '+
@@ -332,13 +298,7 @@ $('.myradio-group .myradio').click(function(){
                                          '</div>' +
                                          '<input type="button" onclick="addEmp()" class="btn btn-default" value="Create"/>' +
                              '</form>');
-                         console.log("je suis dans create");
     } else {
-        console.log("je suis dans modifier");
-         console.log(enseignantnom);
-        console.log(enseignantid);
-        console.log(matierenom);
-        
         $(this).attr("data-content", '<form id="myform" action="addemp" name="myformtoemp" method="POST"><span id="emptoeditadd" name="emptoeditadd" style="display: none;" >' + empid + '</span> '+
                                           '<span id="numerocase" name="numerocase" style="display: none;">' + idthis + '</span>'+
                                           '<span id="jour" >' + (jour === undefined? '':jour) + '</span>  '+
@@ -373,7 +333,6 @@ $('.myradio-group .myradio').click(function(){
                                          '<input type="button" onclick="edit()" class="btn btn-default" value="Edit"/>' +
                                          '<input type="button" onclick="mydelete()" class="btn btn-default" value="Delete"/>' +
                              '</form>');
-                         
     }
     
     $(this).popover({

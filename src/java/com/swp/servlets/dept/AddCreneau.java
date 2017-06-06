@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.swp.servlets.dept;
 
 import com.swp.beans.Creneau;
@@ -10,13 +5,9 @@ import com.swp.beans.Semaine;
 import com.swp.sessions.stateless.CreneauFacade;
 import com.swp.sessions.stateless.SemaineFacade;
 import java.io.IOException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import javax.ejb.EJB;
@@ -25,7 +16,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.jboss.weld.SimpleCDI;
 
 /**
  *

@@ -10,7 +10,6 @@ import com.swp.beans.Emp;
 import com.swp.beans.Enseignant;
 import com.swp.beans.Filiere;
 import com.swp.beans.Message;
-import com.swp.beans.Permutation;
 import com.swp.beans.Seance;
 import com.swp.beans.SeanceHashMap;
 import com.swp.sessions.stateless.AbscenceFacade;
@@ -59,50 +58,28 @@ public class SignalerAbscence extends HttpServlet {
             throws ServletException, IOException {
         
         String seanceid = request.getParameter("seancetoabsentid");
-        
+        request.setAttribute("afficherMasquer", "yes");
         Seance sa = seanceFacade.find(Integer.parseInt(seanceid));
         
-//        Absenter absenter = new Absenter(sa, seanceFacade, abscenceFacade);
-//        
-//        absenter.init();
-//        List<Creneau> listc = absenter.getVideGrpAndEns();
-//        
-//        
-//        Iterator<Creneau> cIt = listc.iterator();
-//        System.out.println("List des creneaux trouvés");
-//        
-//        while(cIt.hasNext()) {
-//            Creneau c = cIt.next();
-//            System.out.println("creneau num " + c.getNumC() + " date = " + c.getDate() + " heure " + c.getHeure());
-//        }
-//        
-//        
-//        AddSeance addSeance = new AddSeance(seanceFacade, ef, listc, sa);
-//        addSeance.addSeance();
-        
-        
-        
-        
-        //dqlmsjfmqljfmqj
-        //LJQDLQJSDKLFJQLDKJFMQDKFQM
         Absenter absenter = new Absenter(sa, seanceFacade, abscenceFacade);
         
         absenter.init();
         List<Creneau> listc = absenter.getVideGrpAndEns();
-        List<Permutation> listpermut = absenter.getListpermutation();
         
-//        Iterator<Permutation> pIt = listpermut.iterator();
-//        System.out.println("List des creneaux trouvés");
-//        
-//        while(pIt.hasNext()) {
-//            Permutation p = pIt.next();
-//            System.out.println("creneau num " + p.getE().getNom() + " prenom " + p.getE().getPrenom() );
-//        }
-//        
         
-//        AddSeance addSeance = new AddSeance(seanceFacade, ef, listc, sa);
-//        addSeance.addSeance();
-
+        Iterator<Creneau> cIt = listc.iterator();
+        System.out.println("List des creneaux trouvés");
+        
+        while(cIt.hasNext()) {
+            Creneau c = cIt.next();
+            System.out.println("creneau num " + c.getNumC() + " date = " + c.getDate() + " heure " + c.getHeure());
+        }
+        
+        
+        AddSeance addSeance = new AddSeance(seanceFacade, ef, listc, sa);
+        addSeance.addSeance();
+        
+      
         String idEns = getEnseignantInfoCookies(request, "idens");
         Integer ensid = Integer.parseInt(idEns);
         Enseignant ens = enseignantFacade.find(ensid);

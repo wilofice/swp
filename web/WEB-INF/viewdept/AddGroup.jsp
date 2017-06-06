@@ -81,12 +81,6 @@
                     </ul>
                 </li>
                 <li class="dropdown">
-                    <a href="#" class="toggle"><i class="fa fa-fw fa-gear"></i></a> 
-                </li>
-                <li class="dropdown">
-                    <a href="#" class="toggle"><i class="fa fa-question-circle"></i></a> 
-                </li>
-                <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> Pr.CHIADMI <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li>

@@ -35,7 +35,11 @@ public class GetEmpByGrp extends HttpServlet {
         Groupe grp = groupeFacade.find(grpid);
         List<Emp> listemp = empFacade.findByGrpAndSemestre(grp, semstrid);
         HashMap<String, HashMap<String, Emp>> empHashMap =  EmpHashMap.getEmpAsHashMap(listemp);
-       
+        request.removeAttribute("empHashMap");
+        request.setAttribute("empHashMap", empHashMap);
+        
+        this.getServletContext().getRequestDispatcher("/WEB-INF/viewdept/Emploi_Dept.jsp").forward(request, response);
+        
     }
 
 

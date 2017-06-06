@@ -16,7 +16,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin - Bootstrap Admin Template</title>
+    <title>Emploi du temps</title>
     <script src="js/jquery.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
@@ -197,10 +197,7 @@
         </nav>
 
         <div id="page-wrapper">
-
-             <!-- /.row -->
-
-             
+            
             <div class="row">
                 <div class="col-lg-9">
                     <div class="panel panel-default">
@@ -209,6 +206,8 @@
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
+                            <span> Affichage de l'emploi du temps </span>
+                            <span> Ajout de séance </span>
                             <div class="row">    
                                 <!-- /.liste niveau -->
                                  <div class="col-lg-2">
@@ -234,7 +233,7 @@
                                 </select>
                                  </div>
                                 <div class="col-lg-5">
-                                                      <!-- /popun supprimer -->
+                                                      <!-- popun supprimer -->
                                                       <br>
     <button type="button" class="btn btn-primary active">Enregistrer tout</button>
        <div id="supprimer" class="modal fade">
@@ -256,10 +255,9 @@
 </div> 
     
 <br>
-                                </div>
-
+</div>
                             </div>
-                                  <br>
+                             <br/>
                                   
                             <div class="table-responsive">
                                 <table class="table table-bordered ">
@@ -276,7 +274,7 @@
                                         <tr>
                                             <td>LUNDI</td>
                                             <td class="myradio" id="1">
-                                              
+                                              <div align="center">
                                                 <span id="groupe1" ></span>
                                                 <br>
                                                 <span id="sd1"></span>
@@ -286,7 +284,7 @@
                                                 <span id="matiere1"></span>
                                                 <br>
                                                 <span id="enseignant1"></span>
-                                              
+                                              </div>
                                             </td>
                                             <td class="myradio" id="2">
                                                 <div align="center">
@@ -340,7 +338,7 @@
                                                 </div>
                                             </td>
                                             <td class="myradio" id="6">
-                                                <align="center">
+                                                <div align="center">
                                                  <span id="groupe6"></span>
                                                 <br>
                                                 <span id="sd6"></span>
@@ -349,7 +347,7 @@
                                                 <span id="matiere6"></span>
                                                 <br>
                                                 <span id="enseignant6"></span>
-                                                </align>
+                                                </div>
                                             </td>
                                             <td class="myradio" id="7">
                                                 <div align="center">

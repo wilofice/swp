@@ -57,7 +57,7 @@ public class AddEmp extends HttpServlet {
         System.out.println("semestre = " + semestre);
         Date heure;
         Calendar cal = Calendar.getInstance();
-        Integer num = Integer.parseInt(numerocasetoedit);
+            Integer num = Integer.parseInt(numerocasetoedit);
         if(num == 1 | num == 5 | num == 9 | num == 13| num == 17) cal.set(0, 0, 0, 8, 0, 0);
         if(num == 2 | num == 6 | num == 10 | num == 14| num == 18) cal.set(0, 0, 0, 10, 0, 0);
         if(num == 3 | num == 7 | num == 11 | num == 15| num == 19) cal.set(0, 0, 0, 14, 0, 0);
@@ -122,6 +122,7 @@ public class AddEmp extends HttpServlet {
                 seanceEmp.setNumEmp(emp);
                 calsd.add(Calendar.DAY_OF_WEEK, 7);
                 listSeance.add(seanceEmp);
+                
             }
             
             Iterator<Seance> seanceIterator = listSeance.iterator();

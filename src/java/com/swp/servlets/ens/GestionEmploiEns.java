@@ -47,6 +47,10 @@ public class GestionEmploiEns extends HttpServlet {
     protected void processRequestGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
+        Calendar cal = Calendar.getInstance();
+        Date date = cal.getTime();
+        
+        
       
         this.getServletContext().getRequestDispatcher("/WEB-INF/viewens/EmploiEns.jsp").forward(request, response);
     }

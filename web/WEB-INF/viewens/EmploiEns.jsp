@@ -82,6 +82,7 @@
                             <a href="login"><i class="fa fa-sign-out"></i> Log Out</a>
                         </li>
                     </ul>
+                    
                 </li>
             </ul>
             <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
@@ -195,7 +196,7 @@
                                                 
                                             </td>
                                             
-                                            <td class="seance" id="l10">
+                                            <td class="seance" id="ll0">
                                                 <c:if test="${not empty seanceHashMap['lundi']['10']}">
                                                     <c:set var="type2" value="${seanceHashMap['lundi']['10'].type}" scope="page"></c:set>
                                                     
@@ -1370,7 +1371,7 @@
                                                     <span id="heurev16" style="display: none;">16h à 18h</span>
                                                     <span id="jourv16" style="display: none;">Vendredi</span>
                                                 </c:if>
-                                                
+                                                  
                                             </td>
                                         </tr>
                                     </tbody>
@@ -1397,7 +1398,7 @@
                                 
                             </div>
                         </div>
-                        </div>
+                    </div>
                     
                     <div class="panel panel-default">
                         <div class="panel-heading">Legende</div>
@@ -1480,7 +1481,7 @@
                                                     <div class="col-lg-8">
                                                         <textarea id="message" class="form-control" rows="5" cols="200" style="text-align: left" name="message">
                                                         </textarea>
-                                                        <textarea id="messageD" name="messageD" style="display: none;"></textarea>
+                                                        <!--<textarea id="messageD" name="messageA" style="display: none;"></textarea>-->
                                                         </div>
                                                     </div>
                                                 </div> 
@@ -1501,7 +1502,7 @@
                                         <form action="addseance"  methode="POST">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                    <h4 class="modal-title">Ajouter Scéance supplémentaire</h4>
+                                                    <h4 class="modal-title">Ajout de scéance supplémentaire</h4>
                                             </div>
                                             <div class="modal-body">
                                                 
@@ -1521,7 +1522,7 @@
                                                                 
                                                                     
                                                             </c:forEach>
-                                                            
+                                                            <textarea id="messageA" name="messageA" style="display: none;"></textarea>
                                                             </select>
                                                         </div>
                                                     </div>
@@ -1583,7 +1584,7 @@
                                                                 
                                                                     
                                                             </c:forEach>
-                                                            
+                                                            <textarea id="messageP" name="messageP" style="display: none;"></textarea>
                                                             </select>
                                                         </div>
                                                     </div>
@@ -1625,7 +1626,7 @@
                                         <div class="modal-content">
                                             <form action="choisirseancederattrapage" method="POST">
                                             <div class="modal-header">
-                                                     <h4 class="modal-title">Reporter Seance </h4>
+                                                     <h4 class="modal-title">Report</h4>
                                             </div>
                                             <div class="modal-body">
                                                 <div class="row">

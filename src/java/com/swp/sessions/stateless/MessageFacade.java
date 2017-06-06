@@ -7,10 +7,12 @@ package com.swp.sessions.stateless;
 
 import com.swp.beans.Enseignant;
 import com.swp.beans.Message;
+import com.swp.beans.Seance;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
 /**
  *
@@ -29,6 +31,20 @@ public class MessageFacade extends AbstractFacade<Message> {
 
     public MessageFacade() {
         super(Message.class);
+    }
+    
+    public int getIdLastMessage(){
+         Query query =
+         em.createQuery("SELECT MAX(m.id) FROM Message m");
+         int idMsg = (int) query.getSingleResult();
+         return idMsg;
+    }
+    
+    public Message getMessageById(Integer id){
+        TypedQuery<Message> query = em.createNamedQuery( "Message.findByidMsg", Message.class);
+        query.setParameter("idMsg", id);
+        Message message = query.getSingleResult();
+        return message;
     }
     
     public Long countMessage(Enseignant ens){

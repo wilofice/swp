@@ -41,7 +41,7 @@ function extractContent(responseXML) {
         return false;
     }
     else{
-         var m = responseXML.getElementsByTagName("message")[0];
+        var m = responseXML.getElementsByTagName("message")[0];
         var msg = m.childNodes[0].nodeValue;
         console.log("msg rec = " + msg);
         return msg;
@@ -183,10 +183,12 @@ var currentDate  = new Date(),
 
 document.getElementById("datedujour").innerHTML = currentDay + '/' + currentMonth + '/' +  currentDate.getFullYear();
 
-for(var i = 1; i <= 28; i++) {
+for(var i = 15; i <= 28; i++) {
     option = document.createElement("option");
     option.innerHTML = i;
+    
     $('#semaineselect').append(option);
+    console.log(" i got here 1234")
 }
 $("#semaineselect").prop("selectedIndex", -1);
 
@@ -221,17 +223,16 @@ $('.myradio-group .seance').dblclick(function(){
     option.innerHTML = groupemail;
     emailgroupeselect = document.getElementById("emailgroupeReport");
     emailgroupeselect.appendChild(option);
-    var messageReport = "Bonjour chers élèves, La séance annulée de " + matierenom + " du " + jour + " de " + heure + " Sera programmée pour "+ jourSelected +" de "+heureSelected;
+    var messageReport = "La séance annulée de " + matierenom + " du " + jour + " de " + heure + " Sera programmée pour "+ jourSelected +" de "+heureSelected;
     $('#messageReport').text(messageReport);
     
-    var objetmessageReport = "séance de Rattrapage de " + matierenom + " le " + jourSelected + " de " + heureSelected;
+    var objetmessageReport = "Séance de Rattrapage de " + matierenom + " le " + jourSelected + " de " + heureSelected;
     $('#objetmessageReport').attr("value", objetmessageReport);  
     
     $('#SeanceRatt').modal("show");
     
     
 });
-
 
 $('.myradio-group .seance').click(function(){
 
@@ -251,6 +252,7 @@ $('.myradio-group .seance').click(function(){
     var filierenom = $('#filierenom' + id).text();
     var matierenom = $('#matierenom' + id).text();
     var realdate = $('#realdate' + id).text();
+    
     $('#seancetoabsentid').attr("value", numS);
     option = document.createElement("option");
     option.setAttribute("value", groupemail);
@@ -258,13 +260,13 @@ $('.myradio-group .seance').click(function(){
     emailgroupeselect = document.getElementById("emailgroupe");
     emailgroupeselect.appendChild(option);
     
-    var message = "Bonjour chers eleves, je ne pourrai pas assurer la seance de " + matierenom + " du " + jour + " de " + heure + " Une seance de rattrapage sera programmee plus tard!"+"\n"+"Cordialement.";
+    var message = "La seance de " + matierenom + " du " + jour + " de " + heure + " a été reportée pour une date ultérieure"+"\n";
     $('#message').text(message);      
-    var objetmessage = "Report de la seance de " + matierenom + " du " + jour;
+    var objetmessage = "Report";
     $('#objetmessage').attr("value", objetmessage);
     
-    var messageD = "Bonjour, je ne pourrai pas assurer la seance de " + matierenom + " du " + jour + " de " + heure + " Une seance de rattrapage sera programmee plus tard!"+"\n"+"Cordialement.";
-    $('#messageD').text(messageD);
+//    var messageD = "La seance de " + matierenom + " du " + jour + " de " + heure + " a été reportée pour une date ultérieure"+"\n";
+//    $('#messageD').text(messageD);
     
     var currentsemaineid = $('#semaineselect option:selected').text();
     currentsemaineid = "15";

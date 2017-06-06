@@ -61,7 +61,7 @@
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
                 </button>
-                <a class="navbar-brand" href="index.html"><img src="images/swp.png" width="180" height="25"></a>
+                <a class="navbar-brand" href="/swp/gestionemploi?grpid=1&semestreid=2"><img src="images/swp.png" width="180" height="25"></a>
             </div>
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
@@ -103,7 +103,7 @@
                         </li>
                         <li class="divider"></li>
                         <li>
-                            <a href="#"><i class="fa fa-sign-out"></i> Log Out</a>
+                            <a href="login"><i class="fa fa-sign-out"></i> Log Out</a>
                         </li>
                     </ul>
                 </li>

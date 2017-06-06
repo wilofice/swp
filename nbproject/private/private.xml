@@ -3,13 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/MYC/Documents/NetBeansProjects/swp/web/WEB-INF/viewdept/AjouterMat.jsp</file>
-            <file>file:/C:/Users/MYC/Documents/NetBeansProjects/swp/web/WEB-INF/viewdept/AddGroup.jsp</file>
-            <file>file:/C:/Users/MYC/Documents/NetBeansProjects/swp/web/WEB-INF/viewdept/Emploi_Dept.jsp</file>
-            <file>file:/C:/Users/MYC/Documents/NetBeansProjects/swp/web/WEB-INF/viewdept/ModifierMat.jsp</file>
-            <file>file:/C:/Users/MYC/Documents/NetBeansProjects/swp/web/WEB-INF/viewdept/ModifierGroupe.jsp</file>
-            <file>file:/C:/Users/MYC/Documents/NetBeansProjects/swp/web/css/mycss.css</file>
-            <file>file:/C:/Users/MYC/Documents/NetBeansProjects/swp/web/js/deptjs.js</file>
+            <file>file:/C:/Users/MYC/Documents/NetBeansProjects/swp/src/java/com/swp/servlets/ens/AddSeance.java</file>
+            <file>file:/C:/Users/MYC/Documents/NetBeansProjects/swp/src/java/com/swp/servlets/ens/GetCreneauByGroup.java</file>
+            <file>file:/C:/Users/MYC/Documents/NetBeansProjects/swp/web/WEB-INF/viewens/EmploiEns.jsp</file>
+            <file>file:/C:/Users/MYC/Documents/NetBeansProjects/swp/src/java/com/swp/servlets/ens/SignalerAbscence.java</file>
+            <file>file:/C:/Users/MYC/Documents/NetBeansProjects/swp/web/js/ens_js.js</file>
+            <file>file:/C:/Users/MYC/Documents/NetBeansProjects/swp/src/java/com/swp/servlets/ens/Absenter.java</file>
+            <file>file:/C:/Users/MYC/Documents/NetBeansProjects/swp/src/java/com/swp/servlets/ens/ChoisirSeanceDeRattrapage.java</file>
         </group>
     </open-files>
 </project-private>

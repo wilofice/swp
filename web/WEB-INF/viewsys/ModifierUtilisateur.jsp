@@ -65,7 +65,7 @@
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
                 </button>
-                <a class="navbar-brand" href="index.html"><img src="images/swp.png" width="180" height="25"></a>
+                <a class="navbar-brand" href="addUtilisateur"><img src="images/swp.png" width="180" height="25"></a>
             </div>
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
@@ -103,17 +103,17 @@
                    <a href="#" class="toggle"><i class="fa fa-question-circle"></i></a> 
                 </li>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> John Smith <b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i><c:out value="${sessionScope.ens.nom}"></c:out> <c:out value="${sessionScope.ens.prenom}"></c:out><b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li>
-                            <a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
+                            <a href="profil"><i class="fa fa-fw fa-user"></i> Profil</a>
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-fw fa-envelope"></i> Inbox</a>
                         </li>
                         <li class="divider"></li>
                         <li>
-                            <a href="#"><i class="fa fa-sign-out"></i> Log Out</a>
+                            <a href="login"><i class="fa fa-sign-out"></i> Log Out</a>
                         </li>
                     </ul>
                 </li>
@@ -223,7 +223,7 @@
        </div>
       <div class="form-group">
         <label for="idUser">IdUser</label>
-        <input type="text" class="form-control" id="idUser" name="idUser" placeholder="Entrer l'identifiant de l'utilisateur" value="<c:out value="${ensSelected.getIdUser().getIdUser()}"/>">
+        <input type="text" class="form-control" id="idUser" name="idUser" placeholder="Entrer l'identifiant de l'utilisateur" value="<c:out value="${ensSelected.getIdUser().getIdUser()}"/>" disabled>
       </div>
             
   </div>

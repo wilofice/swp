@@ -5,12 +5,13 @@
  */
 package com.swp.sessions.stateless;
 
-import com.swp.beans.Creneau;
 import com.swp.beans.Semaine;
 import java.util.Date;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 /**
@@ -45,11 +46,11 @@ public class SemaineFacade extends AbstractFacade<Semaine> {
         query.setParameter("datedebut",d);
         
         Semaine semaine = query.getSingleResult();
-        
-        
-        
-        
-        
         return semaine;
-    } 
+    }
+     
+    public List<Semaine> findAll() {
+        Query query = em.createQuery("SELECT s FROM Semaine s ORDER BY s.datedebut");
+        return query.getResultList();
+    }
 }

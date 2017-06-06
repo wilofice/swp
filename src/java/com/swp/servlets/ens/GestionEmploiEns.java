@@ -48,6 +48,8 @@ public class GestionEmploiEns extends HttpServlet {
             throws ServletException, IOException {
         Date d = this.getMonday();
                 Semaine semaine = semaineFacade.findByDateD(d);
+                
+                
                 String idens = getEnseignantIdinCookies(request, "idens");
                 Enseignant enseignant = enseignantFacade.find(Integer.parseInt(idens));
                 List<Emp> lemp = empFacade.findByEns(enseignant);
@@ -62,16 +64,24 @@ public class GestionEmploiEns extends HttpServlet {
         
       List<Seance> listseances= seanceFacade.findByType("seancesupp");
          request.setAttribute("listseances", listseances);
+          List<Seance> listexams= seanceFacade.findByType("examen");
+         request.setAttribute("listexams", listexams);
          HttpSession session = request.getSession();
          Seance sa = (Seance) session.getAttribute("seancetoabsent");
+         session.setAttribute("semainenow", semaine.getIdsemaine());
         
         
         if(sa != null) {
             request.setAttribute("seancetoabsent", sa);
             System.out.println("seance to absent from session = " + sa.getNumS());
         }
+        List<Groupe> listGrp = abscenceFacade.getGroupeEnsX(enseignant);
+        
+        request.setAttribute("listGrp",listGrp);
         
         request.setAttribute("semainecurrent", semaine.getIdsemaine());
+        List<Semaine> list_sem = semaineFacade.findAll();
+        request.setAttribute("list_sem", list_sem);
         this.getServletContext().getRequestDispatcher("/WEB-INF/viewens/EmploiEns.jsp").forward(request, response);
     }
     
@@ -131,7 +141,8 @@ public class GestionEmploiEns extends HttpServlet {
             
             
 //            List<Matiere> listMat = abscenceFacade.getMatiereEnsX(enseignant, grp);
-            
+            List<Semaine> list_sem = semaineFacade.findAll();
+        request.setAttribute("list_sem", list_sem);
         this.getServletContext().getRequestDispatcher("/WEB-INF/viewens/EmploiEns.jsp").forward(request, response);
     }
 

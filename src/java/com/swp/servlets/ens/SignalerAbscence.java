@@ -144,13 +144,13 @@ public class SignalerAbscence extends HttpServlet {
         //System.out.println("idens = " + idEns);
         //System.out.println("ensid = " + ensid);
         
-//        String messageD = request.getParameter("messageD");
-//        System.out.println(messageD);
-//        String messagetosendD = fromWhichEns + "\n" + messageD;
+        String messageD = request.getParameter("messageD");
+        System.out.println(messageD);
+        String messagetosendD = fromWhichEns + "\n" + messageD;
         
-//        SendMail.envoyerMail(emailgroupe, objetmessage, messagetosend);
-//        SendMail.envoyerMail(emailchefdepartement, objetmessage, messagetosend);
-//        SendMail.envoyerMail(emailcoordinateur, objetmessage, messagetosend);
+        SendMail.envoyerMail(emailgroupe, objetmessage, messagetosend);
+        SendMail.envoyerMail(emailchefdepartement, objetmessage, messagetosend);
+        SendMail.envoyerMail(emailcoordinateur, objetmessage, messagetosend);
         
         
         

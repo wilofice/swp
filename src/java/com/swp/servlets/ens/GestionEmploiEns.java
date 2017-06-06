@@ -73,6 +73,7 @@ public class GestionEmploiEns extends HttpServlet {
         
         
         if(sa != null) {
+            request.setAttribute("afficherMasquer", "yes");
             request.setAttribute("seancetoabsent", sa);
             System.out.println("seance to absent from session = " + sa.getNumS());
         }

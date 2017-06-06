@@ -52,7 +52,14 @@ public class Absenter {
     public void init() {
         s.setEtatS(0);
         seanceFacade.edit(s);
-        fin = abscenceFacade.getDateFin(e, m, g, s.getNumEmp().getIdsemestre());
+        //fin = abscenceFacade.getDateFin(e, m, g, s.getNumEmp().getIdsemestre());
+        fin = abscenceFacade.getDateFinSemestre(2);
+        
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(fin);
+        cal.add(Calendar.DAY_OF_WEEK, 4);
+        fin = cal.getTime();
+        System.out.println("date de fin du semestre = " + fin);
         vidCrenEns = abscenceFacade.getVidCrenEns(sysdate, fin, e);
         videGrp = abscenceFacade.getVideGrp(sysdate, fin, s.getNumC(), s.getNumEmp().getNumG(), s.getNumEmp().getIdsemestre());
         this.setVideGrpAndEns();
@@ -72,6 +79,7 @@ public class Absenter {
 
 
     public void setVideGrpAndEns() {
+        
         Iterator<Creneau> videEnsIterator = vidCrenEns.iterator();
         Creneau deEns;
         Creneau deGrp;
@@ -81,6 +89,7 @@ public class Absenter {
             while(videGrpIterator.hasNext())  {
                 deGrp = videGrpIterator.next();
                 if(Objects.equals(deGrp.getNumC(), deEns.getNumC())) {
+                    System.out.println("I found something");
                     if(videGrpAndEns == null) videGrpAndEns = new ArrayList<>();
                     videGrpAndEns.add(deEns);
                 }

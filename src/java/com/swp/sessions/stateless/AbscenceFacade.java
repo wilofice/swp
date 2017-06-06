@@ -119,5 +119,14 @@ public class AbscenceFacade {
          return results;
     }
     
+    public Date getDateFinSemestre(int idsemestre) {
+        
+        String squery = "SELECT MAX(sem.datedebut) FROM Semaine sem WHERE sem.idSemestre.idsemestre = :idSemestre";
+        Query query = em.createQuery(squery);
+        query.setParameter("idSemestre", idsemestre);
+        Date d = (Date) query.getSingleResult();
+        return d;
+    }
+    
     
 }

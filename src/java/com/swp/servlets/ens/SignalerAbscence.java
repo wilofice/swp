@@ -59,21 +59,20 @@ public class SignalerAbscence extends HttpServlet {
             throws ServletException, IOException {
         
         String seanceid = request.getParameter("seancetoabsentid");
-        
+        request.setAttribute("afficherMasquer", "yes");
         Seance sa = seanceFacade.find(Integer.parseInt(seanceid));
         
         Absenter absenter = new Absenter(sa, seanceFacade, abscenceFacade);
         
         absenter.init();
         List<Creneau> listc = absenter.getVideGrpAndEns();
-        List<Permutation> listpermut = absenter.getListpermutation();
         
-        Iterator<Permutation> pIt = listpermut.iterator();
+        Iterator<Creneau> cIt = listc.iterator();
         System.out.println("List des creneaux trouvés");
         
-        while(pIt.hasNext()) {
-            Permutation p = pIt.next();
-            System.out.println("creneau num " + p.getE().getNom() + " prenom " + p.getE().getPrenom() );
+        while(cIt.hasNext()) {
+            Creneau p = cIt.next();
+            System.out.println("creneau num " + p.getNumC() + " prenom " + p.getDate() );
         }
         
         

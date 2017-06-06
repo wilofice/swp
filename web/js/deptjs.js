@@ -222,6 +222,7 @@ $(document).ready(function(){
     //$("#groupes").prop("selectedIndex", -1);
     groupeselected = $("#groupes option:selected").attr("id");
     semestreactuelle = $("#semestres option:selected").text();
+   
        
 $('.myradio-group .myradio').click(function(){
     var id =$(".myradio-group").find('.selected').attr("id");

@@ -114,8 +114,15 @@
                                     <!--<select class="form-control" id="semaineselect" onfocus="this.size=5;" onblur="this.size=1;" onchange="this.size=1;this.blur();">-->
                                     <select class="form-control" id="semaineselect" ></select>
                                 </div>
-                                <div class="col-lg-5">
+                           <!-- <///c:if test="////$//{//afficherMasquer.equals('yes')}">-->
+                                <div class="col-lg-3 col-lg-offset-7">
+                                    <label style="display: none"> Afficher/masquer</label><br/>
+                                  <div id="boutonSwitch" class="btn-group btn-toggle" > 
+                                    <button id="btnAfficher" class="btn btn-primary active">Afficher</button>
+                                    <button id="btnMasquer" class="btn btn-default">Masquer</button>
+                                  </div>
                                 </div>
+                           <!-- <///c:if> -->
                             </div>
                             <br>
                             <div class="table-responsive">

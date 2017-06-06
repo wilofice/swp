@@ -61,6 +61,7 @@ public class GestionEmploiEns extends HttpServlet {
         request.setAttribute("seanceHashMap", seanceHashMap);
         
       List<Seance> listseances= seanceFacade.findByType("seancesupp");
+      
          request.setAttribute("listseances", listseances);
           List<Seance> listexams= seanceFacade.findByType("examen");
          request.setAttribute("listexams", listexams);

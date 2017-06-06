@@ -1143,7 +1143,7 @@
                                                                  <c:forEach items="${listseances}" var="s">
                                                                 <option value="${s.numS}">
                                                                 
-                                                                   Séance numéro <c:out value="${s.numS}"/> 
+                                                                    <c:out value="${s.numEmp.numM.nomM}"/>  au groupe  <c:out value="${s.numEmp.numG.nomG}"/>  
                                                                 </option>
                                                                 </c:forEach>
                                                                 
@@ -1181,7 +1181,7 @@
                                                             <select class="form-control" name="examsajoutes"  id="examsajoutes">
                                                             <c:forEach items="${listexams}"  var="e">
                                                                 <option value="${e.numS}">
-                                                                    examen numéro <c:out value="${e.numS}"/>
+                                                                    examen de : <c:out value="${e.numEmp.numM.nomM}"/>  au groupe  <c:out value="${e.numEmp.numG.nomG}"/>  
                                                                  
                                                                  </option>
                                                                 

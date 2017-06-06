@@ -61,12 +61,7 @@
                        
                     </ul>
                 </li>
-                <li class="dropdown">
-                   <a href="#" class="toggle"><i class="fa fa-fw fa-gear"></i></a> 
-                </li>
-                <li class="dropdown">
-                   <a href="#" class="toggle"><i class="fa fa-question-circle"></i></a> 
-                </li>
+                
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i><c:out value="${sessionScope.ens.nom}"></c:out> <c:out value="${sessionScope.ens.prenom}"></c:out><b class="caret"></b></a>
                     <p id="idofens" style="display: none;"><c:out value="${sessionScope.ens.id}"></c:out></p>
@@ -103,7 +98,7 @@
             <div class="row">
                 <div class="col-lg-9">
                     <div class="panel panel-default">
-                        <div class="panel-heading" style="font-weight: bold;">EMPLOI DU TEMPS <span id="datedujour">29/04/2017</span> Semaine  <span id=""> <c:out value="${semainecurrent}"></c:out> </span></div>
+                        <div class="panel-heading" style="font-weight: bold;">EMPLOI DU TEMPS <span id="datedujour">29/04/2017</span> Semaine  <span id="sessionScope.semainenow"> 1</span></div>
                                     
                     
                         <div class="panel-body">
@@ -114,14 +109,23 @@
                                     <label>Semaine</label>
                                     <!--<select class="form-control" id="semaineselect" onfocus="this.size=5;" onblur="this.size=1;" onchange="this.size=1;this.blur();">-->
                                     <select class="form-control" id="semaineselect" > 
-                                    <c:forEach var="i" begin="1" end="28" step="1">
+                                    <c:forEach items="${list_sem}" var ="l_sem">
+                                        <c:if test="${semainecurrent == l_sem.idsemaine}">
+                                            <option selected value="${l_sem.idsemaine}">${l_sem.idsemaine}</option>
+                                        </c:if>
+                                        <c:if test="${!(semainecurrent == l_sem.idsemaine)}">
+                                            <option value="${l_sem.idsemaine}">${l_sem.idsemaine}</option>
+                                        </c:if>
+                                    </c:forEach>
+                                        
+                                    <!--<c:forEach var="i" begin="1" end="28" step="1">
                                         <c:if test="${semainecurrent == i}">
                                             <option selected value="${i}">${i}</option>
                                         </c:if>
                                         <c:if test="${!(semainecurrent == i)}">
                                             <option value="${i}">${i}</option>
                                         </c:if>
-                                    </c:forEach>
+                                    </c:forEach>-->
                                     </select>
                                 </div>
                                 <div class="col-lg-5">

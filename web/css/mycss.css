@@ -8,6 +8,7 @@
 
 .myradio:hover {
 	cursor:pointer;
+       
         
 }
 
@@ -22,11 +23,23 @@
 .seance {
     text-align: center;
 }
-/*#myp {
-    display: none !important ;
-    font-size: 20px;
-}*/
 
 .myratt {
-    background-color: lightslategray;
+    background-color: #d1250e;
+}
+
+.myexam {
+    background-color: #FFFF33;
+}
+
+.myseancesupp {
+    background-color: #FFAF37;
+}
+
+.myseancepermut {
+    background-color: #66CC33;
+}
+
+.myreport {
+    background-color: #c9d827;
 }

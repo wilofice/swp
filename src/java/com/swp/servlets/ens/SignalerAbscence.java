@@ -58,30 +58,28 @@ public class SignalerAbscence extends HttpServlet {
             throws ServletException, IOException {
         
         String seanceid = request.getParameter("seancetoabsentid");
-        
+        request.setAttribute("afficherMasquer", "yes");
         Seance sa = seanceFacade.find(Integer.parseInt(seanceid));
         
-//        Absenter absenter = new Absenter(sa, seanceFacade, abscenceFacade);
-//        
-//        absenter.init();
-//        List<Creneau> listc = absenter.getVideGrpAndEns();
-//        
-//        
-//        Iterator<Creneau> cIt = listc.iterator();
-//        System.out.println("List des creneaux trouvés");
-//        
-//        while(cIt.hasNext()) {
-//            Creneau c = cIt.next();
-//            System.out.println("creneau num " + c.getNumC() + " date = " + c.getDate() + " heure " + c.getHeure());
-//        }
-//        
-//        
-//        AddSeance addSeance = new AddSeance(seanceFacade, ef, listc, sa);
-//        addSeance.addSeance();
+        Absenter absenter = new Absenter(sa, seanceFacade, abscenceFacade);
+        
+        absenter.init();
+        List<Creneau> listc = absenter.getVideGrpAndEns();
         
         
+        Iterator<Creneau> cIt = listc.iterator();
+        System.out.println("List des creneaux trouvés");
+        
+        while(cIt.hasNext()) {
+            Creneau c = cIt.next();
+            System.out.println("creneau num " + c.getNumC() + " date = " + c.getDate() + " heure " + c.getHeure());
+        }
         
         
+        AddSeance addSeance = new AddSeance(seanceFacade, ef, listc, sa);
+        addSeance.addSeance();
+        
+      
         String idEns = getEnseignantInfoCookies(request, "idens");
         Integer ensid = Integer.parseInt(idEns);
         Enseignant ens = enseignantFacade.find(ensid);
@@ -100,9 +98,9 @@ public class SignalerAbscence extends HttpServlet {
         request.removeAttribute("seanceHashMap");
         request.setAttribute("seanceHashMap", seanceHashMap);
         request.setAttribute("notification", "notification");
-        this.getServletContext().getRequestDispatcher("/WEB-INF/viewens/EmploiEns.jsp").forward(request, response);
+        response.sendRedirect("gestionemploiens");
         
-        Enseignant enstest = enseignantFacade.find(1);
+//        Enseignant enstest = enseignantFacade.find(1);
         
         System.out.println(seanceid);
         Seance s = seanceFacade.find(Integer.parseInt(seanceid));
@@ -123,19 +121,19 @@ public class SignalerAbscence extends HttpServlet {
         String objetmessage = request.getParameter("objetmessage");
         //System.out.println("taille du objetmessage " + objetmessage.length());
         
-        Message msgt = new Message();
+//        Message msgt = new Message();
         Calendar cal = Calendar.getInstance();
-        msgt.setDate(cal.getTime());
-        
-        msgt.setTypeReceiver("groupe");
-        msgt.setIdMsg(1);
-        msgt.setSender(ens);
-        msgt.setText(message);
-        msgt.setTime(cal.getTime());
-        msgt.setObjet(objetmessage);
-        msgt.setReceiver(enstest.getEmail());
-        System.out.println("before creating");
-        messageFacade.create(msgt);
+//        msgt.setDate(cal.getTime());
+//        
+//        msgt.setTypeReceiver("groupe");
+//        msgt.setIdMsg(1);
+//        msgt.setSender(ens);
+//        msgt.setText(message);
+//        msgt.setTime(cal.getTime());
+//        msgt.setObjet(objetmessage);
+//        msgt.setReceiver(enstest.getEmail());
+//        System.out.println("before creating");
+//        messageFacade.create(msgt);
         //System.out.println("ensnom  " + ens.getPrenom());
         String nomEns = getEnseignantInfoCookies(request, "nomens");
         String prenomEns = getEnseignantInfoCookies(request, "prenomens");

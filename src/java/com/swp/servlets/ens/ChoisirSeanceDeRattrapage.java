@@ -53,6 +53,7 @@ public class ChoisirSeanceDeRattrapage extends HttpServlet {
         String seancetoreport = request.getParameter("seancereportid");
         Integer numjour = 0;
         Integer numheure = 0; 
+        
         if(seancetoreport.equals("l8")) {
             numjour = 1;
             numheure = 1;
@@ -210,7 +211,7 @@ public class ChoisirSeanceDeRattrapage extends HttpServlet {
         se.setEtatS(1);
         se.setNumC(creneau);
         se.setNumEmp(newEmp);
-        se.setType("seance");
+        se.setType("report");
         seanceFacade.create(se);
         DelSeance del = new DelSeance(seanceFacade, empFacade, seAb);
         del.deleteSeance();
@@ -227,7 +228,7 @@ public class ChoisirSeanceDeRattrapage extends HttpServlet {
         HttpSession session = request.getSession();
         session.removeAttribute("seancetoabsent");
         
-        this.getServletContext().getRequestDispatcher("/WEB-INF/viewens/EmploiEns.jsp").forward(request, response);
+        response.sendRedirect("gestionemploiens");
     }
 
     @Override

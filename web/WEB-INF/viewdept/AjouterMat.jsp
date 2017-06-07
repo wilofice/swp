@@ -35,12 +35,12 @@
         function ModifierMat(codeM){
             
             //alert(codeM);
-            window.location.href = "http://localhost:8080/swp/ModifierMat?codeM="+codeM;
+            window.location.href = "/swp/ModifierMat?codeM="+codeM;
         }
         
         function SupprimerMat(codeM){
             //alert(codeM);
-            window.location.href = "http://localhost:8080/swp/SupprimerMat?codeM="+codeM;
+            window.location.href = "/swp/SupprimerMat?codeM="+codeM;
              
         }
         
@@ -61,55 +61,17 @@
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
                 </button>
-                <a class="navbar-brand" href="index.html"><img src="images/swp.png" width="180" height="25"></a>
+                <a class="navbar-brand" href=""><img src="images/swp.png" width="180" height="25"></a>
             </div>
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell"></i> <b class="caret"></b></a>
-                    <ul class="dropdown-menu alert-dropdown">
-                        <li>
-                            <a href="#">Alert Name <span class="label label-default">Alert Badge</span></a>
-                        </li>
-                        <li>
-                            <a href="#">Alert Name <span class="label label-primary">Alert Badge</span></a>
-                        </li>
-                        <li>
-                            <a href="#">Alert Name <span class="label label-success">Alert Badge</span></a>
-                        </li>
-                        <li>
-                            <a href="#">Alert Name <span class="label label-info">Alert Badge</span></a>
-                        </li>
-                        <li>
-                            <a href="#">Alert Name <span class="label label-warning">Alert Badge</span></a>
-                        </li>
-                        <li>
-                            <a href="#">Alert Name <span class="label label-danger">Alert Badge</span></a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">View All</a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                   <a href="#" class="toggle"><i class="fa fa-fw fa-gear"></i></a> 
-                </li>
-                <li class="dropdown">
-                   <a href="#" class="toggle"><i class="fa fa-question-circle"></i></a> 
-                </li>
+                
                 <li class="dropdown">
                      <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i><c:out value="${sessionScope.ens.nom}"></c:out> <c:out value="${sessionScope.ens.prenom}"></c:out><b class="caret"></b></a>
                     <ul class="dropdown-menu">
+                       
                         <li>
-                            <a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-fw fa-envelope"></i> Inbox</a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#"><i class="fa fa-sign-out"></i> Log Out</a>
+                            <a href="login"><i class="fa fa-sign-out"></i> Log Out</a>
                         </li>
                     </ul>
                 </li>
@@ -118,13 +80,13 @@
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
                     <li>
-                        <a href="gestionemploi"><i class="fa fa-calendar "></i> Emplois du temps</a>
+                        <a href="/swp/gestionemploi?grpid=1&semestreid=2"><i class="fa fa-calendar "></i> Emplois du temps</a>
                     </li>
                     <li class="active">
-                        <a href="addmatiere"><i class="fa fa-book"></i>  Matières</a>
+                        <a href="/swp/addmatiere"><i class="fa fa-book"></i>  Matières</a>
                     </li>
                     <li>
-                        <a href="addgroupe"><i class="fa fa-users"></i> Groupes</a>
+                        <a href="/swp/addgroupe"><i class="fa fa-users"></i> Groupes</a>
                     </li>          
                 </ul>
             </div>

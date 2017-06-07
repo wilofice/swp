@@ -16,7 +16,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin - Bootstrap Admin Template</title>
+    <title>Emploi du temps</title>
     <script src="js/jquery.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
@@ -76,105 +76,17 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html"><logo>SwapMyLecture</logo></a>
+                <a class="navbar-brand" href=""><logo>SwapMyLecture</logo></a>
             </div>
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
+                                
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope"></i> <b class="caret"></b></a>
-                    <ul class="dropdown-menu message-dropdown">
-                        <li class="message-preview">
-                            <a href="#">
-                                <div class="media">
-                                    <span class="pull-left">
-                                        <img class="media-object" src="http://placehold.it/50x50" alt="">
-                                    </span>
-                                    <div class="media-body">
-                                        <h5 class="media-heading"><strong>John Smith</strong>
-                                        </h5>
-                                        <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
-                                        <p>Lorem ipsum dolor sit amet, consectetur...</p>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="message-preview">
-                            <a href="#">
-                                <div class="media">
-                                    <span class="pull-left">
-                                        <img class="media-object" src="http://placehold.it/50x50" alt="">
-                                    </span>
-                                    <div class="media-body">
-                                        <h5 class="media-heading"><strong>John Smith</strong>
-                                        </h5>
-                                        <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
-                                        <p>Lorem ipsum dolor sit amet, consectetur...</p>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="message-preview">
-                            <a href="#">
-                                <div class="media">
-                                    <span class="pull-left">
-                                        <img class="media-object" src="http://placehold.it/50x50" alt="">
-                                    </span>
-                                    <div class="media-body">
-                                        <h5 class="media-heading"><strong>John Smith</strong>
-                                        </h5>
-                                        <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
-                                        <p>Lorem ipsum dolor sit amet, consectetur...</p>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="message-footer">
-                            <a href="#">Read All New Messages</a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell"></i> <b class="caret"></b></a>
-                    <ul class="dropdown-menu alert-dropdown">
-                        <li>
-                            <a href="#">Alert Name <span class="label label-default">Alert Badge</span></a>
-                        </li>
-                        <li>
-                            <a href="#">Alert Name <span class="label label-primary">Alert Badge</span></a>
-                        </li>
-                        <li>
-                            <a href="#">Alert Name <span class="label label-success">Alert Badge</span></a>
-                        </li>
-                        <li>
-                            <a href="#">Alert Name <span class="label label-info">Alert Badge</span></a>
-                        </li>
-                        <li>
-                            <a href="#">Alert Name <span class="label label-warning">Alert Badge</span></a>
-                        </li>
-                        <li>
-                            <a href="#">Alert Name <span class="label label-danger">Alert Badge</span></a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">View All</a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> John Smith <b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <c:out value="${sessionScope.ens.nom}"></c:out> <c:out value="${sessionScope.ens.prenom}"></c:out> <b class="caret"></b></a>
                     <ul class="dropdown-menu">
+                        
                         <li>
-                            <a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-fw fa-envelope"></i> Inbox</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-fw fa-gear"></i> Settings</a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+                            <a href="login"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
                         </li>
                     </ul>
                 </li>
@@ -197,10 +109,7 @@
         </nav>
 
         <div id="page-wrapper">
-
-             <!-- /.row -->
-
-             
+            
             <div class="row">
                 <div class="col-lg-9">
                     <div class="panel panel-default">
@@ -209,6 +118,8 @@
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
+                            <span> Affichage de l'emploi du temps </span>
+                            <span> Ajout de séance </span>
                             <div class="row">    
                                 <!-- /.liste niveau -->
                                  <div class="col-lg-2">
@@ -234,7 +145,7 @@
                                 </select>
                                  </div>
                                 <div class="col-lg-5">
-                                                      <!-- /popun supprimer -->
+                                                      <!-- popun supprimer -->
                                                       <br>
     <button type="button" class="btn btn-primary active">Enregistrer tout</button>
        <div id="supprimer" class="modal fade">
@@ -256,10 +167,9 @@
 </div> 
     
 <br>
-                                </div>
-
+</div>
                             </div>
-                                  <br>
+                             <br/>
                                   
                             <div class="table-responsive">
                                 <table class="table table-bordered ">
@@ -276,7 +186,7 @@
                                         <tr>
                                             <td>LUNDI</td>
                                             <td class="myradio" id="1">
-                                              
+                                              <div align="center">
                                                 <span id="groupe1" ></span>
                                                 <br>
                                                 <span id="sd1"></span>
@@ -286,7 +196,7 @@
                                                 <span id="matiere1"></span>
                                                 <br>
                                                 <span id="enseignant1"></span>
-                                              
+                                              </div>
                                             </td>
                                             <td class="myradio" id="2">
                                                 <div align="center">
@@ -340,7 +250,7 @@
                                                 </div>
                                             </td>
                                             <td class="myradio" id="6">
-                                                <align="center">
+                                                <div align="center">
                                                  <span id="groupe6"></span>
                                                 <br>
                                                 <span id="sd6"></span>
@@ -349,7 +259,7 @@
                                                 <span id="matiere6"></span>
                                                 <br>
                                                 <span id="enseignant6"></span>
-                                                </align>
+                                                </div>
                                             </td>
                                             <td class="myradio" id="7">
                                                 <div align="center">

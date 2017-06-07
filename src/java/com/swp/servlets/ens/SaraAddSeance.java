@@ -136,7 +136,7 @@ public class SaraAddSeance extends HttpServlet {
            
             empFacade.create(emp);
             System.out.println("in method get 3");
-        Seance s=new Seance(1,"seance",1);
+        Seance s=new Seance(1,"seancesupp",1);
             s.setNumC(cr);
             s.setNumEmp(emp);
             s.setType("seancesupp");
@@ -165,7 +165,7 @@ public class SaraAddSeance extends HttpServlet {
 //        
 //        request.setAttribute("listGrp",listGrp);
             
-        response.sendRedirect("gestionemploiens") ;
+        response.sendRedirect("gestionemploiens");
      }
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)

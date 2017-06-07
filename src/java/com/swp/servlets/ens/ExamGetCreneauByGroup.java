@@ -129,7 +129,6 @@ public class ExamGetCreneauByGroup extends HttpServlet {
             PlannSExam plannSExam = new PlannSExam(absenceFacade, semestreFacade, actusem.getIdsemestre(), ens, grp);
             plannSExam.init();
             List<Creneau> videGrpAndEns = plannSExam.getResults();
-            
             Iterator<Creneau> creIt = videGrpAndEns.iterator();
             sb.append("<creneaux>");
             while(creIt.hasNext()) {

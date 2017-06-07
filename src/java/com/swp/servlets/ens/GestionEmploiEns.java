@@ -59,6 +59,8 @@ public class GestionEmploiEns extends HttpServlet {
         List<Seance> listSeance = shm.getSeanceEnsBySemaine(lemp, semaine.getIdsemaine());
         HashMap<String, HashMap<String, Seance>> seanceHashMap = shm.getHashMap(listSeance);
         
+                
+        
         request.removeAttribute("seanceHashMap");
         request.setAttribute("seanceHashMap", seanceHashMap);
         
@@ -82,7 +84,23 @@ public class GestionEmploiEns extends HttpServlet {
         request.setAttribute("semainecurrent", semaine.getIdsemaine());
         List<Semaine> list_sem = semaineFacade.findAll();
         request.setAttribute("list_sem", list_sem);
+        request.removeAttribute("seanceHashMap");
+        request.setAttribute("seanceHashMap", seanceHashMap);
+        
+     
+        
+        
+        if(sa != null) {
+            request.setAttribute("seancetoabsent", sa);
+            System.out.println("seance to absent from session = " + sa.getNumS());
+        }
+        
+        
+        request.setAttribute("listGrp",listGrp);
+        
+        request.setAttribute("semainecurrent", semaine.getIdsemaine());
         this.getServletContext().getRequestDispatcher("/WEB-INF/viewens/EmploiEns.jsp").forward(request, response);
+
     }
     
     protected void processRequestPost(HttpServletRequest request, HttpServletResponse response)
@@ -110,6 +128,7 @@ public class GestionEmploiEns extends HttpServlet {
         
         
         if(sa != null) {
+            request.setAttribute("afficherMasquer", "yes");
             request.setAttribute("seancetoabsent", sa);
             System.out.println("seance to absent from session = " + sa.getNumS());
         }

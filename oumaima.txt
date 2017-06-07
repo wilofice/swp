@@ -1,0 +1,4 @@
+1- Configuration du serveur :
+	- Configuration Linux ( packages "Network servers" : utiliser NFS et SSh)
+	- Deux cartes réseau ( une pour le monde extérieur et une pour le réseau interne du cluster)
+2- Configuration des hôtes

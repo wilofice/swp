@@ -37,9 +37,6 @@
                         <c:if test="${!empty erreurpassword}">
                             <p class="motdepasserror">Le mot de passe est incorrect.</p>
                         </c:if> 
-                           
-                            <input  type="checkbox" name="souvenir" value=""><span style="color: white;">Se souvenir de moi</span>
-                         
 			<input type="submit" value="Login">
                     </form>	
         <a href="/swp/mdpOublie"><span style="color: white;">Mot de passe oublié?</span></a>

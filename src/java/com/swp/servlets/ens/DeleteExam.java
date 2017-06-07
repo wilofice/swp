@@ -9,6 +9,7 @@ import com.swp.beans.Seance;
 import com.swp.sessions.stateless.SeanceFacade;
 import java.io.IOException;
 import java.util.List;
+import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -21,7 +22,8 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "DeleteExam", urlPatterns = {"/deleteexam"})
 public class DeleteExam extends HttpServlet {
-
+    
+    @EJB
    SeanceFacade seanceFacade ;
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -40,7 +42,7 @@ public class DeleteExam extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        
          List<Seance> listseances= seanceFacade.findByType("seancesupp");
          request.setAttribute("listseances", listseances);
           response.sendRedirect("gestionemploiens") ;

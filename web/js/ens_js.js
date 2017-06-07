@@ -243,7 +243,42 @@ function parseExamMessages(responseXML) {
 
 $(document).ready(function(){
     
-    //getCountMessage();
+
+        
+        
+        
+        //$('.myratt').css('background-color','red');
+
+
+        $("#btnAfficher").click(function(){
+            if(!$("#btnAfficher").hasClass('active')) {
+                $("#btnMasquer").removeClass('btn-primary');
+                $("#btnMasquer").removeClass('active');
+                $("#btnMasquer").addClass('btn-default');            
+                $("#btnAfficher").removeClass('btn-default');
+                $("#btnAfficher").addClass('btn-primary');
+                $("#btnAfficher").addClass('active');
+                //$("#btnAfficher").toggleClass('btn-default'); 
+                $('.myratt').css('background-color','#d1250e');
+                $('.myratt').css('color','black');
+            }
+            
+        });
+        $("#btnMasquer").click(function(){
+            if(!$("#btnMasquer").hasClass('active')){
+                $("#btnMasquer").removeClass('btn-default');
+                $("#btnMasquer").addClass('btn-primary');
+                $("#btnMasquer").addClass('active');
+                $("#btnAfficher").removeClass('btn-primary');
+                $("#btnAfficher").removeClass('active');
+                $("#btnAfficher").addClass('btn-default');
+                //$("#btnAfficher").toggleClass('btn-default'); 
+                $('.myratt').css('background-color','white');
+                $('.myratt').css('color','white');  
+            }
+            
+        });
+ 
     
 var currentDate  = new Date(),
     currentDay   = currentDate.getDate() < 10 
@@ -290,10 +325,10 @@ $('.myradio-group .seance').dblclick(function(){
     var jourSelected = $('#jour' + idselected).text();
     var heureSelected = $('#heure' + idselected).text();
     console.log("Hello jour et heure " + $('#jour' + idselected).text() + $('#heure' + idselected).text());
-    
+    var semaineselected = $('#semaineselect option:selected').attr("value");
     $('#seancereportid').attr("value", idselected);
     $('#seanceAbsenceid').attr("value", numS);
-    $('#currentsemainereportid').attr("value", "25");
+    $('#currentsemainereportid').attr("value", semaineselected);
     option = document.createElement("option");
     option.setAttribute("value", groupemail);
     

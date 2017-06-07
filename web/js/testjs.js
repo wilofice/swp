@@ -132,7 +132,7 @@ function edit() {
 }
 
 function mydelete() {
-    var idthis =$(".myradio-group").find('.selected').attr("id");
+    var idthis = $(".myradio-group").find('.selected').attr("id");
     $("#matiere" + idthis).text("");
     $("#matiereid" + idthis).text("");
     $("#sd" + idthis).text("");
@@ -220,7 +220,9 @@ $(document).ready(function(){
     $("#matiereselect").prop("selectedIndex", -1);
     $("#semestres").prop("selectedIndex", -1);
     $("#groupes").prop("selectedIndex", -1);
-    
+    groupeselected = $("#groupes option:selected").attr("id");
+    semestreactuelle = $("#semestres option:selected").text();
+       
 $('.myradio-group .myradio').click(function(){
     var id =$(".myradio-group").find('.selected').attr("id");
     $(".myradio-group").find('.selected').popover("hide");
@@ -334,7 +336,7 @@ $('.myradio-group .myradio').click(function(){
     }
     
     $(this).popover({
-         html: true,
+        html: true,
         template: '<div class="popover" role="tooltip"><div class="arrow"></div><h3 class="popover-title"></h3><div class="popover-content"></div></div>'
     });
     console.log("i'm here");
@@ -408,28 +410,25 @@ $('#reset').click(function(){
 
 });
 
-$('#enregister').click(function(){
-    alert("lsqdjfq");
-    return;
-    var groupe1 = $("#groupe1").text();
-    var sd1 = $("sd1").text();
-    var sf1 = $("sf1").text();
-    var matiere1 = $("matiere1").text();
-    var enseignant1 = $("enseignant1").text();
+$('#afficher').click(function(){
+    grpid = $("#groupes option:selected").attr("id");
+    console.log("Le groupe id:" + groupeselected);
+    semestreid = $("#semestres option:selected").text();
+    window.location.href = "/swp/gestionemploi?grpid=" + grpid + "&semestreid=" + semestreid;
     
-    var postFormStr = '<form action="gestionemploi" method="post">' +
-  '<input type="text" name="groupe1" value="' + 1 + '" />' + 
-  '<input type="text" name="sd1" value="' + 1 + '" />' +
-  '<input type="text" name="sf1" value="' + 2 + '" />' +
-  '<input type="text" name="matiere1" value="uml" />' +
-  '<input type="text" name="enseignant1" value="' + 1 + '" />' +
-  '</form>';
+//    var postFormStr = '<form action="gestionemploi" method="post">' +
+//  '<input type="text" name="groupe1" value="' + 1 + '" />' + 
+//  '<input type="text" name="sd1" value="' + 1 + '" />' +
+//  '<input type="text" name="sf1" value="' + 2 + '" />' +
+//  '<input type="text" name="matiere1" value="uml" />' +
+//  '<input type="text" name="enseignant1" value="' + 1 + '" />' +
+//  '</form>';
 
 
-    var formElement = $(postFormStr);
+ //   var formElement = $(postFormStr);
 
-    $('body').append(formElement);
-    $(formElement).submit();
+ //   $('body').append(formElement);
+ //   $(formElement).submit();
 
 });
 

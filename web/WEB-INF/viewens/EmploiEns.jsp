@@ -55,12 +55,14 @@
             </div>
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
-                <li class="dropdown">
+                <!--<li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i  class="fa fa-bell"></i> <b class="caret"></b><span id="numbernot"  class="badge" ></span> </a>
                     <ul  id="notif" class="dropdown-menu alert-dropdown">
                        
                     </ul>
-                   <li class="dropdown">
+                </li>-->
+                
+                <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i><c:out value="${sessionScope.ens.nom}"></c:out> <c:out value="${sessionScope.ens.prenom}"></c:out><b class="caret"></b></a>
                     <p id="idofens" style="display: none;"><c:out value="${sessionScope.ens.id}"></c:out></p>
                     <ul class="dropdown-menu">
@@ -96,7 +98,7 @@
             <div class="row">
                 <div class="col-lg-9">
                     <div class="panel panel-default">
-                        <div class="panel-heading" style="font-weight: bold;">EMPLOI DU TEMPS <span id="datedujour">29/04/2017</span> Semaine  <span id=""> <c:out value="${sessionScope.semainenow}"></c:out> </span></div>
+                        <div class="panel-heading" style="font-weight: bold;">EMPLOI DU TEMPS <span id="datedujour">29/04/2017</span> Semaine  <span id=""> ${sessionScope.semainenow}</span></div>
                                     
                     
                         <div class="panel-body">
@@ -126,8 +128,15 @@
                                     </c:forEach>-->
                                     </select>
                                 </div>
-                                <div class="col-lg-5">
+                           <!-- <///c:if test="////$//{//afficherMasquer.equals('yes')}">-->
+                                <div class="col-lg-3 col-lg-offset-7">
+                                    <label style="display: none"> Afficher/masquer</label><br/>
+                                  <div id="boutonSwitch" class="btn-group btn-toggle" > 
+                                    <button id="btnAfficher" class="btn btn-primary active">Afficher</button>
+                                    <button id="btnMasquer" class="btn btn-default">Masquer</button>
+                                  </div>
                                 </div>
+                           <!-- <///c:if> -->
                             </div>
                             <br>
                             <div class="table-responsive">
@@ -146,6 +155,52 @@
                                             <td>LUNDI</td>
                                             <td class="seance" id="l8">
                                                 <c:if test="${not empty seanceHashMap['lundi']['8']}">
+                                                    <c:set var="type1" value="${seanceHashMap['lundi']['8'].type}" scope="page"></c:set>
+                                                    
+                                                    <c:choose>
+                                                        <c:when test="${type1.equals('report')}"> 
+                                                            <script>
+                                                                document.write("<span>Report programmé</span><br>");
+                                                                $(document).ready(function(){
+                                                                   $('#l8').addClass('myreport');
+                                                                });
+                                                            </script>
+                                                        </c:when> 
+                                                        <c:when test="${type1.equals('examen')}"> 
+                                                            <script>
+                                                                document.write("<span>Examen de </span><br>");
+                                                                $(document).ready(function(){
+                                                                   $('#l8').addClass('myexam');
+                                                                });
+                                                            </script>
+                                                        </c:when>
+                                                        <c:when test="${type1.equals('seancesupp')}">
+                                                             <script>
+                                                                document.write("<span>Seance Supp programmé</span><br>");
+                                                                $(document).ready(function(){
+                                                                   $('#l8').addClass('myseancesupp');
+                                                                });
+                                                            </script>
+                                                        
+                                                        </c:when>
+                                                        <c:when test="${type1.equals('permut')}"> 
+                                                            <script>
+                                                                document.write("<span>Perumtation de cours</span><br>");
+                                                                $(document).ready(function(){
+                                                                   $('#l8').addClass('myseancepermut');
+                                                                });
+                                                            </script>
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            <script>
+                                                                document.write("<span>Rattrapage Possible</span><br>");
+                                                                $(document).ready(function(){
+                                                                   $('#l8').addClass('myratt');
+                                                                });
+                                                            </script>
+                                                        </c:otherwise>
+                                                    </c:choose>
+                                                   
                                                     <span id="idseancel8" style="display: none;"><c:out value='${(seanceHashMap["lundi"])["8"].numS}'></c:out></span>
                                                     <!-- Enregistrer les ids des groupes et matieres dans des élements html invisibles pour après les réutiliser-->
                                                     <span id="matiereidl8" style="display: none;"><c:out value='${(seanceHashMap["lundi"])["8"].numEmp.numM.codeM}'></c:out></span>
@@ -171,6 +226,51 @@
                                             
                                             <td class="seance" id="ll0">
                                                 <c:if test="${not empty seanceHashMap['lundi']['10']}">
+                                                    <c:set var="type2" value="${seanceHashMap['lundi']['10'].type}" scope="page"></c:set>
+                                                    
+                                                    <c:choose>
+                                                        <c:when test="${type2.equals('report')}"> 
+                                                            <script>
+                                                                document.write("<span>Report programmé</span><br>");
+                                                                $(document).ready(function(){
+                                                                   $('#l10').addClass('myreport');
+                                                                });
+                                                            </script>
+                                                        </c:when> 
+                                                        <c:when test="${type2.equals('examen')}"> 
+                                                            <script>
+                                                                document.write("<span>Examen de </span><br>");
+                                                                $(document).ready(function(){
+                                                                   $('#l10').addClass('myexam');
+                                                                });
+                                                            </script>
+                                                        </c:when>
+                                                        <c:when test="${type2.equals('seancesupp')}">
+                                                             <script>
+                                                                document.write("<span>Seance Supp programmé</span><br>");
+                                                                $(document).ready(function(){
+                                                                   $('#l10').addClass('myseancesupp');
+                                                                });
+                                                            </script>
+                                                        
+                                                        </c:when>
+                                                        <c:when test="${type2.equals('permut')}"> 
+                                                            <script>
+                                                                document.write("<span>Perumtation de cours</span><br>");
+                                                                $(document).ready(function(){
+                                                                   $('#l10').addClass('myseancepermut');
+                                                                });
+                                                            </script>
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            <script>
+                                                                document.write("<span>Rattrapage Possible</span><br>");
+                                                                $(document).ready(function(){
+                                                                   $('#l10').addClass('myratt');
+                                                                });
+                                                            </script>
+                                                        </c:otherwise>
+                                                    </c:choose>
                                                     <span id="idseancel10" style="display: none;"><c:out value='${(seanceHashMap["lundi"])["10"].numS}'></c:out></span>
                                                     <!-- Enregistrer les ids des groupes et matieres dans des élements html invisibles pour après les réutiliser-->
                                                     <span id="matiereidl10" style="display: none;"><c:out value='${(seanceHashMap["lundi"])["10"].numEmp.numM.codeM}'></c:out></span>
@@ -195,6 +295,52 @@
                                             </td>
                                             <td class="seance" id="l14">
                                                 <c:if test="${not empty seanceHashMap['lundi']['14']}">
+                                                    
+                                                    <c:set var="type3" value="${seanceHashMap['lundi']['14'].type}" scope="page"></c:set>
+                                                    
+                                                    <c:choose>
+                                                        <c:when test="${type3.equals('report')}"> 
+                                                            <script>
+                                                                document.write("<span>Report programmé</span><br>");
+                                                                $(document).ready(function(){
+                                                                   $('#l14').addClass('myreport');
+                                                                });
+                                                            </script>
+                                                        </c:when> 
+                                                        <c:when test="${type3.equals('examen')}"> 
+                                                            <script>
+                                                                document.write("<span>Examen de </span><br>");
+                                                                $(document).ready(function(){
+                                                                   $('#l14').addClass('myexam');
+                                                                });
+                                                            </script>
+                                                        </c:when>
+                                                        <c:when test="${type3.equals('seancesupp')}">
+                                                             <script>
+                                                                document.write("<span>Seance Supp programmé</span><br>");
+                                                                $(document).ready(function(){
+                                                                   $('#l14').addClass('myseancesupp');
+                                                                });
+                                                            </script>
+                                                        
+                                                        </c:when>
+                                                        <c:when test="${type3.equals('permut')}"> 
+                                                            <script>
+                                                                document.write("<span>Perumtation de cours</span><br>");
+                                                                $(document).ready(function(){
+                                                                   $('#l14').addClass('myseancepermut');
+                                                                });
+                                                            </script>
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            <script>
+                                                                document.write("<span>Rattrapage Possible</span><br>");
+                                                                $(document).ready(function(){
+                                                                   $('#l14').addClass('myratt');
+                                                                });
+                                                            </script>
+                                                        </c:otherwise>
+                                                    </c:choose>
                                                     <span id="idseancel14" style="display: none;"><c:out value='${(seanceHashMap["lundi"])["14"].numS}'></c:out></span>
                                                     <!-- Enregistrer les ids des groupes et matieres dans des élements html invisibles pour après les réutiliser-->
                                                     <span id="matiereidl14" style="display: none;"><c:out value='${(seanceHashMap["lundi"])["14"].numEmp.numM.codeM}'></c:out></span>
@@ -219,6 +365,52 @@
                                             </td>
                                             <td class="seance" id="l16">
                                                 <c:if test="${not empty seanceHashMap['lundi']['16']}">
+                                                    
+                                                    <c:set var="type4" value="${seanceHashMap['lundi']['16'].type}" scope="page"></c:set>
+                                                    
+                                                    <c:choose>
+                                                        <c:when test="${type4.equals('report')}"> 
+                                                            <script>
+                                                                document.write("<span>Report programmé</span><br>");
+                                                                $(document).ready(function(){
+                                                                   $('#l16').addClass('myreport');
+                                                                });
+                                                            </script>
+                                                        </c:when> 
+                                                        <c:when test="${type4.equals('examen')}"> 
+                                                            <script>
+                                                                document.write("<span>Examen de </span><br>");
+                                                                $(document).ready(function(){
+                                                                   $('#l16').addClass('myexam');
+                                                                });
+                                                            </script>
+                                                        </c:when>
+                                                        <c:when test="${type4.equals('seancesupp')}">
+                                                             <script>
+                                                                document.write("<span>Seance Supp programmé</span><br>");
+                                                                $(document).ready(function(){
+                                                                   $('#l16').addClass('myseancesupp');
+                                                                });
+                                                            </script>
+                                                        
+                                                        </c:when>
+                                                        <c:when test="${type4.equals('permut')}"> 
+                                                            <script>
+                                                                document.write("<span>Perumtation de cours</span><br>");
+                                                                $(document).ready(function(){
+                                                                   $('#l16').addClass('myseancepermut');
+                                                                });
+                                                            </script>
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            <script>
+                                                                document.write("<span>Rattrapage Possible</span><br>");
+                                                                $(document).ready(function(){
+                                                                   $('#l16').addClass('myratt');
+                                                                });
+                                                            </script>
+                                                        </c:otherwise>
+                                                    </c:choose>
                                                     <span id="idseancel16" style="display: none;"><c:out value='${(seanceHashMap["lundi"])["16"].numS}'></c:out></span>
                                                     <!-- Enregistrer les ids des groupes et matieres dans des élements html invisibles pour après les réutiliser-->
                                                     <span id="matiereidl16" style="display: none;"><c:out value='${(seanceHashMap["lundi"])["16"].numEmp.numM.codeM}'></c:out></span>
@@ -246,6 +438,51 @@
                                             <td>MARDI</td>
                                             <td class="seance" id="m8">
                                                 <c:if test="${not empty seanceHashMap['mardi']['8']}">
+                                                    <c:set var="type5" value="${seanceHashMap['mardi']['8'].type}" scope="page"></c:set>
+                                                    
+                                                    <c:choose>
+                                                        <c:when test="${type5.equals('report')}"> 
+                                                            <script>
+                                                                document.write("<span>Report programmé</span><br>");
+                                                                $(document).ready(function(){
+                                                                   $('#m8').addClass('myreport');
+                                                                });
+                                                            </script>
+                                                        </c:when> 
+                                                        <c:when test="${type5.equals('examen')}"> 
+                                                            <script>
+                                                                document.write("<span>Examen de </span><br>");
+                                                                $(document).ready(function(){
+                                                                   $('#m8').addClass('myexam');
+                                                                });
+                                                            </script>
+                                                        </c:when>
+                                                        <c:when test="${type5.equals('seancesupp')}">
+                                                             <script>
+                                                                document.write("<span>Seance Supp programmé</span><br>");
+                                                                $(document).ready(function(){
+                                                                   $('#m8').addClass('myseancesupp');
+                                                                });
+                                                            </script>
+                                                        
+                                                        </c:when>
+                                                        <c:when test="${type5.equals('permut')}"> 
+                                                            <script>
+                                                                document.write("<span>Perumtation de cours</span><br>");
+                                                                $(document).ready(function(){
+                                                                   $('#m8').addClass('myseancepermut');
+                                                                });
+                                                            </script>
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            <script>
+                                                                document.write("<span>Rattrapage Possible</span><br>");
+                                                                $(document).ready(function(){
+                                                                   $('#m8').addClass('myratt');
+                                                                });
+                                                            </script>
+                                                        </c:otherwise>
+                                                    </c:choose>
                                                     <span id="idseancem8" style="display: none;"><c:out value='${(seanceHashMap["mardi"])["8"].numS}'></c:out></span>
                                                     <!-- Enregistrer les ids des groupes et matieres dans des élements html invisibles pour après les réutiliser-->
                                                     <span id="matiereidm8" style="display: none;"><c:out value='${(seanceHashMap["mardi"])["8"].numEmp.numM.codeM}'></c:out></span>
@@ -270,6 +507,51 @@
                                             </td>
                                             <td class="seance" id="m10">
                                                 <c:if test="${not empty seanceHashMap['mardi']['10']}">
+                                                    <c:set var="type6" value="${seanceHashMap['mardi']['10'].type}" scope="page"></c:set>
+                                                    
+                                                    <c:choose>
+                                                        <c:when test="${type6.equals('report')}"> 
+                                                            <script>
+                                                                document.write("<span>Report programmé</span><br>");
+                                                                $(document).ready(function(){
+                                                                   $('#m10').addClass('myreport');
+                                                                });
+                                                            </script>
+                                                        </c:when> 
+                                                        <c:when test="${type6.equals('examen')}"> 
+                                                            <script>
+                                                                document.write("<span>Examen de </span><br>");
+                                                                $(document).ready(function(){
+                                                                   $('#m10').addClass('myexam');
+                                                                });
+                                                            </script>
+                                                        </c:when>
+                                                        <c:when test="${type6.equals('seancesupp')}">
+                                                             <script>
+                                                                document.write("<span>Seance Supp programmé</span><br>");
+                                                                $(document).ready(function(){
+                                                                   $('#m10').addClass('myseancesupp');
+                                                                });
+                                                            </script>
+                                                        
+                                                        </c:when>
+                                                        <c:when test="${type6.equals('permut')}"> 
+                                                            <script>
+                                                                document.write("<span>Perumtation de cours</span><br>");
+                                                                $(document).ready(function(){
+                                                                   $('#m10').addClass('myseancepermut');
+                                                                });
+                                                            </script>
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            <script>
+                                                                document.write("<span>Rattrapage Possible</span><br>");
+                                                                $(document).ready(function(){
+                                                                   $('#m10').addClass('myratt');
+                                                                });
+                                                            </script>
+                                                        </c:otherwise>
+                                                    </c:choose>
                                                     <span id="idseancem10" style="display: none;"><c:out value='${(seanceHashMap["mardi"])["10"].numS}'></c:out></span>
                                                     <!-- Enregistrer les ids des groupes et matieres dans des élements html invisibles pour après les réutiliser-->
                                                     <span id="matiereidm10" style="display: none;"><c:out value='${(seanceHashMap["mardi"])["10"].numEmp.numM.codeM}'></c:out></span>
@@ -294,6 +576,51 @@
                                             </td>
                                             <td class="seance" id="m14">
                                                 <c:if test="${not empty seanceHashMap['mardi']['14']}">
+                                                    <c:set var="type7" value="${seanceHashMap['mardi']['14'].type}" scope="page"></c:set>
+                                                    
+                                                    <c:choose>
+                                                        <c:when test="${type7.equals('report')}"> 
+                                                            <script>
+                                                                document.write("<span>Report programmé</span><br>");
+                                                                $(document).ready(function(){
+                                                                   $('#m14').addClass('myreport');
+                                                                });
+                                                            </script>
+                                                        </c:when> 
+                                                        <c:when test="${type7.equals('examen')}"> 
+                                                            <script>
+                                                                document.write("<span>Examen de </span><br>");
+                                                                $(document).ready(function(){
+                                                                   $('#m14').addClass('myexam');
+                                                                });
+                                                            </script>
+                                                        </c:when>
+                                                        <c:when test="${type7.equals('seancesupp')}">
+                                                             <script>
+                                                                document.write("<span>Seance Supp programmé</span><br>");
+                                                                $(document).ready(function(){
+                                                                   $('#m14').addClass('myseancesupp');
+                                                                });
+                                                            </script>
+                                                        
+                                                        </c:when>
+                                                        <c:when test="${type7.equals('permut')}"> 
+                                                            <script>
+                                                                document.write("<span>Perumtation de cours</span><br>");
+                                                                $(document).ready(function(){
+                                                                   $('#m14').addClass('myseancepermut');
+                                                                });
+                                                            </script>
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            <script>
+                                                                document.write("<span>Rattrapage Possible</span><br>");
+                                                                $(document).ready(function(){
+                                                                   $('#m14').addClass('myratt');
+                                                                });
+                                                            </script>
+                                                        </c:otherwise>
+                                                    </c:choose>
                                                     <span id="idseancem14" style="display: none;"><c:out value='${(seanceHashMap["mardi"])["14"].numS}'></c:out></span>
                                                     <!-- Enregistrer les ids des groupes et matieres dans des élements html invisibles pour après les réutiliser-->
                                                     <span id="matiereidm14" style="display: none;"><c:out value='${(seanceHashMap["mardi"])["14"].numEmp.numM.codeM}'></c:out></span>
@@ -318,6 +645,51 @@
                                             </td>
                                             <td class="seance" id="m16">
                                                 <c:if test="${not empty seanceHashMap['mardi']['16']}">
+                                                    <c:set var="type8" value="${seanceHashMap['mardi']['16'].type}" scope="page"></c:set>
+                                                    
+                                                    <c:choose>
+                                                        <c:when test="${type8.equals('report')}"> 
+                                                            <script>
+                                                                document.write("<span>Report programmé</span><br>");
+                                                                $(document).ready(function(){
+                                                                   $('#m16').addClass('myreport');
+                                                                });
+                                                            </script>
+                                                        </c:when> 
+                                                        <c:when test="${type8.equals('examen')}"> 
+                                                            <script>
+                                                                document.write("<span>Examen de </span><br>");
+                                                                $(document).ready(function(){
+                                                                   $('#m16').addClass('myexam');
+                                                                });
+                                                            </script>
+                                                        </c:when>
+                                                        <c:when test="${type8.equals('seancesupp')}">
+                                                             <script>
+                                                                document.write("<span>Seance Supp programmé</span><br>");
+                                                                $(document).ready(function(){
+                                                                   $('#m16').addClass('myseancesupp');
+                                                                });
+                                                            </script>
+                                                        
+                                                        </c:when>
+                                                        <c:when test="${type8.equals('permut')}"> 
+                                                            <script>
+                                                                document.write("<span>Perumtation de cours</span><br>");
+                                                                $(document).ready(function(){
+                                                                   $('#m16').addClass('myseancepermut');
+                                                                });
+                                                            </script>
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            <script>
+                                                                document.write("<span>Rattrapage Possible</span><br>");
+                                                                $(document).ready(function(){
+                                                                   $('#m16').addClass('myratt');
+                                                                });
+                                                            </script>
+                                                        </c:otherwise>    
+                                                    </c:choose>
                                                     <span id="idseancem16" style="display: none;"><c:out value='${(seanceHashMap["mardi"])["16"].numS}'></c:out></span>
                                                     <!-- Enregistrer les ids des groupes et matieres dans des élements html invisibles pour après les réutiliser-->
                                                     <span id="matiereidm16" style="display: none;"><c:out value='${(seanceHashMap["mardi"])["16"].numEmp.numM.codeM}'></c:out></span>
@@ -345,6 +717,51 @@
                                             <td>MERCREDI</td>
                                             <td class="seance" id="mer8">
                                                 <c:if test="${not empty seanceHashMap['mercredi']['8']}">
+                                                    <c:set var="type9" value="${seanceHashMap['mercredi']['8'].type}" scope="page"></c:set>
+                                                    
+                                                    <c:choose>
+                                                        <c:when test="${type9.equals('report')}"> 
+                                                            <script>
+                                                                document.write("<span>Report programmé</span><br>");
+                                                                $(document).ready(function(){
+                                                                   $('#mer8').addClass('myreport');
+                                                                });
+                                                            </script>
+                                                        </c:when> 
+                                                        <c:when test="${type9.equals('examen')}"> 
+                                                            <script>
+                                                                document.write("<span>Examen de </span><br>");
+                                                                $(document).ready(function(){
+                                                                   $('#mer8').addClass('myexam');
+                                                                });
+                                                            </script>
+                                                        </c:when>
+                                                        <c:when test="${type9.equals('seancesupp')}">
+                                                             <script>
+                                                                document.write("<span>Seance Supp programmé</span><br>");
+                                                                $(document).ready(function(){
+                                                                   $('#mer8').addClass('myseancesupp');
+                                                                });
+                                                            </script>
+                                                        
+                                                        </c:when>
+                                                        <c:when test="${type9.equals('permut')}"> 
+                                                            <script>
+                                                                document.write("<span>Perumtation de cours</span><br>");
+                                                                $(document).ready(function(){
+                                                                   $('#mer8').addClass('myseancepermut');
+                                                                });
+                                                            </script>
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            <script>
+                                                                document.write("<span>Rattrapage Possible</span><br>");
+                                                                $(document).ready(function(){
+                                                                   $('#mer8').addClass('myratt');
+                                                                });
+                                                            </script>
+                                                        </c:otherwise>    
+                                                    </c:choose>
                                                     <span id="idseancemer8" style="display: none;"><c:out value='${(seanceHashMap["mercredi"])["8"].numS}'></c:out></span>
                                                     <!-- Enregistrer les ids des groupes et matieres dans des élements html invisibles pour après les réutiliser-->
                                                     <span id="matiereidmer8" style="display: none;"><c:out value='${(seanceHashMap["mercredi"])["8"].numEmp.numM.codeM}'></c:out></span>
@@ -369,6 +786,51 @@
                                             </td>
                                             <td class="seance" id="mer10">
                                                 <c:if test="${not empty seanceHashMap['mercredi']['10']}">
+                                                    <c:set var="type10" value="${seanceHashMap['mercredi']['10'].type}" scope="page"></c:set>
+                                                    
+                                                    <c:choose>
+                                                        <c:when test="${type10.equals('report')}"> 
+                                                            <script>
+                                                                document.write("<span>Report programmé</span><br>");
+                                                                $(document).ready(function(){
+                                                                   $('#mer10').addClass('myreport');
+                                                                });
+                                                            </script>
+                                                        </c:when> 
+                                                        <c:when test="${type10.equals('examen')}"> 
+                                                            <script>
+                                                                document.write("<span>Examen de </span><br>");
+                                                                $(document).ready(function(){
+                                                                   $('#mer10').addClass('myexam');
+                                                                });
+                                                            </script>
+                                                        </c:when>
+                                                        <c:when test="${type10.equals('seancesupp')}">
+                                                             <script>
+                                                                document.write("<span>Seance Supp programmé</span><br>");
+                                                                $(document).ready(function(){
+                                                                   $('#mer10').addClass('myseancesupp');
+                                                                });
+                                                            </script>
+                                                        
+                                                        </c:when>
+                                                        <c:when test="${type10.equals('permut')}"> 
+                                                            <script>
+                                                                document.write("<span>Perumtation de cours</span><br>");
+                                                                $(document).ready(function(){
+                                                                   $('#mer10').addClass('myseancepermut');
+                                                                });
+                                                            </script>
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            <script>
+                                                                document.write("<span>Rattrapage Possible</span><br>");
+                                                                $(document).ready(function(){
+                                                                   $('#mer10').addClass('myratt');
+                                                                });
+                                                            </script>
+                                                        </c:otherwise>
+                                                    </c:choose>
                                                     <span id="idseancemer10" style="display: none;"><c:out value='${(seanceHashMap["mercredi"])["10"].numS}'></c:out></span>
                                                     <!-- Enregistrer les ids des groupes et matieres dans des élements html invisibles pour après les réutiliser-->
                                                     <span id="matiereidmer10" style="display: none;"><c:out value='${(seanceHashMap["mercredi"])["10"].numEmp.numM.codeM}'></c:out></span>
@@ -393,6 +855,51 @@
                                             </td>
                                             <td class="seance" id="mer14">
                                                 <c:if test="${not empty seanceHashMap['mercredi']['14']}">
+                                                    <c:set var="type11" value="${seanceHashMap['mercredi']['14'].type}" scope="page"></c:set>
+                                                    
+                                                    <c:choose>
+                                                        <c:when test="${type11.equals('report')}"> 
+                                                            <script>
+                                                                document.write("<span>Report programmé</span><br>");
+                                                                $(document).ready(function(){
+                                                                   $('#mer14').addClass('myreport');
+                                                                });
+                                                            </script>
+                                                        </c:when> 
+                                                        <c:when test="${type11.equals('examen')}"> 
+                                                            <script>
+                                                                document.write("<span>Examen de </span><br>");
+                                                                $(document).ready(function(){
+                                                                   $('#mer14').addClass('myexam');
+                                                                });
+                                                            </script>
+                                                        </c:when>
+                                                        <c:when test="${type11.equals('seancesupp')}">
+                                                             <script>
+                                                                document.write("<span>Seance Supp programmé</span><br>");
+                                                                $(document).ready(function(){
+                                                                   $('#mer14').addClass('myseancesupp');
+                                                                });
+                                                            </script>
+                                                        
+                                                        </c:when>
+                                                        <c:when test="${type11.equals('permut')}"> 
+                                                            <script>
+                                                                document.write("<span>Perumtation de cours</span><br>");
+                                                                $(document).ready(function(){
+                                                                   $('#mer14').addClass('myseancepermut');
+                                                                });
+                                                            </script>
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            <script>
+                                                                document.write("<span>Rattrapage Possible</span><br>");
+                                                                $(document).ready(function(){
+                                                                   $('#mer14').addClass('myratt');
+                                                                });
+                                                            </script>
+                                                        </c:otherwise>
+                                                    </c:choose>
                                                     <span id="idseancemer14" style="display: none;"><c:out value='${(seanceHashMap["mercredi"])["14"].numS}'></c:out></span>
                                                     <!-- Enregistrer les ids des groupes et matieres dans des élements html invisibles pour après les réutiliser-->
                                                     <span id="matiereidmer14" style="display: none;"><c:out value='${(seanceHashMap["mercredi"])["14"].numEmp.numM.codeM}'></c:out></span>
@@ -417,6 +924,51 @@
                                             </td>
                                             <td class="seance" id="mer16">
                                                 <c:if test="${not empty seanceHashMap['mercredi']['16']}">
+                                                    <c:set var="type12" value="${seanceHashMap['mercredi']['16'].type}" scope="page"></c:set>
+                                                    
+                                                    <c:choose>
+                                                        <c:when test="${type12.equals('report')}"> 
+                                                            <script>
+                                                                document.write("<span>Report programmé</span><br>");
+                                                                $(document).ready(function(){
+                                                                   $('#mer16').addClass('myreport');
+                                                                });
+                                                            </script>
+                                                        </c:when> 
+                                                        <c:when test="${type12.equals('examen')}"> 
+                                                            <script>
+                                                                document.write("<span>Examen de </span><br>");
+                                                                $(document).ready(function(){
+                                                                   $('#mer16').addClass('myexam');
+                                                                });
+                                                            </script>
+                                                        </c:when>
+                                                        <c:when test="${type12.equals('seancesupp')}">
+                                                             <script>
+                                                                document.write("<span>Seance Supp programmé</span><br>");
+                                                                $(document).ready(function(){
+                                                                   $('#mer16').addClass('myseancesupp');
+                                                                });
+                                                            </script>
+                                                        
+                                                        </c:when>
+                                                        <c:when test="${type12.equals('permut')}"> 
+                                                            <script>
+                                                                document.write("<span>Perumtation de cours</span><br>");
+                                                                $(document).ready(function(){
+                                                                   $('#mer16').addClass('myseancepermut');
+                                                                });
+                                                            </script>
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            <script>
+                                                                document.write("<span>Rattrapage Possible</span><br>");
+                                                                $(document).ready(function(){
+                                                                   $('#mer16').addClass('myratt');
+                                                                });
+                                                            </script>
+                                                        </c:otherwise>
+                                                    </c:choose>
                                                     <span id="idseancemer16" style="display: none;"><c:out value='${(seanceHashMap["mercredi"])["16"].numS}'></c:out></span>
                                                     <!-- Enregistrer les ids des groupes et matieres dans des élements html invisibles pour après les réutiliser-->
                                                     <span id="matiereidmer16" style="display: none;"><c:out value='${(seanceHashMap["mercredi"])["16"].numEmp.numM.codeM}'></c:out></span>
@@ -444,6 +996,51 @@
                                             <td>JEUDI</td>
                                             <td class="seance" id="j8">
                                                 <c:if test="${not empty seanceHashMap['jeudi']['8']}">
+                                                    <c:set var="type13" value="${seanceHashMap['jeudi']['8'].type}" scope="page"></c:set>
+                                                    
+                                                    <c:choose>
+                                                        <c:when test="${type13.equals('report')}"> 
+                                                            <script>
+                                                                document.write("<span>Report programmé</span><br>");
+                                                                $(document).ready(function(){
+                                                                   $('#j8').addClass('myreport');
+                                                                });
+                                                            </script>
+                                                        </c:when> 
+                                                        <c:when test="${type13.equals('examen')}"> 
+                                                            <script>
+                                                                document.write("<span>Examen de </span><br>");
+                                                                $(document).ready(function(){
+                                                                   $('#j8').addClass('myexam');
+                                                                });
+                                                            </script>
+                                                        </c:when>
+                                                        <c:when test="${type13.equals('seancesupp')}">
+                                                             <script>
+                                                                document.write("<span>Seance Supp programmé</span><br>");
+                                                                $(document).ready(function(){
+                                                                   $('#j8').addClass('myseancesupp');
+                                                                });
+                                                            </script>
+                                                        
+                                                        </c:when>
+                                                        <c:when test="${type13.equals('permut')}"> 
+                                                            <script>
+                                                                document.write("<span>Perumtation de cours</span><br>");
+                                                                $(document).ready(function(){
+                                                                   $('#j8').addClass('myseancepermut');
+                                                                });
+                                                            </script>
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            <script>
+                                                                document.write("<span>Rattrapage Possible</span><br>");
+                                                                $(document).ready(function(){
+                                                                   $('#j8').addClass('myratt');
+                                                                });
+                                                            </script>
+                                                        </c:otherwise>
+                                                    </c:choose>
                                                     <span id="idseancej8" style="display: none;"><c:out value='${(seanceHashMap["jeudi"])["8"].numS}'></c:out></span>
                                                     <!-- Enregistrer les ids des groupes et matieres dans des élements html invisibles pour après les réutiliser-->
                                                     <span id="matiereidj8" style="display: none;"><c:out value='${(seanceHashMap["jeudi"])["8"].numEmp.numM.codeM}'></c:out></span>
@@ -468,6 +1065,51 @@
                                             </td>
                                             <td class="seance" id="j10">
                                                 <c:if test="${not empty seanceHashMap['jeudi']['10']}">
+                                                    <c:set var="type14" value="${seanceHashMap['jeudi']['10'].type}" scope="page"></c:set>
+                                                    
+                                                    <c:choose>
+                                                        <c:when test="${type14.equals('report')}"> 
+                                                            <script>
+                                                                document.write("<span>Report programmé</span><br>");
+                                                                $(document).ready(function(){
+                                                                   $('#j10').addClass('myreport');
+                                                                });
+                                                            </script>
+                                                        </c:when> 
+                                                        <c:when test="${type14.equals('examen')}"> 
+                                                            <script>
+                                                                document.write("<span>Examen de </span><br>");
+                                                                $(document).ready(function(){
+                                                                   $('#j10').addClass('myexam');
+                                                                });
+                                                            </script>
+                                                        </c:when>
+                                                        <c:when test="${type14.equals('seancesupp')}">
+                                                             <script>
+                                                                document.write("<span>Seance Supp programmé</span><br>");
+                                                                $(document).ready(function(){
+                                                                   $('#j10').addClass('myseancesupp');
+                                                                });
+                                                            </script>
+                                                        
+                                                        </c:when>
+                                                        <c:when test="${type14.equals('permut')}"> 
+                                                            <script>
+                                                                document.write("<span>Perumtation de cours</span><br>");
+                                                                $(document).ready(function(){
+                                                                   $('#j10').addClass('myseancepermut');
+                                                                });
+                                                            </script>
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            <script>
+                                                                document.write("<span>Rattrapage Possible</span><br>");
+                                                                $(document).ready(function(){
+                                                                   $('#j10').addClass('myratt');
+                                                                });
+                                                            </script>
+                                                        </c:otherwise>
+                                                    </c:choose>
                                                     <span id="idseancej10" style="display: none;"><c:out value='${(seanceHashMap["jeudi"])["10"].numS}'></c:out></span>
                                                     <!-- Enregistrer les ids des groupes et matieres dans des élements html invisibles pour après les réutiliser-->
                                                     <span id="matiereidj10" style="display: none;"><c:out value='${(seanceHashMap["jeudi"])["10"].numEmp.numM.codeM}'></c:out></span>
@@ -492,6 +1134,51 @@
                                             </td>
                                             <td class="seance" id="j14">
                                                 <c:if test="${not empty seanceHashMap['jeudi']['14']}">
+                                                    <c:set var="type15" value="${seanceHashMap['jeudi']['14'].type}" scope="page"></c:set>
+                                                    
+                                                    <c:choose>
+                                                        <c:when test="${type15.equals('report')}"> 
+                                                            <script>
+                                                                document.write("<span>Report programmé</span><br>");
+                                                                $(document).ready(function(){
+                                                                   $('#j14').addClass('myreport');
+                                                                });
+                                                            </script>
+                                                        </c:when> 
+                                                        <c:when test="${type15.equals('examen')}"> 
+                                                            <script>
+                                                                document.write("<span>Examen de </span><br>");
+                                                                $(document).ready(function(){
+                                                                   $('#j14').addClass('myexam');
+                                                                });
+                                                            </script>
+                                                        </c:when>
+                                                        <c:when test="${type15.equals('seancesupp')}">
+                                                             <script>
+                                                                document.write("<span>Seance Supp programmé</span><br>");
+                                                                $(document).ready(function(){
+                                                                   $('#j14').addClass('myseancesupp');
+                                                                });
+                                                            </script>
+                                                        
+                                                        </c:when>
+                                                        <c:when test="${type15.equals('permut')}"> 
+                                                            <script>
+                                                                document.write("<span>Perumtation de cours</span><br>");
+                                                                $(document).ready(function(){
+                                                                   $('#j14').addClass('myseancepermut');
+                                                                });
+                                                            </script>
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            <script>
+                                                                document.write("<span>Rattrapage Possible</span><br>");
+                                                                $(document).ready(function(){
+                                                                   $('#j14').addClass('myratt');
+                                                                });
+                                                            </script>
+                                                        </c:otherwise>
+                                                    </c:choose>
                                                     <span id="idseancej14" style="display: none;"><c:out value='${(seanceHashMap["jeudi"])["14"].numS}'></c:out></span>
                                                     <!-- Enregistrer les ids des groupes et matieres dans des élements html invisibles pour après les réutiliser-->
                                                     <span id="matiereidj14" style="display: none;"><c:out value='${(seanceHashMap["jeudi"])["14"].numEmp.numM.codeM}'></c:out></span>
@@ -516,6 +1203,51 @@
                                             </td>
                                             <td class="seance" id="j16">
                                                 <c:if test="${not empty seanceHashMap['jeudi']['16']}">
+                                                    <c:set var="type16" value="${seanceHashMap['jeudi']['16'].type}" scope="page"></c:set>
+                                                    
+                                                    <c:choose>
+                                                        <c:when test="${type16.equals('report')}"> 
+                                                            <script>
+                                                                document.write("<span>Report programmé</span><br>");
+                                                                $(document).ready(function(){
+                                                                   $('#j16').addClass('myreport');
+                                                                });
+                                                            </script>
+                                                        </c:when> 
+                                                        <c:when test="${type16.equals('examen')}"> 
+                                                            <script>
+                                                                document.write("<span>Examen de </span><br>");
+                                                                $(document).ready(function(){
+                                                                   $('#j16').addClass('myexam');
+                                                                });
+                                                            </script>
+                                                        </c:when>
+                                                        <c:when test="${type16.equals('seancesupp')}">
+                                                             <script>
+                                                                document.write("<span>Seance Supp programmé</span><br>");
+                                                                $(document).ready(function(){
+                                                                   $('#j16').addClass('myseancesupp');
+                                                                });
+                                                            </script>
+                                                        
+                                                        </c:when>
+                                                        <c:when test="${type16.equals('permut')}"> 
+                                                            <script>
+                                                                document.write("<span>Perumtation de cours</span><br>");
+                                                                $(document).ready(function(){
+                                                                   $('#j16').addClass('myseancepermut');
+                                                                });
+                                                            </script>
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            <script>
+                                                                document.write("<span>Rattrapage Possible</span><br>");
+                                                                $(document).ready(function(){
+                                                                   $('#j16').addClass('myratt');
+                                                                });
+                                                            </script>
+                                                        </c:otherwise>
+                                                    </c:choose>
                                                     <span id="idseancej16" style="display: none;"><c:out value='${(seanceHashMap["jeudi"])["16"].numS}'></c:out></span>
                                                     <!-- Enregistrer les ids des groupes et matieres dans des élements html invisibles pour après les réutiliser-->
                                                     <span id="matiereidj16" style="display: none;"><c:out value='${(seanceHashMap["jeudi"])["16"].numEmp.numM.codeM}'></c:out></span>
@@ -543,6 +1275,52 @@
                                             <td>VENDREDI</td>
                                             <td class="seance" id="v8">
                                                 <c:if test="${not empty seanceHashMap['vendredi']['8']}">
+                                                    <c:set var="type17" value="${seanceHashMap['vendredi']['8'].type}" scope="page"></c:set>
+                                                    
+                                                    <c:choose>
+                                                        <c:when test="${type17.equals('report')}"> 
+                                                            <script>
+                                                                document.write("<span>Report programmé</span><br>");
+                                                                $(document).ready(function(){
+                                                                   $('#v8').addClass('myreport');
+                                                                });
+                                                            </script>
+                                                        </c:when> 
+                                                        <c:when test="${type17.equals('examen')}"> 
+                                                            <script>
+                                                                document.write("<span>Examen de </span><br>");
+                                                                $(document).ready(function(){
+                                                                   $('#v8').addClass('myexam');
+                                                                });
+                                                            </script>
+                                                        </c:when>
+                                                        <c:when test="${type17.equals('seancesupp')}">
+                                                             <script>
+                                                                document.write("<span>Seance Supp programmé</span><br>");
+                                                                $(document).ready(function(){
+                                                                   $('#v8').addClass('myseancesupp');
+                                                                });
+                                                            </script>
+                                                        
+                                                        </c:when>
+                                                        <c:when test="${type17.equals('permut')}"> 
+                                                            <script>
+                                                                document.write("<span>Perumtation de cours</span><br>");
+                                                                $(document).ready(function(){
+                                                                   $('#v8').addClass('myseancepermut');
+                                                                });
+                                                            </script>
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            <script>
+                                                                document.write("<span>Rattrapage Possible</span><br>");
+                                                                $(document).ready(function(){
+                                                                   $('#v8').addClass('myratt');
+                                                                });
+                                                            </script>
+                                                        </c:otherwise>
+                                                    </c:choose>
+
                                                     <span id="idseancev8" style="display: none;"><c:out value='${(seanceHashMap["vendredi"])["8"].numS}'></c:out></span>
                                                     <!-- Enregistrer les ids des groupes et matieres dans des élements html invisibles pour après les réutiliser-->
                                                     <span id="matiereidv8" style="display: none;"><c:out value='${(seanceHashMap["vendredi"])["8"].numEmp.numM.codeM}'></c:out></span>
@@ -567,6 +1345,52 @@
                                             </td>
                                             <td class="seance" id="v10">
                                                 <c:if test="${not empty seanceHashMap['vendredi']['10']}">
+                                                    <c:set var="type18" value="${seanceHashMap['vendredi']['10'].type}" scope="page"></c:set>
+                                                    
+                                                    <c:choose>
+                                                        <c:when test="${type18.equals('report')}"> 
+                                                            <script>
+                                                                document.write("<span>Report programmé</span><br>");
+                                                                $(document).ready(function(){
+                                                                   $('#v10').addClass('myreport');
+                                                                });
+                                                            </script>
+                                                        </c:when> 
+                                                        <c:when test="${type18.equals('examen')}"> 
+                                                            <script>
+                                                                document.write("<span>Examen de </span><br>");
+                                                                $(document).ready(function(){
+                                                                   $('#v10').addClass('myexam');
+                                                                });
+                                                            </script>
+                                                        </c:when>
+                                                        <c:when test="${type18.equals('seancesupp')}">
+                                                             <script>
+                                                                document.write("<span>Seance Supp programmé</span><br>");
+                                                                $(document).ready(function(){
+                                                                   $('#v10').addClass('myseancesupp');
+                                                                });
+                                                            </script>
+                                                        
+                                                        </c:when>
+                                                        <c:when test="${type18.equals('permut')}"> 
+                                                            <script>
+                                                                document.write("<span>Perumtation de cours</span><br>");
+                                                                $(document).ready(function(){
+                                                                   $('#v10').addClass('myseancepermut');
+                                                                });
+                                                            </script>
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            <script>
+                                                                document.write("<span>Rattrapage Possible</span><br>");
+                                                                $(document).ready(function(){
+                                                                   $('#v10').addClass('myratt');
+                                                                });
+                                                            </script>
+                                                        </c:otherwise>
+                                                    </c:choose>
+
                                                     <span id="idseancev10" style="display: none;"><c:out value='${(seanceHashMap["vendredi"])["10"].numS}'></c:out></span>
                                                     <!-- Enregistrer les ids des groupes et matieres dans des élements html invisibles pour après les réutiliser-->
                                                     <span id="matiereidv10" style="display: none;"><c:out value='${(seanceHashMap["vendredi"])["10"].numEmp.numM.codeM}'></c:out></span>
@@ -591,6 +1415,52 @@
                                             </td>
                                             <td class="seance" id="v14">
                                                 <c:if test="${not empty seanceHashMap['vendredi']['14']}">
+                                                    <c:set var="type19" value="${seanceHashMap['vendredi']['14'].type}" scope="page"></c:set>
+                                                    
+                                                    <c:choose>
+                                                        <c:when test="${type19.equals('report')}"> 
+                                                            <script>
+                                                                document.write("<span>Report programmé</span><br>");
+                                                                $(document).ready(function(){
+                                                                   $('#v14').addClass('myreport');
+                                                                });
+                                                            </script>
+                                                        </c:when> 
+                                                        <c:when test="${type19.equals('examen')}"> 
+                                                            <script>
+                                                                document.write("<span>Examen de </span><br>");
+                                                                $(document).ready(function(){
+                                                                   $('#v14').addClass('myexam');
+                                                                });
+                                                            </script>
+                                                        </c:when>
+                                                        <c:when test="${type19.equals('seancesupp')}">
+                                                             <script>
+                                                                document.write("<span>Seance Supp programmé</span><br>");
+                                                                $(document).ready(function(){
+                                                                   $('#v14').addClass('myseancesupp');
+                                                                });
+                                                            </script>
+                                                        
+                                                        </c:when>
+                                                        <c:when test="${type19.equals('permut')}"> 
+                                                            <script>
+                                                                document.write("<span>Perumtation de cours</span><br>");
+                                                                $(document).ready(function(){
+                                                                   $('#v14').addClass('myseancepermut');
+                                                                });
+                                                            </script>
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            <script>
+                                                                document.write("<span>Rattrapage Possible</span><br>");
+                                                                $(document).ready(function(){
+                                                                   $('#v14').addClass('myratt');
+                                                                });
+                                                            </script>
+                                                        </c:otherwise>
+                                                    </c:choose>
+
                                                     <span id="idseancev14" style="display: none;"><c:out value='${(seanceHashMap["vendredi"])["14"].numS}'></c:out></span>
                                                     <!-- Enregistrer les ids des groupes et matieres dans des élements html invisibles pour après les réutiliser-->
                                                     <span id="matiereidv14" style="display: none;"><c:out value='${(seanceHashMap["vendredi"])["14"].numEmp.numM.codeM}'></c:out></span>
@@ -615,6 +1485,52 @@
                                             </td>
                                             <td class="seance" id="v16">
                                                 <c:if test="${not empty seanceHashMap['vendredi']['16']}">
+                                                    <c:set var="type20" value="${seanceHashMap['vendredi']['16'].type}" scope="page"></c:set>
+                                                    
+                                                    <c:choose>
+                                                        <c:when test="${type20.equals('report')}"> 
+                                                            <script>
+                                                                document.write("<span>Report programmé</span><br>");
+                                                                $(document).ready(function(){
+                                                                   $('#v16').addClass('myreport');
+                                                                });
+                                                            </script>
+                                                        </c:when> 
+                                                        <c:when test="${type20.equals('examen')}"> 
+                                                            <script>
+                                                                document.write("<span>Examen de </span><br>");
+                                                                $(document).ready(function(){
+                                                                   $('#v16').addClass('myexam');
+                                                                });
+                                                            </script>
+                                                        </c:when>
+                                                        <c:when test="${type20.equals('seancesupp')}">
+                                                             <script>
+                                                                document.write("<span>Seance Supp programmé</span><br>");
+                                                                $(document).ready(function(){
+                                                                   $('#v16').addClass('myseancesupp');
+                                                                });
+                                                            </script>
+                                                        
+                                                        </c:when>
+                                                        <c:when test="${type20.equals('permut')}"> 
+                                                            <script>
+                                                                document.write("<span>Perumtation de cours</span><br>");
+                                                                $(document).ready(function(){
+                                                                   $('#v16').addClass('myseancepermut');
+                                                                });
+                                                            </script>
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            <script>
+                                                                document.write("<span>Rattrapage Possible</span><br>");
+                                                                $(document).ready(function(){
+                                                                   $('#v16').addClass('myratt');
+                                                                });
+                                                            </script>
+                                                        </c:otherwise>
+                                                    </c:choose>
+
                                                     <span id="idseancev16" style="display: none;"><c:out value='${(seanceHashMap["vendredi"])["16"].numS}'></c:out></span>
                                                     <!-- Enregistrer les ids des groupes et matieres dans des élements html invisibles pour après les réutiliser-->
                                                     <span id="matiereidv16" style="display: none;"><c:out value='${(seanceHashMap["vendredi"])["16"].numEmp.numM.codeM}'></c:out></span>
@@ -675,7 +1591,7 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-2">
-                                    <div style="width:20px;height:10px;background-color:#6699FF;-moz-border-radius: 10px; "></div>
+                                    <div style="width:20px;height:10px;background-color:#c9d827;-moz-border-radius: 10px; "></div>
                                 </div>
                                 <div class="col-lg-10">
                                     <label><h6>Séance(s) Reportée(s)</h6></label>
@@ -966,7 +1882,7 @@
                                                                  <c:forEach items="${listseances}" var="s">
                                                                 <option value="${s.numS}">
                                                                 
-                                                                   Séance numéro <c:out value="${s.numS}"/> 
+                                                                    <c:out value="${s.numEmp.numM.nomM}"/>  au groupe  <c:out value="${s.numEmp.numG.nomG}"/>  
                                                                 </option>
                                                                 </c:forEach>
                                                                 
@@ -990,7 +1906,7 @@
                                 </div>
                                  <div class="modal fade" id="SuppExam" role="dialog">
                                     <div class="modal-dialog">
-                                        <form action="deleteExam"  methode="POST">
+                                        <form action="deleteexam"  method="POST">
                                         <div class="modal-content">
                                             <div class="modal-header">
                                                     <h4 class="modal-title">Supprimer examen</h4>
@@ -1001,10 +1917,10 @@
                                                 <div class="row">
                                                     <div class="col-lg-12">
                                                         <div class="form-group">
-                                                            <select class="form-control" name="examsajoutes"  id="examsajoutes">
+                                                            <select class="form-control" name="seancesajoutees"  id="examsajoutes">
                                                             <c:forEach items="${listexams}"  var="e">
                                                                 <option value="${e.numS}">
-                                                                    examen numéro <c:out value="${e.numS}"/>
+                                                                    examen de : <c:out value="${e.numEmp.numM.nomM}"/>  au groupe  <c:out value="${e.numEmp.numG.nomG}"/>  
                                                                  
                                                                  </option>
                                                                 

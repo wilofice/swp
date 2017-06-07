@@ -61,7 +61,7 @@ public class EditUtilisateur extends HttpServlet {
         String identUser = request.getParameter("idUser");
         String mailU = P1Mail+P2Mail;
         
-        compte.setIdUser(identUser);
+      //  compte.setIdUser(identUser);
         comptesFacade.edit(compte);
         ens.setNom(nomU);
         ens.setPrenom(prenomU);

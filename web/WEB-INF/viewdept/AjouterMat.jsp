@@ -152,10 +152,30 @@
                 <td><c:out value="${mat.nomM}"/></td>
                 <td>
                     <button type="button" class="btn btn-default" onclick="ModifierMat('<c:out value="${mat.codeM}"/>')"><i class="fa fa-pencil-square-o fa-lg"></i> </button>
-                    <button type="button" class="btn btn-default" onclick="SupprimerMat('<c:out value="${mat.codeM}"/>')"><i class="fa fa-trash fa-lg"  ></i></button>
-                </td>
+                    
+                    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#supprimer<c:out value="${mat.codeM}"/>"><i class="fa fa-trash fa-lg" aria-hidden="true" ></i></button>
+                <div class="modal fade" id="supprimer<c:out value="${mat.codeM}"/>" role="dialog">
+                        <div class="modal-dialog">
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                         <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal">&times;</button>
+                           <h4 class="modal-title">Confirmation</h4>
+                       </div>
+        <div class="modal-body">
+            <p>êtes vous sur de vouloir supprimer la matière <c:out value="${mat.nomM}" ></c:out> ?</p>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" onclick="SupprimerMat(<c:out value="${mat.codeM}"/>)" data-dismiss="modal">Supprimer</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+        </div>
+      </div>
+          </div>
+    </div>
+ 
+               </td>
             </tr>
-         </c:forEach>
+            </c:forEach>
     </c:if>
     </tbody>
   </table>

@@ -52,55 +52,17 @@
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
                 </button>
-                <a class="navbar-brand" href="index.html"><img src="images/swp.png" width="180" height="25"></a>
+                <a class="navbar-brand" href="/swp/addUtilisateur"><img src="images/swp.png" width="180" height="25"></a>
             </div>
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell"></i> <b class="caret"></b></a>
-                    <ul class="dropdown-menu alert-dropdown">
-                        <li>
-                            <a href="#">Alert Name <span class="label label-default">Alert Badge</span></a>
-                        </li>
-                        <li>
-                            <a href="#">Alert Name <span class="label label-primary">Alert Badge</span></a>
-                        </li>
-                        <li>
-                            <a href="#">Alert Name <span class="label label-success">Alert Badge</span></a>
-                        </li>
-                        <li>
-                            <a href="#">Alert Name <span class="label label-info">Alert Badge</span></a>
-                        </li>
-                        <li>
-                            <a href="#">Alert Name <span class="label label-warning">Alert Badge</span></a>
-                        </li>
-                        <li>
-                            <a href="#">Alert Name <span class="label label-danger">Alert Badge</span></a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">View All</a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                   <a href="#" class="toggle"><i class="fa fa-fw fa-gear"></i></a> 
-                </li>
-                <li class="dropdown">
-                   <a href="#" class="toggle"><i class="fa fa-question-circle"></i></a> 
-                </li>
+               
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> Admin Sys <b class="caret"></b></a>
                     <ul class="dropdown-menu">
-                        <li>
-                            <a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-fw fa-envelope"></i> Inbox</a>
-                        </li>
                         <li class="divider"></li>
                         <li>
-                            <a href="#"><i class="fa fa-sign-out"></i> Log Out</a>
+                            <a href="/swp/login"><i class="fa fa-sign-out"></i> Log Out</a>
                         </li>
                     </ul>
                 </li>
@@ -134,7 +96,7 @@
         <th>Mail</th>
         <th>Téléphone</th>
         <th>Rôle</th>
-        <th>idUser</th>
+        <th>Identifiant</th>
       </tr>
     </thead>
     <tbody>
@@ -149,7 +111,26 @@
                 <td><c:out value="${Util.idUser.idUser}"/></td>
                 <td>
                     <button type="button" class="btn btn-default" onclick="editUtil(<c:out value="${Util.id}"/>)"><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true" data-toggle="modal" data-target="#myModal" ></i> </button> &nbsp;
-                    <button type="button" class="btn btn-default" onclick="deleteUtil(<c:out value="${Util.id}"/>)"><i class="fa fa-trash fa-lg" aria-hidden="true" ></i></button>
+                    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#supprimer<c:out value="${Util.id}"/>"><i class="fa fa-trash fa-lg" aria-hidden="true" ></i></button>
+                        <div class="modal fade" id="supprimer<c:out value="${Util.id}"/>" role="dialog">
+                        <div class="modal-dialog">
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                         <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal">&times;</button>
+                           <h4 class="modal-title">Confirmation</h4>
+                       </div>
+        <div class="modal-body">
+            <p>êtes vous sur de vouloir supprimer l'utlisateur :<c:out value="${Util.nom}">    </c:out><c:out value="${Util.prenom}"></c:out> ?</p>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" onclick="deleteUtil(<c:out value="${Util.id}"/>)" data-dismiss="modal">Supprimer</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
                 </td>
             </tr>
          </c:forEach>

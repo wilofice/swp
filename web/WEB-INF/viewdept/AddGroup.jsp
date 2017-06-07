@@ -144,7 +144,26 @@
                                                 <td><c:out value ="${groupe.email}"/></td>
                                                 <td>
                                                     <button type="button" class="btn btn-default" onclick="editGroup('<c:out value="${groupe.numG}"/>')"><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true"></i> </button> &nbsp;
-                                                    <button type="button" class="btn btn-default" onclick="deleteGroup('<c:out value="${groupe.numG}"/>')"><i class="fa fa-trash fa-lg" aria-hidden="true" ></i></button>
+                                                   
+                                                    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#supprimer<c:out value="${groupe.numG}" />"><i class="fa fa-trash fa-lg" aria-hidden="true" ></i></button>
+                                                       <div class="modal fade" id="supprimer<c:out value="${groupe.numG}" />" role="dialog">
+                        <div class="modal-dialog">
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                         <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal">&times;</button>
+                           <h4 class="modal-title">Confirmation</h4>
+                       </div>
+        <div class="modal-body">
+            <p>êtes vous sur de vouloir supprimer le groupe <c:out value="${groupe.nomG}" ></c:out> niveau <c:out value="${groupe.niveau}" ></c:out>  ?</p>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" onclick="deleteGroup(<c:out value="${groupe.numG}"/>)" data-dismiss="modal">Supprimer</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+        </div>
+      </div>
+          </div>
+    </div>
                                                 </td>
 
 

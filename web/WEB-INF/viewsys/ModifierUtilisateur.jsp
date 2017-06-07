@@ -60,60 +60,25 @@
 
     <div id="wrapper">
         <!-- Navigation -->
-        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+         <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
                 </button>
-                <a class="navbar-brand" href="index.html"><img src="images/swp.png" width="180" height="25"></a>
+                <a class="navbar-brand" href="/swp/addUtilisateur"><img src="images/swp.png" width="180" height="25"></a>
             </div>
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
+               
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell"></i> <b class="caret"></b></a>
-                    <ul class="dropdown-menu alert-dropdown">
-                        <li>
-                            <a href="#">Alert Name <span class="label label-default">Alert Badge</span></a>
-                        </li>
-                        <li>
-                            <a href="#">Alert Name <span class="label label-primary">Alert Badge</span></a>
-                        </li>
-                        <li>
-                            <a href="#">Alert Name <span class="label label-success">Alert Badge</span></a>
-                        </li>
-                        <li>
-                            <a href="#">Alert Name <span class="label label-info">Alert Badge</span></a>
-                        </li>
-                        <li>
-                            <a href="#">Alert Name <span class="label label-warning">Alert Badge</span></a>
-                        </li>
-                        <li>
-                            <a href="#">Alert Name <span class="label label-danger">Alert Badge</span></a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">View All</a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                   <a href="#" class="toggle"><i class="fa fa-fw fa-gear"></i></a> 
-                </li>
-                <li class="dropdown">
-                   <a href="#" class="toggle"><i class="fa fa-question-circle"></i></a> 
-                </li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> John Smith <b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> Admin Sys <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li>
                             <a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
                         </li>
-                        <li>
-                            <a href="#"><i class="fa fa-fw fa-envelope"></i> Inbox</a>
-                        </li>
                         <li class="divider"></li>
                         <li>
-                            <a href="#"><i class="fa fa-sign-out"></i> Log Out</a>
+                            <a href="/swp/login"><i class="fa fa-sign-out"></i> Log Out</a>
                         </li>
                     </ul>
                 </li>
@@ -123,11 +88,11 @@
                 <ul class="nav navbar-nav side-nav">
                     <li>
                         <a href="addUtilisateur"><i class="fa fa-calendar "></i> Liste Utilisateurs</a>
-                    </li>     
+                    </li>      
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
-        </nav>
+        </nav>  
 
         <div id="page-wrapper">
 
@@ -223,7 +188,7 @@
        </div>
       <div class="form-group">
         <label for="idUser">IdUser</label>
-        <input type="text" class="form-control" id="idUser" name="idUser" placeholder="Entrer l'identifiant de l'utilisateur" value="<c:out value="${ensSelected.getIdUser().getIdUser()}"/>">
+        <input type="text" class="form-control" id="idUser" name="idUser" placeholder="Entrer l'identifiant de l'utilisateur" value="<c:out value="${ensSelected.getIdUser().getIdUser()}"/>" disabled>
       </div>
             
   </div>

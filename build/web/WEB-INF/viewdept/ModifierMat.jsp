@@ -200,7 +200,7 @@
           <input type="text" name="codeMat" style="display: none;" value="<c:out value="${matSelected.codeM}"/>"/>
        <div class="form-group">
         <label for="codeM">Code Matière</label>
-        <input type="text" class="form-control" id="codeM" name="codeM"  value="<c:out value="${matSelected.getCodeM()}"/>" required>
+        <input type="text" class="form-control" id="codeM" name="codeM"  value="<c:out value="${matSelected.getCodeM()}"/>" disabled="disabled">
         </div>
   <div class="form-group">
         <label for="nomM">Nom Matière </label>

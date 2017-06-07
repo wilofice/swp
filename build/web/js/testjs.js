@@ -132,7 +132,7 @@ function edit() {
 }
 
 function mydelete() {
-    var idthis =$(".myradio-group").find('.selected').attr("id");
+    var idthis = $(".myradio-group").find('.selected').attr("id");
     $("#matiere" + idthis).text("");
     $("#matiereid" + idthis).text("");
     $("#sd" + idthis).text("");

@@ -454,167 +454,192 @@
                                          
                                             <td>JEUDI</td>
                                            <td class="myradio" id="13" data-container="body" data-toggle="popover" data-placement="right" data-content="">
-                                                 <c:if test="${not empty empHashMap['jeudi']['8']}">
-                                                    <span id="idseanceEmp13" style="display: none;"><c:out value='${(empHashMap["jeudi"])["8"].numEmp}'></c:out></span>
+                                                <c:forEach items="${empHashMap['jeudi']['8']}" var="emp">
+                                                 <c:if test="${ not empty emp}">
+                                                    <span id="idseanceEmp13" style="display: none;"><c:out value='${emp.numEmp}'></c:out></span>
                                                     <!-- Enregistrer les ids des groupes et matieres dans des élements html invisibles pour après les réutiliser-->
-                                                    <span id="groupeEmp13" style="display: none;"><c:out value='${(empHashMap["jeudi"])["8"].numG.numG}'></c:out></span>
-                                                    <span id="matiereEmp13" style="display: none;"><c:out value='${(empHashMap["jeudi"])["8"].numM.codeM}'></c:out></span>
-                                                    <span id="matiereNomEmp13"><c:out value='${(empHashMap["jeudi"])["8"].numM.nomM}'></c:out></span> <br/>
-                                                    <span id="dateDEmp13" style="display: none;"><c:out value='${(empHashMap["jeudi"])["8"].dateD}'></c:out></span>
-                                                    <span id="dateFEmp13" style="display: none;"><c:out value='${(empHashMap["jeudi"])["8"].dateF}'></c:out></span>
-                                                    <span id="idEnsEmp13" style="display: none;"><c:out value='${(empHashMap["jeudi"])["8"].numE.id}'></c:out></span>
-                                                    <span> Groupe </span><span id="groupeNomEmp13"><c:out value='${(empHashMap["jeudi"])["8"].numG.nomG}'></c:out></span>
-                                                    <span id="niveauGrpEmp13" ><c:out value='${(empHashMap["jeudi"])["8"].numG.niveau}'></c:out></span><span>ère année</span>
+                                                    <span id="groupeEmp13" style="display: none;"><c:out value='${emp.numG.numG}'></c:out></span>
+                                                    <span id="matiereEmp13" style="display: none;"><c:out value='${emp.numM.codeM}'></c:out></span>
+                                                    <span id="matiereNomEmp13"><c:out value='${emp.numM.nomM}'></c:out></span> <br/>
+                                                    <span id="dateDEmp13" style="display: none;"><c:out value='${emp.dateD}'></c:out></span>
+                                                    <span id="dateFEmp13" style="display: none;"><c:out value='${emp.dateF}'></c:out></span>
+                                                    <span id="idEnsEmp13" style="display: none;"><c:out value='${emp.numE.id}'></c:out></span>
+                                                    <span> Groupe </span><span id="groupeNomEmp13"><c:out value='${emp.numG.nomG}'></c:out></span>
+                                                    <span id="niveauGrpEmp13" ><c:out value='${emp.numG.niveau}'></c:out></span><span>ère année</span>
                                                     <br/>
-                                                    <span id="nomEnsEmp13"><c:out value='${(empHashMap["jeudi"])["8"].numE.nom}'></c:out></span>
-                                                    <span id="prenomEns13"><c:out value='${(empHashMap["jeudi"])["8"].numE.prenom}'></c:out></span>
+                                                    <span id="nomEnsEmp13"><c:out value='${emp.numE.nom}'></c:out></span>
+                                                    <span id="prenomEns13"><c:out value='${emp.numE.prenom}'></c:out></span>
                                                     
                                                     <span id="heureEmp13" style="display: none;">08h à 10h</span>
                                                     <span id="jourEmp13" style="display: none;">Jeudi</span>
                                                 </c:if>
+                                                    <hr></hr>
+                                                </c:forEach>
                                             </td>
                                             <td class="myradio" id="14" data-container="body" data-toggle="popover" data-placement="right" data-content="">
-                                                 <c:if test="${not empty empHashMap['jeudi']['10']}">
-                                                    <span id="idseanceEmp14" style="display: none;"><c:out value='${(empHashMap["jeudi"])["10"].numEmp}'></c:out></span>
+                                                 <c:forEach items="${empHashMap['jeudi']['10']}" var="emp">
+                                                 <c:if test="${ not empty emp}">
+                                                    <span id="idseanceEmp14" style="display: none;"><c:out value='${emp.numEmp}'></c:out></span>
                                                     <!-- Enregistrer les ids des groupes et matieres dans des élements html invisibles pour après les réutiliser-->
-                                                    <span id="groupeEmp14" style="display: none;"><c:out value='${(empHashMap["jeudi"])["10"].numG.numG}'></c:out></span>
-                                                    <span id="matiereEmp14" style="display: none;"><c:out value='${(empHashMap["jeudi"])["10"].numM.codeM}'></c:out></span>
-                                                    <span id="matiereNomEmp14"><c:out value='${(empHashMap["jeudi"])["10"].numM.nomM}'></c:out></span> <br/>
-                                                    <span id="dateDEmp14" style="display: none;"><c:out value='${(empHashMap["jeudi"])["10"].dateD}'></c:out></span>
-                                                    <span id="dateFEmp14" style="display: none;"><c:out value='${(empHashMap["jeudi"])["10"].dateF}'></c:out></span>
-                                                    <span id="idEnsEmp14" style="display: none;"><c:out value='${(empHashMap["jeudi"])["10"].numE.id}'></c:out></span>
-                                                    <span> Groupe </span><span id="groupeNomEmp14"><c:out value='${(empHashMap["jeudi"])["10"].numG.nomG}'></c:out></span>
-                                                    <span id="niveauGrpEmp14" ><c:out value='${(empHashMap["jeudi"])["10"].numG.niveau}'></c:out></span><span>ère année</span>
+                                                    <span id="groupeEmp14" style="display: none;"><c:out value='${emp.numG.numG}'></c:out></span>
+                                                    <span id="matiereEmp14" style="display: none;"><c:out value='${emp.numM.codeM}'></c:out></span>
+                                                    <span id="matiereNomEmp14"><c:out value='${emp.numM.nomM}'></c:out></span> <br/>
+                                                    <span id="dateDEmp14" style="display: none;"><c:out value='${emp.dateD}'></c:out></span>
+                                                    <span id="dateFEmp14" style="display: none;"><c:out value='${emp.dateF}'></c:out></span>
+                                                    <span id="idEnsEmp14" style="display: none;"><c:out value='${emp.numE.id}'></c:out></span>
+                                                    <span> Groupe </span><span id="groupeNomEmp14"><c:out value='${emp.numG.nomG}'></c:out></span>
+                                                    <span id="niveauGrpEmp14" ><c:out value='${emp.numG.niveau}'></c:out></span><span>ère année</span>
                                                     <br/>
-                                                    <span id="nomEnsEmp14"><c:out value='${(empHashMap["jeudi"])["10"].numE.nom}'></c:out></span>
-                                                    <span id="prenomEns14"><c:out value='${(empHashMap["jeudi"])["10"].numE.prenom}'></c:out></span>
+                                                    <span id="nomEnsEmp14"><c:out value='${emp.numE.nom}'></c:out></span>
+                                                    <span id="prenomEns14"><c:out value='${emp.numE.prenom}'></c:out></span>
                                                     
                                                     <span id="heureEmp14" style="display: none;">10h à 12h</span>
                                                     <span id="jourEmp14" style="display: none;">Jeudi</span>
                                                 </c:if>
+                                                    <hr></hr>
+                                                    </c:forEach>
                                             </td>
                                             <td class="myradio" id="15" data-container="body" data-toggle="popover" data-placement="right" data-content="">
-                                                 <c:if test="${not empty empHashMap['jeudi']['14']}">
-                                                    <span id="idseanceEmp15" style="display: none;"><c:out value='${(empHashMap["jeudi"])["14"].numEmp}'></c:out></span>
+                                                <c:forEach items="${empHashMap['jeudi']['14']}" var="emp">
+                                                 <c:if test="${ not empty emp}">
+                                                    <span id="idseanceEmp15" style="display: none;"><c:out value='${emp.numEmp}'></c:out></span>
                                                     <!-- Enregistrer les ids des groupes et matieres dans des élements html invisibles pour après les réutiliser-->
-                                                    <span id="groupeEmp15" style="display: none;"><c:out value='${(empHashMap["jeudi"])["14"].numG.numG}'></c:out></span>
-                                                    <span id="matiereEmp15" style="display: none;"><c:out value='${(empHashMap["jeudi"])["14"].numM.codeM}'></c:out></span>
-                                                    <span id="matiereNomEmp15"><c:out value='${(empHashMap["jeudi"])["14"].numM.nomM}'></c:out></span> <br/>
-                                                    <span id="dateDEmp15" style="display: none;"><c:out value='${(empHashMap["jeudi"])["14"].dateD}'></c:out></span>
-                                                    <span id="dateFEmp15"style="display: none;"><c:out value='${(empHashMap["jeudi"])["14"].dateF}'></c:out></span>
-                                                    <span id="idEnsEmp15" style="display: none;"><c:out value='${(empHashMap["jeudi"])["14"].numE.id}'></c:out></span>
-                                                    <span> Groupe </span><span id="groupeNomEmp15"><c:out value='${(empHashMap["jeudi"])["14"].numG.nomG}'></c:out></span>
-                                                    <span id="niveauGrpEmp15" ><c:out value='${(empHashMap["jeudi"])["14"].numG.niveau}'></c:out></span><span>ère année</span>
+                                                    <span id="groupeEmp15" style="display: none;"><c:out value='${emp.numG.numG}'></c:out></span>
+                                                    <span id="matiereEmp15" style="display: none;"><c:out value='${emp.numM.codeM}'></c:out></span>
+                                                    <span id="matiereNomEmp15"><c:out value='${emp.numM.nomM}'></c:out></span> <br/>
+                                                    <span id="dateDEmp15" style="display: none;"><c:out value='${emp.dateD}'></c:out></span>
+                                                    <span id="dateFEmp15"style="display: none;"><c:out value='${emp.dateF}'></c:out></span>
+                                                    <span id="idEnsEmp15" style="display: none;"><c:out value='${emp.numE.id}'></c:out></span>
+                                                    <span> Groupe </span><span id="groupeNomEmp15"><c:out value='${emp.numG.nomG}'></c:out></span>
+                                                    <span id="niveauGrpEmp15" ><c:out value='${emp.numG.niveau}'></c:out></span><span>ère année</span>
                                                     <br/>
-                                                    <span id="nomEnsEmp15"><c:out value='${(empHashMap["jeudi"])["14"].numE.nom}'></c:out></span>
-                                                    <span id="prenomEns15"><c:out value='${(empHashMap["jeudi"])["14"].numE.prenom}'></c:out></span>
+                                                    <span id="nomEnsEmp15"><c:out value='${emp.numE.nom}'></c:out></span>
+                                                    <span id="prenomEns15"><c:out value='${emp.numE.prenom}'></c:out></span>
                                                     
                                                     <span id="heureEmp15" style="display: none;">14h à 16h</span>
                                                     <span id="jourEmp15" style="display: none;">Jeudi</span>
                                                 </c:if>
+                                                    <hr></hr>
+                                                </c:forEach>
                                             </td>
                                             <td class="myradio" id="16" data-container="body" data-toggle="popover" data-placement="right" data-content="">
-                                                 <c:if test="${not empty empHashMap['jeudi']['16']}">
-                                                    <span id="idseanceEmp16" style="display: none;"><c:out value='${(empHashMap["jeudi"])["16"].numEmp}'></c:out></span>
+                                                <c:forEach items="${empHashMap['jeudi']['16']}" var="emp">
+                                                 <c:if test="${ not empty emp}">
+                                                    <span id="idseanceEmp16" style="display: none;"><c:out value='${emp.numEmp}'></c:out></span>
                                                     <!-- Enregistrer les ids des groupes et matieres dans des élements html invisibles pour après les réutiliser-->
-                                                    <span id="groupeEmp16" style="display: none;"><c:out value='${(empHashMap["jeudi"])["16"].numG.numG}'></c:out></span>
-                                                    <span id="matiereEmp16" style="display: none;"><c:out value='${(empHashMap["jeudi"])["16"].numM.codeM}'></c:out></span>
-                                                    <span id="matiereNomEmp16"><c:out value='${(empHashMap["jeudi"])["16"].numM.nomM}'></c:out></span> <br/>
-                                                    <span id="dateDEmp16" style="display: none;"><c:out value='${(empHashMap["jeudi"])["16"].dateD}'></c:out></span>
-                                                    <span id="dateFEmp16" style="display: none;"><c:out value='${(empHashMap["jeudi"])["16"].dateF}'></c:out></span>
-                                                    <span id="idEnsEmp16" style="display: none;"><c:out value='${(empHashMap["jeudi"])["16"].numE.id}'></c:out></span>
-                                                    <span> Groupe </span><span id="groupeNomEmp16"><c:out value='${(empHashMap["jeudi"])["16"].numG.nomG}'></c:out></span>
-                                                    <span id="niveauGrpEmp16" ><c:out value='${(empHashMap["jeudi"])["16"].numG.niveau}'></c:out></span><span>ère année</span>
+                                                    <span id="groupeEmp16" style="display: none;"><c:out value='${emp.numG.numG}'></c:out></span>
+                                                    <span id="matiereEmp16" style="display: none;"><c:out value='${emp.numM.codeM}'></c:out></span>
+                                                    <span id="matiereNomEmp16"><c:out value='${emp.numM.nomM}'></c:out></span> <br/>
+                                                    <span id="dateDEmp16" style="display: none;"><c:out value='${emp.dateD}'></c:out></span>
+                                                    <span id="dateFEmp16" style="display: none;"><c:out value='${emp.dateF}'></c:out></span>
+                                                    <span id="idEnsEmp16" style="display: none;"><c:out value='${emp.numE.id}'></c:out></span>
+                                                    <span> Groupe </span><span id="groupeNomEmp16"><c:out value='${emp.numG.nomG}'></c:out></span>
+                                                    <span id="niveauGrpEmp16" ><c:out value='${emp.numG.niveau}'></c:out></span><span>ère année</span>
                                                     <br/>
-                                                    <span id="nomEnsEmp16"><c:out value='${(empHashMap["jeudi"])["16"].numE.nom}'></c:out></span>
-                                                    <span id="prenomEns16"><c:out value='${(empHashMap["jeudi"])["16"].numE.prenom}'></c:out></span>
+                                                    <span id="nomEnsEmp16"><c:out value='${emp.numE.nom}'></c:out></span>
+                                                    <span id="prenomEns16"><c:out value='${emp.numE.prenom}'></c:out></span>
                                                     
                                                     <span id="heureEmp16" style="display: none;">16h à 18h</span>
                                                     <span id="jourEmp16" style="display: none;">Jeudi</span>
                                                 </c:if>
+                                                    <hr></hr>
+                                                </c:forEach>
                                             </td>
                                          <tr>
                                             <td>VENDREDI</td>
                                             <td class="myradio" id="17" data-container="body" data-toggle="popover" data-placement="right" data-content="">
-                                                 <c:if test="${not empty empHashMap['vendredi']['8']}">
-                                                    <span id="idseanceEmp17" style="display: none;"><c:out value='${(empHashMap["vendredi"])["8"].numEmp}'></c:out></span>
+                                                
+                                                <c:forEach items="${empHashMap['vendredi']['8']}" var="emp">
+                                                 <c:if test="${ not empty emp}">
+                                                    <span id="idseanceEmp17" style="display: none;"><c:out value='${emp.numEmp}'></c:out></span>
                                                     <!-- Enregistrer les ids des groupes et matieres dans des élements html invisibles pour après les réutiliser-->
-                                                    <span id="groupeEmp17" style="display: none;"><c:out value='${(empHashMap["vendredi"])["8"].numG.numG}'></c:out></span>
-                                                    <span id="matiereEmp17" style="display: none;"><c:out value='${(empHashMap["vendredi"])["8"].numM.codeM}'></c:out></span>
-                                                    <span id="matiereNomEmp17"><c:out value='${(empHashMap["vendredi"])["8"].numM.nomM}'></c:out></span> <br/>
-                                                    <span id="dateDEmp17" style="display: none;"><c:out value='${(empHashMap["vendredi"])["8"].dateD}'></c:out></span>
-                                                    <span id="dateFEmp17" style="display: none;"><c:out value='${(empHashMap["vendredi"])["8"].dateF}'></c:out></span>
-                                                    <span id="idEnsEmp17" style="display: none;"><c:out value='${(empHashMap["vendredi"])["8"].numE.id}'></c:out></span>
-                                                    <span> Groupe </span><span id="groupeNomEmp17"><c:out value='${(empHashMap["vendredi"])["8"].numG.nomG}'></c:out></span>
-                                                    <span id="niveauGrpEmp17" ><c:out value='${(empHashMap["vendredi"])["8"].numG.niveau}'></c:out></span><span>ère année</span>
+                                                    <span id="groupeEmp17" style="display: none;"><c:out value='${emp.numG.numG}'></c:out></span>
+                                                    <span id="matiereEmp17" style="display: none;"><c:out value='${emp.numM.codeM}'></c:out></span>
+                                                    <span id="matiereNomEmp17"><c:out value='${emp.numM.nomM}'></c:out></span> <br/>
+                                                    <span id="dateDEmp17" style="display: none;"><c:out value='${emp.dateD}'></c:out></span>
+                                                    <span id="dateFEmp17" style="display: none;"><c:out value='${emp.dateF}'></c:out></span>
+                                                    <span id="idEnsEmp17" style="display: none;"><c:out value='${emp.numE.id}'></c:out></span>
+                                                    <span> Groupe </span><span id="groupeNomEmp17"><c:out value='${emp.numG.nomG}'></c:out></span>
+                                                    <span id="niveauGrpEmp17" ><c:out value='${emp.numG.niveau}'></c:out></span><span>ère année</span>
                                                     <br/>
-                                                    <span id="nomEnsEmp17"><c:out value='${(empHashMap["vendredi"])["8"].numE.nom}'></c:out></span>
-                                                    <span id="prenomEns17"><c:out value='${(empHashMap["vendredi"])["8"].numE.prenom}'></c:out></span>
+                                                    <span id="nomEnsEmp17"><c:out value='${emp.numE.nom}'></c:out></span>
+                                                    <span id="prenomEns17"><c:out value='${emp.numE.prenom}'></c:out></span>
                                                     
                                                     <span id="heureEmp17" style="display: none;">08h à 10h</span>
                                                     <span id="jourEmp17" style="display: none;">Vendredi</span>
                                                 </c:if>
+                                                    <hr></hr>
+                                                </c:forEach>
                                             </td>
                                             </td>
                                             <td class="myradio" id="18" data-container="body" data-toggle="popover" data-placement="right" data-content="">
-                                                 <c:if test="${not empty empHashMap['vendredi']['10']}">
-                                                    <span id="idseanceEmp18" style="display: none;"><c:out value='${(empHashMap["vendredi"])["10"].numEmp}'></c:out></span>
+                                                 <c:forEach items="${empHashMap['vendredi']['10']}" var="emp">
+                                                 <c:if test="${ not empty emp}">
+                                                    <span id="idseanceEmp18" style="display: none;"><c:out value='${emp.numEmp}'></c:out></span>
                                                     <!-- Enregistrer les ids des groupes et matieres dans des élements html invisibles pour après les réutiliser-->
-                                                    <span id="groupeEmp18" style="display: none;"><c:out value='${(empHashMap["vendredi"])["10"].numG.numG}'></c:out></span>
-                                                    <span id="matiereEmp18" style="display: none;"><c:out value='${(empHashMap["vendredi"])["10"].numM.codeM}'></c:out></span>
-                                                    <span id="matiereNomEmp18"><c:out value='${(empHashMap["vendredi"])["10"].numM.nomM}'></c:out></span> <br/>
-                                                    <span id="dateDEmp18" style="display: none;"><c:out value='${(empHashMap["vendredi"])["10"].dateD}'></c:out></span>
-                                                    <span id="dateFEmp18" style="display: none;"><c:out value='${(empHashMap["vendredi"])["10"].dateF}'></c:out></span>
-                                                    <span id="idEnsEmp18" style="display: none;"><c:out value='${(empHashMap["vendredi"])["10"].numE.id}'></c:out></span>
-                                                    <span> Groupe </span><span id="groupeNomEmp18"><c:out value='${(empHashMap["vendredi"])["10"].numG.nomG}'></c:out></span>
-                                                    <span id="niveauGrpEmp18" ><c:out value='${(empHashMap["vendredi"])["10"].numG.niveau}'></c:out></span><span>ère année</span>
+                                                    <span id="groupeEmp18" style="display: none;"><c:out value='${emp.numG.numG}'></c:out></span>
+                                                    <span id="matiereEmp18" style="display: none;"><c:out value='${emp.numM.codeM}'></c:out></span>
+                                                    <span id="matiereNomEmp18"><c:out value='${emp.numM.nomM}'></c:out></span> <br/>
+                                                    <span id="dateDEmp18" style="display: none;"><c:out value='${emp.dateD}'></c:out></span>
+                                                    <span id="dateFEmp18" style="display: none;"><c:out value='${emp.dateF}'></c:out></span>
+                                                    <span id="idEnsEmp18" style="display: none;"><c:out value='${emp.numE.id}'></c:out></span>
+                                                    <span> Groupe </span><span id="groupeNomEmp18"><c:out value='${emp.numG.nomG}'></c:out></span>
+                                                    <span id="niveauGrpEmp18" ><c:out value='${emp.numG.niveau}'></c:out></span><span>ère année</span>
                                                     <br/>
-                                                    <span id="nomEnsEmp18"><c:out value='${(empHashMap["vendredi"])["10"].numE.nom}'></c:out></span>
-                                                    <span id="prenomEns18"><c:out value='${(empHashMap["vendredi"])["10"].numE.prenom}'></c:out></span>
+                                                    <span id="nomEnsEmp18"><c:out value='${emp.numE.nom}'></c:out></span>
+                                                    <span id="prenomEns18"><c:out value='${emp.numE.prenom}'></c:out></span>
                                                     
                                                     <span id="heureEmp18" style="display: none;">10h à 12h</span>
                                                     <span id="jourEmp18" style="display: none;">Vendredi</span>
                                                 </c:if>
+                                                 </c:forEach>
                                             </td>
                                             <td class="myradio" id="19" data-container="body" data-toggle="popover" data-placement="right" data-content="">
-                                                 <c:if test="${not empty empHashMap['vendredi']['14']}">
-                                                    <span id="idseanceEmp19" style="display: none;"><c:out value='${(empHashMap["vendredi"])["14"].numEmp}'></c:out></span>
+                                                 <c:forEach items="${empHashMap['vendredi']['14']}" var="emp">
+                                                 <c:if test="${ not empty emp}">
+                                                    <span id="idseanceEmp19" style="display: none;"><c:out value='${emp.numEmp}'></c:out></span>
                                                     <!-- Enregistrer les ids des groupes et matieres dans des élements html invisibles pour après les réutiliser-->
-                                                    <span id="groupeEmp19" style="display: none;"><c:out value='${(empHashMap["vendredi"])["14"].numG.numG}'></c:out></span>
-                                                    <span id="matiereEmp19" style="display: none;"><c:out value='${(empHashMap["vendredi"])["14"].numM.codeM}'></c:out></span>
-                                                    <span id="matiereNomEmp19"><c:out value='${(empHashMap["vendredi"])["14"].numM.nomM}'></c:out></span> <br/>
-                                                    <span id="dateDEmp19" style="display: none;"><c:out value='${(empHashMap["vendredi"])["14"].dateD}'></c:out></span>
-                                                    <span id="dateFEmp19"style="display: none;"><c:out value='${(empHashMap["vendredi"])["14"].dateF}'></c:out></span>
-                                                    <span id="idEnsEmp19" style="display: none;"><c:out value='${(empHashMap["vendredi"])["14"].numE.id}'></c:out></span>
-                                                    <span> Groupe </span><span id="groupeNomEmp19"><c:out value='${(empHashMap["vendredi"])["14"].numG.nomG}'></c:out></span>
-                                                    <span id="niveauGrpEmp19" ><c:out value='${(empHashMap["vendredi"])["14"].numG.niveau}'></c:out></span><span>ère année</span>
+                                                    <span id="groupeEmp19" style="display: none;"><c:out value='${emp.numG.numG}'></c:out></span>
+                                                    <span id="matiereEmp19" style="display: none;"><c:out value='${emp.numM.codeM}'></c:out></span>
+                                                    <span id="matiereNomEmp19"><c:out value='${emp.numM.nomM}'></c:out></span> <br/>
+                                                    <span id="dateDEmp19" style="display: none;"><c:out value='${emp.dateD}'></c:out></span>
+                                                    <span id="dateFEmp19"style="display: none;"><c:out value='${emp.dateF}'></c:out></span>
+                                                    <span id="idEnsEmp19" style="display: none;"><c:out value='${emp.numE.id}'></c:out></span>
+                                                    <span> Groupe </span><span id="groupeNomEmp19"><c:out value='${emp.numG.nomG}'></c:out></span>
+                                                    <span id="niveauGrpEmp19" ><c:out value='${emp.numG.niveau}'></c:out></span><span>ère année</span>
                                                     <br/>
-                                                    <span id="nomEnsEmp19"><c:out value='${(empHashMap["vendredi"])["14"].numE.nom}'></c:out></span>
-                                                    <span id="prenomEns19"><c:out value='${(empHashMap["vendredi"])["14"].numE.prenom}'></c:out></span>
+                                                    <span id="nomEnsEmp19"><c:out value='${emp.numE.nom}'></c:out></span>
+                                                    <span id="prenomEns19"><c:out value='${emp.numE.prenom}'></c:out></span>
                                                     
                                                     <span id="heureEmp19" style="display: none;">14h à 16h</span>
                                                     <span id="jourEmp19" style="display: none;">Vendredi</span>
                                                 </c:if>
+                                                    <hr></hr>
+                                                 </c:forEach>
+                                                    
                                             </td>
                                             <td class="myradio" id="20" data-container="body" data-toggle="popover" data-placement="right" data-content="">
-                                                 <c:if test="${not empty empHashMap['vendredi']['16']}">
-                                                    <span id="idseanceEmp20" style="display: none;"><c:out value='${(empHashMap["vendredi"])["16"].numEmp}'></c:out></span>
+                                                <c:forEach items="${empHashMap['vendredi']['16']}" var="emp">
+                                                 <c:if test="${ not empty emp}">
+                                                    <span id="idseanceEmp20" style="display: none;"><c:out value='${emp.numEmp}'></c:out></span>
                                                     <!-- Enregistrer les ids des groupes et matieres dans des élements html invisibles pour après les réutiliser-->
-                                                    <span id="groupeEmp20" style="display: none;"><c:out value='${(empHashMap["vendredi"])["16"].numG.numG}'></c:out></span>
-                                                    <span id="matiereEmp20" style="display: none;"><c:out value='${(empHashMap["vendredi"])["16"].numM.codeM}'></c:out></span>
-                                                    <span id="matiereNomEmp20"><c:out value='${(empHashMap["vendredi"])["16"].numM.nomM}'></c:out></span> <br/>
-                                                    <span id="dateDEmp20" style="display: none;"><c:out value='${(empHashMap["vendredi"])["16"].dateD}'></c:out></span>
-                                                    <span id="dateFEmp20"style="display: none;"><c:out value='${(empHashMap["vendredi"])["16"].dateF}'></c:out></span>
-                                                    <span id="idEnsEmp20" style="display: none;"><c:out value='${(empHashMap["vendredi"])["16"].numE.id}'></c:out></span>
-                                                    <span> Groupe </span><span id="groupeNomEmp20"><c:out value='${(empHashMap["vendredi"])["16"].numG.nomG}'></c:out></span>
-                                                    <span id="niveauGrpEmp20" ><c:out value='${(empHashMap["vendredi"])["16"].numG.niveau}'></c:out></span><span>ère année</span>
+                                                    <span id="groupeEmp20" style="display: none;"><c:out value='${emp.numG.numG}'></c:out></span>
+                                                    <span id="matiereEmp20" style="display: none;"><c:out value='${emp.numM.codeM}'></c:out></span>
+                                                    <span id="matiereNomEmp20"><c:out value='${emp.numM.nomM}'></c:out></span> <br/>
+                                                    <span id="dateDEmp20" style="display: none;"><c:out value='${emp.dateD}'></c:out></span>
+                                                    <span id="dateFEmp20"style="display: none;"><c:out value='${emp.dateF}'></c:out></span>
+                                                    <span id="idEnsEmp20" style="display: none;"><c:out value='${emp.numE.id}'></c:out></span>
+                                                    <span> Groupe </span><span id="groupeNomEmp20"><c:out value='${emp.numG.nomG}'></c:out></span>
+                                                    <span id="niveauGrpEmp20" ><c:out value='${emp.numG.niveau}'></c:out></span><span>ère année</span>
                                                     <br/>
-                                                    <span id="nomEnsEmp20"><c:out value='${(empHashMap["vendredi"])["16"].numE.nom}'></c:out></span>
-                                                    <span id="prenomEns20"><c:out value='${(empHashMap["vendredi"])["16"].numE.prenom}'></c:out></span>
+                                                    <span id="nomEnsEmp20"><c:out value='${emp.numE.nom}'></c:out></span>
+                                                    <span id="prenomEns20"><c:out value='${emp.numE.prenom}'></c:out></span>
                                                     
                                                     <span id="heureEmp20" style="display: none;">16h à 18h</span>
                                                     <span id="jourEmp20" style="display: none;">Vendredi</span>
                                                 </c:if>
+                                                    <hr></hr>
+                                                </c:forEach>
                                             </td>
                                                 </div>
                                         </tr>

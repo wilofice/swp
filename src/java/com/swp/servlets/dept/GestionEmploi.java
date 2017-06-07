@@ -68,8 +68,8 @@ public class GestionEmploi extends HttpServlet {
         List<Groupe> listegroupe = groupeFacade.findAll();
         List<Groupe> listeGroupeTemp = new ArrayList<Groupe>();
         List<Matiere> listeMatiere = matiereFacade.findAll();
-        List<Enseignant> listeenseignant = enseignantFacade.findAll();
-        Iterator<Groupe> groupIterator = listegroupe.iterator();
+        List<Enseignant> listeenseignant = enseignantFacade.getListeEnsbyRole("enseignant");
+                Iterator<Groupe> groupIterator = listegroupe.iterator();
         while (groupIterator.hasNext()) {
                 Groupe g = groupIterator.next();
                 if(g.getNomFiliere().equals("Informatique")){

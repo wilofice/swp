@@ -166,7 +166,10 @@
         <form action="ModifierMat" method="Post" >
       <div class="modal-body">
           <input type="text" name="codeMat" style="display: none;" value="<c:out value="${matSelected.codeM}"/>"/>
-       
+       <div class="form-group">
+        <label for="codeM">Code Matière</label>
+        <input type="text" class="form-control" id="codeM" name="codeM"  value="<c:out value="${matSelected.getCodeM()}"/>" disabled="disabled">
+        </div>
   <div class="form-group">
         <label for="nomM">Nom Matière </label>
         <input type="text" class="form-control" id="nomM" name="nomM"  value="<c:out value="${matSelected.getNomM()}"/>"required >

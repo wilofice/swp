@@ -53,4 +53,11 @@ public class EnseignantFacade extends AbstractFacade<Enseignant> {
         results = query.getResultList();
         return results;
     }
+     public List<Enseignant> getListeEnsbyRole(String role) {
+        List<Enseignant> results;
+        Query query = em.createQuery("SELECT e FROM Enseignant e WHERE e.rôle=:role");
+        query.setParameter("role", role);
+        results = query.getResultList();
+        return results;
+    }
 }
